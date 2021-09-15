@@ -1,0 +1,21 @@
+{
+    "tubes": [
+        ["WHITE ","DARK GREEN ","BROWN ","PURPLE ","BROWN "],
+        ["LIGHT GREEN ","ORANGE ","DARK GREEN ","LIGHT BLUE ","PURPLE "],
+        ["BROWN ","RED ","LIGHT BLUE ","LIGHT GREEN ","WHITE "],
+        ["ORANGE ","DARK BLUE ","PURPLE ","LIGHT GREEN ","LIGHT BLUE "],
+        ["DARK GREEN ","RED ","LIGHT GREEN ","DARK PINK ","ORANGE "],
+        ["DARK PINK ","LIGHT GREEN ","RED ","BROWN ","TEAL "],
+        ["DARK PINK ","BLUE ","YELLOW ","BLUE ","TEAL "],
+        ["ORANGE ","TEAL ","DARK BLUE ","WHITE ","WHITE "],
+
+        ["BLUE ","WHITE ","RED ","DARK BLUE ","BLUE "],
+        ["LIGHT PINK ","DARK PINK ","TEAL ","DARK PINK ","DARK BLUE "],
+        ["LIGHT BLUE ","ORANGE ","PURPLE ","YELLOW ","YELLOW "],
+        ["LIGHT PINK ","BLUE ","YELLOW ","LIGHT BLUE ","DARK GREEN "],
+        ["DARK GREEN ","YELLOW ","RED ","LIGHT PINK ","DARK BLUE "],
+        ["LIGHT PINK ","TEAL ","PURPLE ","LIGHT PINK ","BROWN "],
+        [],
+        []
+    ]
+}
