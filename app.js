@@ -13,30 +13,55 @@ function drawTubes() {
     // for each ball in this tube, draw that many balls. 
     // and in that tube draw the correct number of balls. 
 
+    console.log(grid[0]);
+    //displays the tubes
     for(let i = 0; i < numberOfTubes; i++) {
         let tubeSpan =  document.createElement('span');
         tubeSpan.className = 'tube';
-        let balls = ''
-        for (x = 0; x < ballsPerTube; x++) {
-            for (y=0;y < grid[i][x].length; y++) {
-                // console.log(y); 
-                // console.log(grid[i][x][y]);
-                let ball = document.createElement('div');
-                ball.className = "ball";
-                ball.innerText = "X";
-                ball.style.backgroundColor = grid[0][x][y];
-                console.log(ball);
-                tubeSpan.appendChild(ball);
-            }
+        // console.log(grid[0][i].length);
+        console.log(grid[0][i].length);
+        // displays the balls
+        //done in reverse so we're effectively drawing from the bottom up
+        for (let x = grid[0][i].length-1; x > -1 ; x--) {
+            console.log(grid[0][i][x]);
+            //create ball (div), set class and color
+            let ball = document.createElement('div');
+            ball.className = "ball";
+            ball.style.backgroundColor = grid[0][i][x];
+            // add the ball to the tube
+            tubeSpan.appendChild(ball);
+        }
+        console.log('----');            
+        
+        display.appendChild(tubeSpan)
+    }
+
+
+
+
+    // for(let i = 0; i < numberOfTubes; i++) {
+    //     let tubeSpan =  document.createElement('span');
+    //     tubeSpan.className = 'tube';
+    //     for (x = 0; x < ballsPerTube; x++) {
+    //         for (y=0;y < grid[0][i][x].length; y++) {
+    //             // console.log(y); 
+    //             console.log(grid[0][i][x]);
+    //             let ball = document.createElement('div');
+    //             ball.className = "ball";
+    //             ball.style.backgroundColor = grid[0][i][x];
+    //             // console.log(tubeSpan);
+    //             tubeSpan.appendChild(ball);
+    //         }
             // console.log('---');
 
             // balls += `<div class="ball">X</div>`;    
             // console.log(grid[i][x]);        
-        }
+        // }
+        
         // tubeSpan.innerHTML = balls;
-        display.appendChild(tubeSpan)
+        // display.appendChild(tubeSpan)
         // console.log(tube);
-    }
+//     }
 }
 
 http.get('ballsortSolved.json')
