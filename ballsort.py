@@ -42,7 +42,7 @@ def isSolved(grid, tubeHeight=None):
 
 def loadGrid():
     # 2 colours, 4x4 tubes (2 empty)
-    with open('exampleeasy.json') as json_file: 
+    with open('exampleeasy2.json') as json_file: 
     # 12 colours, 14x5 tubes (2 empty)
     # with open('example.json') as json_file:
         data = json.load(json_file)

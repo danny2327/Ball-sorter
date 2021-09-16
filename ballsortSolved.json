@@ -3,12 +3,17 @@
         [
             "RED",
             "BLUE",
-            "BLUE"
+            "YELLOW"
         ],
         [
             "BLUE",
-            "RED",
+            "YELLOW",
             "RED"
+        ],
+        [
+            "YELLOW",
+            "RED",
+            "BLUE"
         ],
         [],
         []
@@ -20,11 +25,16 @@
         ],
         [
             "BLUE",
-            "RED",
+            "YELLOW",
             "RED"
         ],
         [
+            "YELLOW",
+            "RED",
             "BLUE"
+        ],
+        [
+            "YELLOW"
         ],
         []
     ],
@@ -34,14 +44,20 @@
         ],
         [
             "BLUE",
-            "RED",
+            "YELLOW",
             "RED"
         ],
         [
-            "BLUE",
+            "YELLOW",
+            "RED",
             "BLUE"
         ],
-        []
+        [
+            "YELLOW"
+        ],
+        [
+            "BLUE"
+        ]
     ],
     "3": [
         [
@@ -50,32 +66,63 @@
         ],
         [
             "BLUE",
-            "RED"
+            "YELLOW"
         ],
         [
-            "BLUE",
+            "YELLOW",
+            "RED",
             "BLUE"
         ],
-        []
+        [
+            "YELLOW"
+        ],
+        [
+            "BLUE"
+        ]
     ],
     "4": [
         [
-            "RED"
-        ],
-        [
-            "BLUE",
             "RED",
             "RED"
         ],
         [
-            "BLUE",
             "BLUE"
         ],
-        []
+        [
+            "YELLOW",
+            "RED",
+            "BLUE"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE"
+        ]
     ],
     "5": [
         [
             "RED",
+            "RED"
+        ],
+        [],
+        [
+            "YELLOW",
+            "RED",
+            "BLUE"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE",
+            "BLUE"
+        ]
+    ],
+    "6": [
+        [
             "RED",
             "RED"
         ],
@@ -83,12 +130,100 @@
             "BLUE"
         ],
         [
+            "YELLOW",
+            "RED"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
             "BLUE",
             "BLUE"
-        ],
-        []
+        ]
     ],
-    "6": [
+    "7": [
+        [
+            "RED"
+        ],
+        [
+            "BLUE"
+        ],
+        [
+            "YELLOW",
+            "RED",
+            "RED"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE",
+            "BLUE"
+        ]
+    ],
+    "8": [
+        [
+            "RED"
+        ],
+        [],
+        [
+            "YELLOW",
+            "RED",
+            "RED"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE",
+            "BLUE",
+            "BLUE"
+        ]
+    ],
+    "9": [
+        [
+            "RED",
+            "RED"
+        ],
+        [],
+        [
+            "YELLOW",
+            "RED"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE",
+            "BLUE",
+            "BLUE"
+        ]
+    ],
+    "10": [
+        [
+            "RED"
+        ],
+        [],
+        [
+            "YELLOW",
+            "RED",
+            "RED"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE",
+            "BLUE",
+            "BLUE"
+        ]
+    ],
+    "11": [
         [
             "RED",
             "RED",
@@ -96,10 +231,35 @@
         ],
         [],
         [
+            "YELLOW"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
             "BLUE",
             "BLUE",
             "BLUE"
+        ]
+    ],
+    "12": [
+        [
+            "RED",
+            "RED",
+            "RED"
         ],
-        []
+        [],
+        [],
+        [
+            "YELLOW",
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE",
+            "BLUE",
+            "BLUE"
+        ]
     ]
 }

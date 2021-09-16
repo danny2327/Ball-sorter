@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" /> -->
   <title>Ball Sorter</title>
   <style>
     #display {
@@ -14,48 +14,108 @@
     }
 
     .tube {
-      min-width:32px;
-      min-height:110px;
-      border-color: black;
-      border-style: solid;
-      border-width: 1px;
-      padding-left: 20px;
-      padding-right: 20px;
-      display: inline-block;
+      width:32px;
+      height:140px;
+      border: 3px solid grey;
+      border-top: 0px solid white;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      /* display: inline-block; */
+      position:absolute;
     }
 
     .ball {
-      min-width:30px;
       width: 30px;
-      min-height:30px;
+      border-radius: 15px;
       height:30px;
+      border: 1px solid grey;
+      margin-bottom: 1px;
+      
+      position:absolute;
+    }
+
+    #outer {
+      position: absolute;
+      height:100px;
+      width:20px;
       border-color: grey;
       border-style: solid;
       border-width: 1px;
-      margin: 1px;
-      /* position: absolute; */
-      bottom: 0;
     }
 
+    #inner, #inner2 {
+      height:40px;
+      width:12px;
+      border-color: red;
+      border-style: solid;
+      border-width: 1px;
+      bottom: 0;
+      position: absolute;
+    }
+
+    #inner {
+      /* bottom: 0; */
+    }
+
+    #inner2 {
+      /* right:0; */
+    }
+    
     button {
+      /* float: left; */
+      max-width: 200;
+      background-color: aquamarine;
+    }
+    
+    #buttons {
+      display: inline-block;
+      /* min-height: 300px; */
+    }
+
+  </style>
+</head>
+<body>
+    <div id="buttons">
+      <button class="actionButton" id="beginning">Go back to Start</button>
+      <button class="actionButton" id="prev">Previous Step</button>
+      <button class="actionButton" id="next">Next Step</button>
+      <button class="actionButton" id="last">See end stage</button>
+      <button class="actionButton" id="play">Play from here</button>
+      <button class="actionButton" id="playFromStart">Play from Start</button>
+    </div>
+    <p></p>
+    <div id="display">
+      <!-- <div class="tube">
+        <div class="ball" style="background-color:blue; bottom: 68px;"></div>
+        <div class="ball" style="background-color:blue; bottom: 34px;"></div>
+        <div class="ball" style="background-color:red; bottom:0px;"></div>
+      </div> -->
+    </div>
+    <!-- <div id="test1"></div> -->
+    <!-- <div id="outer"> -->
+      <!-- <div id="inner">1</div><div id="inner2">2</div> -->
+    <!-- </div> -->
+
+<!--     #buttons input {
       float: left;
       max-width: 200;
+      background-color: aquamarine;
     }
   </style>
 </head>
 <body>
-    <div id="buttons">Buttons<p></p>
-      <button id="prev">Go back to Start</div>
-      <button id="prev">Previous Step</div>
-      <button id="first">Next Step</div>
-      <button id="last">See end stage</div>
-      <button id="play">Play from here</div>
-      <button id="playFromStart">Play from Start</div>
-    </div>
+    <form id="buttons">Buttons<p></p>
+      <input type="submit" value="Go back to Start" id="prev">
+      <input type="submit" value="Previous Step" id="prev">
+      <input type="submit" value="Next Step" id="first">
+      <input type="submit" value="See end stage" id="last">
+      <input type="submit" value="Play from here" id="play">
+      <input type="submit" value="Play from Start" id="playFromStart">
+    </form>
     <p></p>
-    <div id="display"></div>
-
-
+    <div id="display"></div> -->
 
 
   <script src="easyhttp2.js"></script>
