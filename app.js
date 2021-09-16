@@ -62,11 +62,7 @@ document.querySelectorAll(".actionButton").forEach(button =>
     button.addEventListener('click', (e) => {
         switch(e.target.id) {
             case 'beginning':
-                currentStage = 0;
-                prev.disabled = true;
-                next.disabled = false;
-                display.innerHTML = '';
-                drawTubes();
+                firstStage();
                 break;
             case 'prev':
                 prevStage();
@@ -75,19 +71,31 @@ document.querySelectorAll(".actionButton").forEach(button =>
                 nextStage();
                 break;
             case 'last':
-                currentStage = grid.length-1
-                next.disabled = true;
-                prev.disabled = false;
-                display.innerHTML = '';
-                drawTubes();
+                lastStage();
                 break;
         }
 }));
 
 document.addEventListener('keydown', (e) => {
     const key = e.key
-    if (key === "ArrowLeft") prevStage();
-    else if (key === "ArrowRight") nextStage();
+    switch(key) {
+        case "ArrowLeft": {
+            prevStage();
+            break;
+        }
+        case "ArrowRight": {
+            nextStage();
+            break;
+        }
+        case "ArrowUp": {
+            firstStage();
+            break;
+        }
+        case "ArrowDown": {
+            lastStage();
+            break;
+        }
+    }
 });
     
 function prevStage() {
@@ -105,8 +113,24 @@ function nextStage() {
     drawTubes();
 }
 
-// http.get('ballsortSolved copy.json') // small 3 colours
-http.get('ballsortSolved.json') // huge 14 colours, puzzle 616
+function firstStage() {
+    currentStage = 0;
+    prev.disabled = true;
+    next.disabled = false;
+    display.innerHTML = '';
+    drawTubes();
+}
+
+function lastStage() {
+    currentStage = grid.length-1
+    next.disabled = true;
+    prev.disabled = false;
+    display.innerHTML = '';
+    drawTubes();
+}
+
+http.get('ballsortSolved.json') // small 3 colours
+// http.get('ballsortSolved.json') // huge 14 colours, puzzle 616 - Not working well, not my fault the original script
 .then(data => displayData(data))
 .catch(err => console.log(err)); 
 
