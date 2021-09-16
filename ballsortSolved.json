@@ -205,13 +205,13 @@
     ],
     "10": [
         [
+            "RED",
+            "RED",
             "RED"
         ],
         [],
         [
-            "YELLOW",
-            "RED",
-            "RED"
+            "YELLOW"
         ],
         [
             "YELLOW",
@@ -224,26 +224,6 @@
         ]
     ],
     "11": [
-        [
-            "RED",
-            "RED",
-            "RED"
-        ],
-        [],
-        [
-            "YELLOW"
-        ],
-        [
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "BLUE",
-            "BLUE",
-            "BLUE"
-        ]
-    ],
-    "12": [
         [
             "RED",
             "RED",

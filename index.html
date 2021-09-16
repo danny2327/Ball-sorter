@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- not using skeleton because it makes the disabled buttons look identical to enabled buttons -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" /> -->
   <title>Ball Sorter</title>
   <style>
@@ -22,7 +23,6 @@
       border-bottom-right-radius: 10px;
       padding-left: 10px;
       padding-right: 10px;
-      /* display: inline-block; */
       position:absolute;
     }
 
@@ -44,34 +44,14 @@
       border-style: solid;
       border-width: 1px;
     }
-
-    #inner, #inner2 {
-      height:40px;
-      width:12px;
-      border-color: red;
-      border-style: solid;
-      border-width: 1px;
-      bottom: 0;
-      position: absolute;
-    }
-
-    #inner {
-      /* bottom: 0; */
-    }
-
-    #inner2 {
-      /* right:0; */
-    }
     
     button {
-      /* float: left; */
       max-width: 200;
       background-color: aquamarine;
     }
     
     #buttons {
       display: inline-block;
-      /* min-height: 300px; */
     }
 
   </style>
@@ -87,37 +67,8 @@
     </div>
     <p></p>
     <div id="display">
-      <!-- <div class="tube">
-        <div class="ball" style="background-color:blue; bottom: 68px;"></div>
-        <div class="ball" style="background-color:blue; bottom: 34px;"></div>
-        <div class="ball" style="background-color:red; bottom:0px;"></div>
-      </div> -->
+
     </div>
-    <!-- <div id="test1"></div> -->
-    <!-- <div id="outer"> -->
-      <!-- <div id="inner">1</div><div id="inner2">2</div> -->
-    <!-- </div> -->
-
-<!--     #buttons input {
-      float: left;
-      max-width: 200;
-      background-color: aquamarine;
-    }
-  </style>
-</head>
-<body>
-    <form id="buttons">Buttons<p></p>
-      <input type="submit" value="Go back to Start" id="prev">
-      <input type="submit" value="Previous Step" id="prev">
-      <input type="submit" value="Next Step" id="first">
-      <input type="submit" value="See end stage" id="last">
-      <input type="submit" value="Play from here" id="play">
-      <input type="submit" value="Play from Start" id="playFromStart">
-    </form>
-    <p></p>
-    <div id="display"></div> -->
-
-
   <script src="easyhttp2.js"></script>
   <script src="app.js"></script>
 </body>

@@ -7,6 +7,7 @@ import time
 import pprint as pp
 from collections import OrderedDict
 
+
 def isValidGrid(grid):
     numTubes = len(grid)
     tubeHeight = max(len(t) for t in grid)
@@ -153,3 +154,22 @@ if __name__ == "__main__":
             for step in answer:
                 print(step)
                 print('--')
+
+# BLUE
+# RED
+# YELLOW
+# ORANGE
+# PURPLE
+# WHITE
+# TEAL
+# BROWN
+# LIGHT PINK = LIGHTPINK
+# DARK BLUE = NAVY
+# DARK GREEN = GREEN
+# LIGHT GREEN = LIME
+# DARK PINK = FUSCHIA
+# LIGHT BLUE = AQUA
+
+# Left to right is bottom up
+
+# For some reason in simple tests so far it always seems to make one duplicate out or order error, as in if I remove that one step, it's seamless.  Not sure how it's being added. 

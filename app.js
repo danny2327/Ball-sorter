@@ -58,7 +58,6 @@ function drawTubes(){
 
 document.querySelectorAll(".actionButton").forEach(button => 
     button.addEventListener('click', (e) => {
-        console.log(currentStage);
         switch(e.target.id) {
             case 'beginning':
                 currentStage = 0;

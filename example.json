@@ -1,20 +1,20 @@
 {
     "tubes": [
-        ["WHITE ","DARK GREEN ","BROWN ","PURPLE ","BROWN "],
-        ["LIGHT GREEN ","ORANGE ","DARK GREEN ","LIGHT BLUE ","PURPLE "],
-        ["BROWN ","RED ","LIGHT BLUE ","LIGHT GREEN ","WHITE "],
-        ["ORANGE ","DARK BLUE ","PURPLE ","LIGHT GREEN ","LIGHT BLUE "],
-        ["DARK GREEN ","RED ","LIGHT GREEN ","DARK PINK ","ORANGE "],
-        ["DARK PINK ","LIGHT GREEN ","RED ","BROWN ","TEAL "],
+        ["WHITE ","GREEN ","BROWN ","PURPLE ","BROWN "],
+        ["LIME ","ORANGE ","GREEN ","AQUA ","PURPLE "],
+        ["BROWN ","RED ","AQUA ","LIME ","WHITE "],
+        ["ORANGE ","NAVY ","PURPLE ","LIME ","AQUA "],
+        ["GREEN ","RED ","LIME ","DARK PINK ","ORANGE "],
+        ["DARK PINK ","LIME ","RED ","BROWN ","TEAL "],
         ["DARK PINK ","BLUE ","YELLOW ","BLUE ","TEAL "],
-        ["ORANGE ","TEAL ","DARK BLUE ","WHITE ","WHITE "],
+        ["ORANGE ","TEAL ","NAVY ","WHITE ","WHITE "],
 
-        ["BLUE ","WHITE ","RED ","DARK BLUE ","BLUE "],
-        ["LIGHT PINK ","DARK PINK ","TEAL ","DARK PINK ","DARK BLUE "],
-        ["LIGHT BLUE ","ORANGE ","PURPLE ","YELLOW ","YELLOW "],
-        ["LIGHT PINK ","BLUE ","YELLOW ","LIGHT BLUE ","DARK GREEN "],
-        ["DARK GREEN ","YELLOW ","RED ","LIGHT PINK ","DARK BLUE "],
-        ["LIGHT PINK ","TEAL ","PURPLE ","LIGHT PINK ","BROWN "],
+        ["BLUE ","WHITE ","RED ","NAVY ","BLUE "],
+        ["LIGHTPINK ","DARK PINK ","TEAL ","DARK PINK ","NAVY "],
+        ["AQUA ","ORANGE ","PURPLE ","YELLOW ","YELLOW "],
+        ["LIGHTPINK ","BLUE ","YELLOW ","AQUA ","GREEN "],
+        ["GREEN ","YELLOW ","RED ","LIGHTPINK ","NAVY "],
+        ["LIGHTPINK ","TEAL ","PURPLE ","LIGHTPINK ","BROWN "],
         [],
         []
     ]
