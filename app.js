@@ -5,11 +5,11 @@ const stage = document.createElement('span');
 
 const next = document.getElementById('next');
 var currentStage = 0;
-
 let grid;
+let ballsPerTube;
+
 
 function prepareToDraw() {
-    ballsPerTube = grid[0][0].length//getTubeSize()
     numberOfTubes = grid[0].length
     //disabled prev at start because it's 0
     prev.disabled = "true";
@@ -35,6 +35,8 @@ function drawTubes(){
         let tubeDiv =  document.createElement('div');
         tubeDiv.className = 'tube';
         newTubeDivLocation = 30 + (60*i);
+        newTubeHeight = 30+(32*ballsPerTube);
+        tubeDiv.style.height = newTubeHeight + "px";
         tubeDiv.style.left = newTubeDivLocation + "px";
         tubeDiv.style.top = 100 + "px";
         display.appendChild(tubeDiv);        
@@ -67,18 +69,10 @@ document.querySelectorAll(".actionButton").forEach(button =>
                 drawTubes();
                 break;
             case 'prev':
-                if(currentStage > 0) currentStage--;
-                if(currentStage == 0) prev.disabled = true;
-                next.disabled = false;
-                display.innerHTML = '';
-                drawTubes();
+                prevStage();
                 break;
             case 'next':
-                if(currentStage < grid.length-1) currentStage++;
-                if(currentStage == grid.length-1) next.disabled = true;
-                prev.disabled = false;
-                display.innerHTML = '';
-                drawTubes();
+                nextStage();
                 break;
             case 'last':
                 currentStage = grid.length-1
@@ -89,13 +83,36 @@ document.querySelectorAll(".actionButton").forEach(button =>
                 break;
         }
 }));
+
+document.addEventListener('keydown', (e) => {
+    const key = e.key
+    if (key === "ArrowLeft") prevStage();
+    else if (key === "ArrowRight") nextStage();
+});
     
-http.get('ballsortSolved.json')
+function prevStage() {
+    if(currentStage > 0) currentStage--;
+    if(currentStage == 0) prev.disabled = true;
+    next.disabled = false;
+    display.innerHTML = '';
+    drawTubes();
+}
+function nextStage() {
+    if(currentStage < grid.length-1) currentStage++;
+    if(currentStage == grid.length-1) next.disabled = true;
+    prev.disabled = false;
+    display.innerHTML = '';
+    drawTubes();
+}
+
+// http.get('ballsortSolved copy.json') // small 3 colours
+http.get('ballsortSolved.json') // huge 14 colours, puzzle 616
 .then(data => displayData(data))
 .catch(err => console.log(err)); 
 
 function displayData(data) {
     grid = Object.values(data);
+    ballsPerTube = grid[0][0].length//getTubeSize()
     prepareToDraw();
 }
 
