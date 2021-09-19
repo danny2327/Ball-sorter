@@ -42,10 +42,12 @@ def isSolved(grid, tubeHeight=None):
     return True
 
 def loadGrid():
+# def loadGrid(fileName):
     # 2 colours, 4x4 tubes (2 empty)
-    with open('example.json') as json_file: 
+    # with open(filename) as json_file: 
     # 12 colours, 14x5 tubes (2 empty)
-    # with open('example.json') as json_file:
+    # with open('exampleeasy.json') as json_file:
+    with open('exampleeasy2.json') as json_file:
         data = json.load(json_file)
         grid = data['tubes']
         return grid
@@ -69,6 +71,9 @@ def isMoveValid(tubeHeight, fromTube, candidateTube):
     # and the ball at the end of the source tube is the same as the
     # ball at the end of the destination.
     # But there are also some optimisations to avoid pointless moves.
+    # Want to fix: if there is a column with only 1 colour, don't move another ball of that colour to an empty spot
+
+
     if len(fromTube) == 0 or len(candidateTube) == tubeHeight:
         return False
     numFirstColour = fromTube.count(fromTube[0])
@@ -90,7 +95,7 @@ def gridToCanonicalString(grid):
 def solveGrid(grid, jsonOutput, counter, tubeHeight=None, visitedPositions=set(), answer=[]):
     if tubeHeight is None:
         tubeHeight = max(len(t) for t in grid)
-        jsonOutput[0] = grid
+
     # visitedPositions keeps track of all the states of the grid we have considered
     # to make sure we don't go round in circles
     # canonical (ordered) string representation of the grid means
@@ -104,6 +109,10 @@ def solveGrid(grid, jsonOutput, counter, tubeHeight=None, visitedPositions=set()
                 continue
             candidateTube = grid[j]
             if isMoveValid(tubeHeight, tube, candidateTube):
+                # WTF. By the time it gets here with the grid that should be 
+
+
+
                 # answer.append(printGridToString(grid)) if len(answer) == 0 else ''
                 # if len(answer) == 0:
                 #     answer.append(printGridToString(grid))
@@ -117,9 +126,11 @@ def solveGrid(grid, jsonOutput, counter, tubeHeight=None, visitedPositions=set()
                 if(gridToCanonicalString(grid2) not in visitedPositions):
                     solved = solveGrid(grid2, jsonOutput, counter, tubeHeight, visitedPositions, answer)
                     if solved:
-                        # jsonOutput[counter] = grid2
                         answer.append(printGridToString(grid2))
                         return True
+                else:
+                    jsonOutput.pop(len(jsonOutput) -1)
+                    a=1
         
     return False
 
@@ -128,6 +139,7 @@ if __name__ == "__main__":
     # parser.add_argument("json",help="filename of input file (in JSON format)")
     parser.add_argument("--show-working", dest="working", help="Print out the steps to the solution", action='store_true')
     args = parser.parse_args()
+    # grid = loadGrid(args.json)
     grid = loadGrid()
     start = time.time()
     if not isValidGrid(grid):
@@ -139,6 +151,7 @@ if __name__ == "__main__":
     print("--")
     answer = []
     jsonOutput = OrderedDict()
+    jsonOutput[0] = grid
     counter = 1
     visitedPositions = set()
     solved = solveGrid(grid, jsonOutput=jsonOutput, counter=counter, visitedPositions=visitedPositions, answer=answer)

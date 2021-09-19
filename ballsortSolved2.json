@@ -203,6 +203,26 @@
             "BLUE"
         ]
     ],
+    "10": [
+        [
+            "RED"
+        ],
+        [],
+        [
+            "YELLOW",
+            "RED",
+            "RED"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE",
+            "BLUE",
+            "BLUE"
+        ]
+    ],
     "11": [
         [
             "RED",

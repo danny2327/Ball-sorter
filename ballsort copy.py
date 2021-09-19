@@ -4,6 +4,9 @@ import argparse
 import copy
 import json
 import time
+import pprint as pp
+from collections import OrderedDict
+
 
 def isValidGrid(grid):
     numTubes = len(grid)
@@ -39,10 +42,19 @@ def isSolved(grid, tubeHeight=None):
     return True
 
 def loadGrid(filename):
-    with open(filename) as json_file:
+    # 2 colours, 4x4 tubes (2 empty)
+    with open(filename) as json_file: 
+    # 12 colours, 14x5 tubes (2 empty)
+    # with open('example.json') as json_file:
         data = json.load(json_file)
         grid = data['tubes']
         return grid
+
+def writeJson(data, f='ballsortSolved.json'):
+    jsonObj = json.dumps(data, indent=4)
+    with open(f, 'w') as outfile:
+        outfile.write(jsonObj)
+    print(f + " successfully written")
 
 def printGridToString(grid):
     lines = []
@@ -75,9 +87,10 @@ def gridToCanonicalString(grid):
     sortedTubeStrings = sorted(tubeStrings)
     return ';'.join(sortedTubeStrings)
 
-def solveGrid(grid, tubeHeight=None, visitedPositions=set(), answer=[]):
+def solveGrid(grid, jsonOutput, counter, tubeHeight=None, visitedPositions=set(), answer=[]):
     if tubeHeight is None:
         tubeHeight = max(len(t) for t in grid)
+        jsonOutput[0] = grid
     # visitedPositions keeps track of all the states of the grid we have considered
     # to make sure we don't go round in circles
     # canonical (ordered) string representation of the grid means
@@ -91,16 +104,23 @@ def solveGrid(grid, tubeHeight=None, visitedPositions=set(), answer=[]):
                 continue
             candidateTube = grid[j]
             if isMoveValid(tubeHeight, tube, candidateTube):
+                # answer.append(printGridToString(grid)) if len(answer) == 0 else ''
+                # if len(answer) == 0:
+                #     answer.append(printGridToString(grid))
                 grid2 = copy.deepcopy(grid)
                 grid2[j].append(grid2[i].pop())
+                jsonOutput[counter] = grid2
+                counter=counter+1
                 if(isSolved(grid2, tubeHeight)):
                     answer.append(printGridToString(grid2))
                     return True
                 if(gridToCanonicalString(grid2) not in visitedPositions):
-                    solved = solveGrid(grid2, tubeHeight, visitedPositions, answer)
+                    solved = solveGrid(grid2, jsonOutput, counter, tubeHeight, visitedPositions, answer)
                     if solved:
+                        # jsonOutput[counter] = grid2
                         answer.append(printGridToString(grid2))
                         return True
+        
     return False
 
 if __name__ == "__main__":
@@ -118,14 +138,17 @@ if __name__ == "__main__":
     print(printGridToString(grid))
     print("--")
     answer = []
+    jsonOutput = OrderedDict()
+    counter = 1
     visitedPositions = set()
-    solved = solveGrid(grid, visitedPositions=visitedPositions, answer=answer)
+    solved = solveGrid(grid, jsonOutput=jsonOutput, counter=counter, visitedPositions=visitedPositions, answer=answer)
     end = time.time()
     print("Visited "+str(len(visitedPositions))+" positions in "+str(round(end-start, 3))+" seconds")
     if not solved:
         print("No solution")
     else:
         print("Solved in "+str(len(answer))+" moves")
+        writeJson(jsonOutput)
         if(args.working):
             answer.reverse()
             for step in answer:
@@ -140,11 +163,13 @@ if __name__ == "__main__":
 # WHITE
 # TEAL
 # BROWN
-# LIGHT PINK
-# DARK BLUE
-# DARK GREEN
-# LIGHT GREEN
-# DARK PINK
-# LIGHT BLUE
+# LIGHT PINK = LIGHTPINK
+# DARK BLUE = NAVY
+# DARK GREEN = GREEN
+# LIGHT GREEN = LIME
+# DARK PINK = FUCHSIA
+# LIGHT BLUE = AQUA
 
 # Left to right is bottom up
+
+# For some reason in simple tests so far it always seems to make one duplicate out or order error, as in if I remove that one step, it's seamless.  Not sure how it's being added. 
