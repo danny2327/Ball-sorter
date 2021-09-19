@@ -47,7 +47,8 @@ def loadGrid():
     # with open(filename) as json_file: 
     # 12 colours, 14x5 tubes (2 empty)
     # with open('exampleeasy.json') as json_file:
-    with open('exampleeasy2.json') as json_file:
+    # with open('exampleeasy2.json') as json_file:
+    with open('example.json') as json_file:
         data = json.load(json_file)
         grid = data['tubes']
         return grid
@@ -129,7 +130,7 @@ def solveGrid(grid, jsonOutput, counter, tubeHeight=None, visitedPositions=set()
                         answer.append(printGridToString(grid2))
                         return True
                 else:
-                    jsonOutput.pop(len(jsonOutput) -1)
+                    jsonOutput.popitem(last = True)
                     a=1
         
     return False

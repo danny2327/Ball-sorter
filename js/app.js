@@ -134,8 +134,8 @@ function lastStage() {
     drawTubes();
 }
 
-// http.get('../ballsortSolved.json') //  2 colours
-http.get('../ballsortSolved2.json') // small 3 colours
+http.get('../ballsortSolved.json') //  2 colours
+// http.get('../ballsortSolved2.json') // small 3 colours
 // http.get('ballsortSolved.json') // huge 14 colours, puzzle 616 - Not working well, not my fault the original script
 .then(data => displayData(data))
 .catch(err => console.log(err)); 
