@@ -3,10 +3,15 @@ const display = document.getElementById('display');
 const prev = document.getElementById('prev');
 const stage = document.createElement('span');
 
+
 const next = document.getElementById('next');
-var currentStage = 0;
+let currentStage = 0;
 let grid;
 let ballsPerTube;
+let playing = false;
+let timeoutHandle;
+//default play speed in ms
+let playSpeed = 1000;
 
 
 function prepareToDraw() {
@@ -78,6 +83,24 @@ document.querySelectorAll(".actionButton").forEach(button =>
             case 'last':
                 lastStage();
                 break;
+            case 'play':
+                play();
+                break;
+            case 'playFromStart':
+                playFromStart();
+                break;
+            case 'pause':
+                pause();
+                break;
+            case 'slower':
+                slower();
+                break;
+            case 'faster':
+                faster();
+                break;
+            case 'reset':
+                reset();
+                break;
         }
 }));
 
@@ -133,6 +156,50 @@ function lastStage() {
     display.innerHTML = '';
     drawTubes();
 }
+
+async function play() {
+    const wait = (timeToDelay) => new Promise((resolve) => timeoutHandle = setTimeout(resolve, timeToDelay));
+
+    ShowPlayControls();
+    while (currentStage < grid.length-1) {
+        await wait(playSpeed);
+        nextStage();
+    }
+}
+
+function playFromStart() {
+    currentStage = -1;
+    play();
+}
+
+function pause() {
+    clearTimeout(timeoutHandle);
+    hidePlayControls();
+}
+
+function faster() {
+    if (playSpeed > 200) playSpeed-=200;
+    console.log(playSpeed);
+}
+
+function slower() {
+    playSpeed+=200;
+    console.log(playSpeed);
+}
+
+function reset() {
+    playSpeed = 1000;
+    console.log(playSpeed);
+}
+
+function ShowPlayControls() {
+    document.querySelectorAll('.playControls').forEach((el) => el.style.visibility = 'visible');  
+}
+
+function hidePlayControls() {
+    document.querySelectorAll('.playControls').forEach((el) => el.style.visibility = 'hidden');
+}
+
 
 http.get('../ballsortSolved.json') //  2 colours
 // http.get('../ballsortSolved2.json') // small 3 colours

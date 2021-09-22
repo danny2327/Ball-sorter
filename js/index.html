@@ -57,6 +57,11 @@
       display: inline-block;
     }
 
+    .playControls {
+      visibility: hidden;
+      background-color: lime;
+    }
+
   </style>
 </head>
 <body>
@@ -64,9 +69,17 @@
       <button class="actionButton" id="beginning">Go back to Start</button>
       <button class="actionButton" id="prev">Previous Step</button>
       <button class="actionButton" id="next">Next Step</button>
-      <button class="actionButton" id="last">See end stage</button>
+      <button class="actionButton" id="last">See end stage</button> <p></p>
       <button class="actionButton" id="play">Play from here</button>
       <button class="actionButton" id="playFromStart">Play from Start</button>
+      <button class="actionButton playControls" id="slower">«</button>
+      <button class="actionButton playControls" id="faster">»</button>
+      <button class="actionButton playControls" id="reset">&#8634;</button>
+      <button class="actionButton playControls" id="pause">||</button>
+      <!-- <button class="actionButton playControls" id="slower">Slower</button>
+      <button class="actionButton playControls" id="faster">Faster</button>
+      <button class="actionButton playControls" id="reset">Reset Speed</button>
+      <button class="actionButton playControls" id="pause">Pause</button> -->
     </div>
     <p></p>
     <div id="display">
