@@ -63,6 +63,19 @@
     }
 
     /* builder */
+    #ballSelect {
+      position:relative;
+      height:36px;
+      width: 180px;
+      /* top: 176px; */
+      padding-left: 30px;
+      padding-top: 30px;
+    }
+  
+    #ballSelect .ball {
+      position:relative;
+      float:left;
+    }
 
     
 
@@ -112,7 +125,10 @@
       <button  class="actionButton" id="updateGrid">Update Grid</button> <p>
         
     </div>
-    <div id="builderDisplay"></div>
+    <div id="builderTubeDisplay"></div>
+    <div id="builderSelectorDisplay">
+      <div id="ballSelect"></div>
+    </div>
   
   <script src="easyhttp2.js"></script>
   <script src="app.js"></script>

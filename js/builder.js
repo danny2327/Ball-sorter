@@ -1,6 +1,7 @@
 let inputBalls = document.getElementById('numBalls');
 let inputColours = document.getElementById('numColours');
-const builderDisplay = document.getElementById('builderDisplay');
+const builderTubeDisplay = document.getElementById('builderTubeDisplay');
+const builderSelectorDisplay = document.getElementById('builderSelectorDisplay');
 
 let builderBallsPerTube;
 let builderNumberOfTubes;
@@ -31,9 +32,6 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
         inputColours.value = builderNumberOfTubes-2;
         inputBalls.value = builderBallsPerTube;
       }
-
-
-
 });
 
 function getInputs() {
@@ -42,53 +40,88 @@ function getInputs() {
 }
 
 function prepareToDraw() {
-    builderDisplay.innerHTML='';
+    builderTubeDisplay.innerHTML='';
     getInputs();
     builderGrid = createGrid();
     drawTubes();
+    drawBallSelector();
 }
 
+
+
+function createTube(i) {
+    tubeDiv = document.createElement('div');
+    tubeDiv.className = 'tube';
+    newTubeDivLocation = 30 + (60*i);
+    newTubeHeight = 30+(32*builderBallsPerTube);
+    tubeDiv.style.height = newTubeHeight + "px";
+    tubeDiv.style.left = newTubeDivLocation + "px";
+    tubeDiv.style.top = 100 + "px";
+    return tubeDiv;
+}
+
+function createBall() {
+    //create ball (div), set class and color
+    let ball = document.createElement('div');
+    ball.className = "ball";
+    let ballbg = document.createElement('img');
+    ballbg.src='../images/ballbg.png';
+    ballbg.className='ballbg';    
+    ball.appendChild(ballbg);
+    return ball;
+}
 
 function drawTubes(){
     //displays the tubes
     for(let i = 0; i < builderNumberOfTubes; i++) {
-        let tubeDiv =  document.createElement('div');
-        tubeDiv.className = 'tube';
-        newTubeDivLocation = 30 + (60*i);
-        newTubeHeight = 30+(32*builderBallsPerTube);
-        tubeDiv.style.height = newTubeHeight + "px";
-        tubeDiv.style.left = newTubeDivLocation + "px";
-        tubeDiv.style.top = 100 + "px";
-        builderDisplay.appendChild(tubeDiv);        
+        createTube();
+        let tubeDiv = createTube(i);
+        builderTubeDisplay.appendChild(tubeDiv);        
         // displays the balls
         //done in reverse so we're effectively drawing from the bottom up
         for (let x = builderBallsPerTube-1; x >= 0 ; x--) {
             
             if(i < builderNumberOfTubes-2) {
-                //create ball (div), set class and color
-                let ball = document.createElement('div');
-                ball.className = "ball";
-                let ballbg = document.createElement('img');
-                ballbg.src='../images/ballbg.png';
-                ballbg.className='ballbg';
-                
-                ball.appendChild(ballbg);
-                // ball.style.backgroundColor = grid[currentStage][i][x];
+
+                let ball = createBall();
                 // add the ball to the tube
-                //stack balls from the bottom
                 tubeDiv.appendChild(ball);
-                
+                // ball.style.backgroundColor = grid[currentStage][i][x];
                 ballBottom = 0 + (x * 32)
                 ball.style.bottom = ballBottom + "px";
             }
         }        
     }
-    builderDisplay.appendChild(document.createElement("p"));
+    builderTubeDisplay.appendChild(document.createElement("p"));
+}
+
+function drawBallSelector() {
+    let ballSelector = document.getElementById('ballSelect');
+    ballSelector.innerHTML = '';
+    ballSelector.style.width = parseInt(inputColours.value)*65;
+    ballSelector.style.height = 35;
+    console.log(50+(32*builderBallsPerTube));
+    ballSelector.style.top = 80+(32*builderBallsPerTube)+"px";
+    for (let i = 0; i < parseInt(inputColours.value); i++) {
+        let ball = createBall()
+        ball.style.backgroundColor = ballColours[i];
+        // ball.style.display = 'inline';
+        ballSelector.appendChild(ball);
+        ballLeft = 0 + (i * 32)
+        ball.style.left = ballLeft + "px";
+    }
+}
+
+function startBuild() {
+    // This is where I'll do the loop of highlighting the next ball, up one row to the next etc.
+    // allow clicking on any ball to set/redo. 
+
 }
 
 
 function displayTubes() {
     prepareToDraw();
+    startBuild();
 }
 
 displayTubes();
