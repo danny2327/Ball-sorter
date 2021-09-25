@@ -46,14 +46,15 @@ def loadGrid():
     # 2 colours, 4x4 tubes (2 empty)
     # with open(filename) as json_file: 
     # 12 colours, 14x5 tubes (2 empty)
-    # with open('exampleeasy.json') as json_file:
-    # with open('exampleeasy2.json') as json_file:
-    with open('example.json') as json_file:
+    # with open('exampleeasy.json') as json_file: #2 colours
+    # with open('exampleeasy2.json') as json_file: #3 colours
+    with open('exampleeasy3.json') as json_file: #5 colours
+    # with open('example.json') as json_file: #14 colours
         data = json.load(json_file)
         grid = data['tubes']
         return grid
 
-def writeJson(data, f='ballsortSolved.json'):
+def writeJson(data, f='ballsortSolved new 616.json'):
     jsonObj = json.dumps(data, indent=4)
     with open(f, 'w') as outfile:
         outfile.write(jsonObj)
@@ -119,20 +120,18 @@ def solveGrid(grid, jsonOutput, counter, tubeHeight=None, visitedPositions=set()
                 #     answer.append(printGridToString(grid))
                 grid2 = copy.deepcopy(grid)
                 grid2[j].append(grid2[i].pop())
-                jsonOutput[counter] = grid2
-                counter=counter+1
                 if(isSolved(grid2, tubeHeight)):
                     answer.append(printGridToString(grid2))
+                    jsonOutput[counter] = grid2
+                    counter=counter+1
                     return True
                 if(gridToCanonicalString(grid2) not in visitedPositions):
+                    jsonOutput[counter] = grid2
+                    counter=counter+1
                     solved = solveGrid(grid2, jsonOutput, counter, tubeHeight, visitedPositions, answer)
                     if solved:
-                        answer.append(printGridToString(grid2))
-                        return True
-                else:
-                    jsonOutput.popitem(last = True)
-                    a=1
-        
+                        answer.append(printGridToString(grid2))                        
+                        return True        
     return False
 
 if __name__ == "__main__":

@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- not using skeleton because it makes the disabled buttons look identical to enabled buttons -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" /> -->
-  <title>Ball Sorter</title>
-  <style>
-    #display {
-      height:130px;
-      width:500px;
-      padding:30px;
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- not using skeleton because it makes the disabled buttons look identical to enabled buttons -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" /> -->
+    <title>Ball Sorter</title>
+    <style>
+    
+    /* page */
+    .pageElement {
+      float:left;
+    }
+    .pageButton {
+      background-color: azure;
     }
 
+
+    /* common */
     .tube {
       width:32px;
       height:140px;
@@ -23,6 +28,7 @@
       border-bottom-right-radius: 10px;
       padding-left: 10px;
       padding-right: 10px;
+      margin-top: 50px;
       position:absolute;
     }
 
@@ -38,55 +44,79 @@
     .ballbg {
       opacity: 50%;
     }
-
-    #outer {
-      position: absolute;
-      height:100px;
-      width:20px;
-      border-color: grey;
-      border-style: solid;
-      border-width: 1px;
-    }
-    
+        
     button {
       max-width: 200;
       background-color: aquamarine;
     }
+      /* solver */
     
-    #buttons {
-      display: inline-block;
+      #display {
+      height:130px;
+      width:500px;
+      padding:30px;
     }
-
+    
     .playControls {
       visibility: hidden;
       background-color: lime;
     }
 
+    /* builder */
+
+    
+
+
+
   </style>
 </head>
 <body>
-    <div id="buttons">
-      <button class="actionButton" id="beginning">Go back to Start</button>
+  <button id="lnkSolver" class="pageButton">Solver</button>  
+  <button id="lnkBuilder" class="pageButton">Builder</button>
+  <p></p>
+  
+ <div id="solver" class="pageElement">
+  <!--    <div id="solverButtons"> -->
+    <!-- Main controls -->
+      <!-- <button class="actionButton" id="beginning">Go back to Start</button>
       <button class="actionButton" id="prev">Previous Step</button>
       <button class="actionButton" id="next">Next Step</button>
       <button class="actionButton" id="last">See end stage</button> <p></p>
       <button class="actionButton" id="play">Play from here</button>
-      <button class="actionButton" id="playFromStart">Play from Start</button>
-      <button class="actionButton playControls" id="slower">«</button>
-      <button class="actionButton playControls" id="faster">»</button>
-      <button class="actionButton playControls" id="reset">&#8634;</button>
-      <button class="actionButton playControls" id="pause">||</button>
+      <button class="actionButton" id="playFromStart">Play from Start</button> -->
+    
+  <!-- Play Controls -->
       <!-- <button class="actionButton playControls" id="slower">Slower</button>
       <button class="actionButton playControls" id="faster">Faster</button>
       <button class="actionButton playControls" id="reset">Reset Speed</button>
       <button class="actionButton playControls" id="pause">Pause</button> -->
-    </div>
-    <p></p>
-    <div id="display">
 
+      <!-- Icon play controls -->
+      <!-- <button class="actionButton playControls" id="slower">«</button>
+      <button class="actionButton playControls" id="faster">»</button>
+      <button class="actionButton playControls" id="reset">&#8634;</button>
+      <button class="actionButton playControls" id="pause">||</button> -->
+    <!-- </div> 
+     <p></p>
+    <div id="display"></div> -->
+    
+  </div>
+  <div id="builder" class="pageElement">
+    <div id="builderButtons">
+      <!-- Main controls -->
+      <button class="actionButton" id="reset">Reset</button><p>
+      <label for="numColours">How Many Colours:</label>
+      <input type="number" id="numColours" min=2 max=14 value=4> 
+      <label for="numTBalls">How Many Balls per Tube:</label>
+      <input type="number" id="numBalls" min=2 max=5 value=3>
+      <button  class="actionButton" id="updateGrid">Update Grid</button> <p>
+        
     </div>
-
-    <script src="easyhttp2.js"></script>
+    <div id="builderDisplay"></div>
+  
+  <script src="easyhttp2.js"></script>
   <script src="app.js"></script>
+  <script src="builder.js"></script>
+  <!-- <script src="solver.js"></script> -->
 </body>
 </html>
