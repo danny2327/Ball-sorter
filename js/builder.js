@@ -74,6 +74,13 @@ ballSelector.addEventListener('click', (e) => {
     }
 });
 
+builderTubeDisplay.addEventListener('click', (e) => {
+    if (e.path[1].className == 'ball') {
+        
+        console.log(e.path[1]);
+    }
+})
+
 function isColourFull(colour) {
     if (numEachColour[colour.toUpperCase()] == builderBallsPerTube) {
         return true;
@@ -233,10 +240,31 @@ document.getElementById('genJSON').addEventListener('click', (e) => {
 
 function displayMessage(message, timeout = true) {
     output.innerText = message;
+    output.innerHTML += '<p>';
     if (timeout) {
         setTimeout(() => output.innerText = '', 3000)
     }
 }
+
+
+output.addEventListener('click', async () => {
+    // if (document.selection) {   
+    //     const range = document.body.createTextRange();  
+    //     range.moveToElementText(output);  
+    //     range.select();  
+    //   } else if (window.getSelection) {  
+    //     const range = document.createRange();  
+    //     range.selectNode(output);  
+    //     window.getSelection().removeAllRanges();  
+    //     window.getSelection().addRange(range);  
+    //   }  
+      await navigator.clipboard.writeText(output.textContent);
+      jsonMsg = document.createTextNode('JSON Copied!');
+      output.appendChild(jsonMsg);
+      setTimeout(() => {
+        output.removeChild(jsonMsg);
+      }, 3000)
+});
 
 function fillGrid() {
     tubes = getTubes();
@@ -254,6 +282,8 @@ function fillGrid() {
 
 function outputJSON() {
     displayMessage(JSON.stringify(builderGrid), false);
+    output.appendChild(document.createTextNode('Click to Copy'));
+    output.innerHTML += '<p>';
 }
 
 function main() {

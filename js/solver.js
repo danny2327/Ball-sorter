@@ -165,6 +165,7 @@ async function play() {
         await wait(playSpeed);
         nextStage();
     }
+    hidePlayControls();
 }
 
 function playFromStart() {
@@ -204,7 +205,6 @@ function ShowPlayControls() {
 function hidePlayControls() {
     document.querySelectorAll('.playControls').forEach((el) => el.style.visibility = 'hidden');
 }
-
 
 http.get('../ballsortSolved new 616.json') //  2 colours
 // http.get('../ballsortSolved2.json') // small 3 colours

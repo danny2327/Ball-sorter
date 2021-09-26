@@ -79,7 +79,7 @@
       position:relative;
       font-size: large;
       padding-left: 30px;
-      top:200px;
+      top:300px;
     }
 
   </style>
@@ -119,7 +119,7 @@
     <div id="builderButtons">
       <!-- Main controls -->
       <button class="actionButton" id="reset">Reset</button><p>
-      <button class="actionButton" id="genJSON">Generate JSON file</button><p>
+      <button class="actionButton" id="genJSON">Generate JSON</button><p>
       <label for="numColours">How Many Colours:</label>
       <input class='gridSize' type="number" id="numColours" min=2 max=14 value=4> 
       <label class='gridSize' for="numBalls">How Many Balls per Tube:</label>
@@ -131,9 +131,10 @@
     <div id="builderSelectorDisplay">
       <div id="ballSelect"></div>
     </div>
-    <div id="output"></div>
+    <div id="output">
+    </div>
   </div>
-  
+
   <script src="easyhttp2.js"></script>
   <script src="app.js"></script>
   <script src="builder.js"></script>
