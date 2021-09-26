@@ -5,10 +5,11 @@ const builderSelectorDisplay = document.getElementById('builderSelectorDisplay')
 let ballSelector = document.getElementById('ballSelect');
 let currentBallPosition = [0,0];
 let currentBall;
+const numEachColour = {};
 
 let builderBallsPerTube;
 let builderNumberOfTubes;
-let builderGrid;
+let builderGrid = {'tubes': []};
 let full = false;
 
 // function createGrid() {
@@ -46,16 +47,28 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
 });
 
 ballSelector.addEventListener('click', (e) => {
-    console.log(e.path[1]);
     if (!full) {
         if(e.path[1].className == 'ball') {
-            updateBall(e.path[1].style.backgroundColor)
-            nextBall();
+            let bg = e.path[1].style.backgroundColor;
+            if(!isColourFull(bg)) {
+                updateBall(e.path[1].style.backgroundColor)
+                nextBall();
+            } else {
+                //max number of this colour already exists.
+                console.log(`max number of ${bg} already exists`)
+            }
         }
     } else {
         console.log('I do believe you\'re done')
     }
 });
+
+function isColourFull(colour) {
+    if (numEachColour[colour.toUpperCase()] == builderBallsPerTube) {
+        return true;
+    }
+    return false;
+}
 
 function getInputs() {
     builderNumberOfTubes = (parseInt(inputColours.value) + 2);
@@ -135,12 +148,24 @@ function startBuild() {
     // allow clicking on any ball to set/redo. 
     setBall();
     selectBall();
+    buildNumColourList();
     // nextBall();
     // for(let i = 0; i < builderNumberOfTubes; i++) {
         // for (let x = 0; x < builderBallsPerTube; x++) {
             //ignore the last 2 empty tubes
     // if(currentBall[0] < builderNumberOfTubes-2) {
     // }
+}
+
+function buildNumColourList() {
+    // This list keeps track of how many of each ball has been added so only the correct number can be added. 
+    for(let i=builderNumberOfTubes-3; i >= 0; i-- ) {
+        numEachColour[ballColours[i]] = 0;
+    }
+}
+
+function updateNumColourList(colour) {
+    numEachColour[colour.toUpperCase()]++;
 }
 
 function resetBorder() {
@@ -168,6 +193,8 @@ function selectBall() {
 
 function updateBall(newColour) {
     currentBall.style.backgroundColor = newColour;
+    updateNumColourList(newColour);
+    
 }
 
 function nextBall() {
@@ -189,6 +216,23 @@ function nextBall() {
     resetBorder();
     setBall();
     selectBall();
+    console.log(numEachColour);
+    
+}
+
+document.getElementById('genJSON').addEventListener('click', (e) => {
+    if(full) {
+        fillGrid();
+        outputToJSON();
+    }
+})
+
+function fillGrid() {
+    console.log(numEachColour);
+}
+
+function outputToJSON() {
+
 }
 
 function main() {
