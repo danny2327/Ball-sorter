@@ -25,10 +25,17 @@ let full = false;
 //     return newGrid;
 // }
 
+function resetCurrentBallPosition() {
+    currentBallPosition = [0,0];
+}
+
 document.getElementById('updateGrid').addEventListener('click', (e) => {
     if (confirm('Are you sure you want to change the size and reset?')) {
         //redraw
         prepareToDraw();
+        resetCurrentBallPosition();
+        setBall();
+        selectBall();
       } else {
         // Do nothing!
         console.log('No Change');
@@ -39,13 +46,11 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
 });
 
 ballSelector.addEventListener('click', (e) => {
+    console.log(e.path[1]);
     if (!full) {
         if(e.path[1].className == 'ball') {
-            console.log('before update')
             updateBall(e.path[1].style.backgroundColor)
-            console.log('after update')
             nextBall();
-            console.log('after next')
         }
     } else {
         console.log('I do believe you\'re done')
@@ -139,7 +144,7 @@ function startBuild() {
 }
 
 function resetBorder() {
-    currentBall.style.border = 'border: 1px solid grey';
+    currentBall.style.border = '1px solid grey';
 }
 
 function setBall() {
@@ -181,6 +186,7 @@ function nextBall() {
         //else all have been filled
         full = true;
     }
+    resetBorder();
     setBall();
     selectBall();
 }
