@@ -2,6 +2,8 @@ let inputBalls = document.getElementById('numBalls');
 let inputColours = document.getElementById('numColours');
 const builderTubeDisplay = document.getElementById('builderTubeDisplay');
 const builderSelectorDisplay = document.getElementById('builderSelectorDisplay');
+const output = document.getElementById('output');
+
 let ballSelector = document.getElementById('ballSelect');
 let currentBallPosition = [0,0];
 let currentBall;
@@ -9,22 +11,8 @@ const numEachColour = {};
 
 let builderBallsPerTube;
 let builderNumberOfTubes;
-let builderGrid = {'tubes': []};
+let builderGrid = {};
 let full = false;
-
-// function createGrid() {
-//     let newGrid = {}
-//     for (let i=0; i < (builderNumberOfTubes); i++) {
-//         newGrid[i] = {};
-//         for (let b=0; b < builderBallsPerTube; b++) {
-//             if (i < (builderNumberOfTubes-2)) {    
-//                 newGrid[i][b] = '';
-//             }
-//         }
-//     }
-//     console.log(newGrid);
-//     return newGrid;
-// }
 
 function resetCurrentBallPosition() {
     currentBallPosition = [0,0];
@@ -37,6 +25,7 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
         resetCurrentBallPosition();
         setBall();
         selectBall();
+        buildNumColourList()
       } else {
         // Do nothing!
         console.log('No Change');
@@ -45,6 +34,28 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
         inputBalls.value = builderBallsPerTube;
       }
 });
+
+// inputBalls.addEventListener('change', (e) => {
+//     isGridValid(e);
+// }); 
+
+// inputColours.addEventListener('change', (e) => {
+//     isGridValid(e);
+// }); 
+
+// function isGridValid(e) {
+//     // let inputBalls = document.getElementById('numBalls');
+// // let inputColours
+//     if(inputBalls.value > inputColours.value) {
+//         //illegal state, more balls per tube than colours. they can be equal
+//         displayMessage('Balls per tube cannot exceed number of colours, because you can never win.');
+//         if(e.target.id == 'numBalls') {
+//             inputBalls.value =  inputColours.value;
+//         } else {
+//             inputColours.value = inputBalls.value;
+//         }
+//     }
+// }
 
 ballSelector.addEventListener('click', (e) => {
     if (!full) {
@@ -149,12 +160,6 @@ function startBuild() {
     setBall();
     selectBall();
     buildNumColourList();
-    // nextBall();
-    // for(let i = 0; i < builderNumberOfTubes; i++) {
-        // for (let x = 0; x < builderBallsPerTube; x++) {
-            //ignore the last 2 empty tubes
-    // if(currentBall[0] < builderNumberOfTubes-2) {
-    // }
 }
 
 function buildNumColourList() {
@@ -184,7 +189,7 @@ function getBalls() {
 }
 
 function getTubes() {
-    return  document.querySelectorAll('.tube');
+    return document.querySelectorAll('.tube');
 }
 
 function selectBall() {
@@ -208,31 +213,47 @@ function nextBall() {
         currentBallPosition[1] = 0;
         currentBallPosition[0]++;
     } else {
-        console.log(currentBallPosition);
-        console.log(full);
         //else all have been filled
         full = true;
     }
     resetBorder();
     setBall();
-    selectBall();
-    console.log(numEachColour);
-    
+    selectBall();    
 }
 
 document.getElementById('genJSON').addEventListener('click', (e) => {
     if(full) {
         fillGrid();
-        outputToJSON();
+        outputJSON();
+    } else {
+        //need to display
+        displayMessage('Grid is not complete');
     }
 })
 
-function fillGrid() {
-    console.log(numEachColour);
+function displayMessage(message, timeout = true) {
+    output.innerText = message;
+    if (timeout) {
+        setTimeout(() => output.innerText = '', 3000)
+    }
 }
 
-function outputToJSON() {
+function fillGrid() {
+    tubes = getTubes();
+    tubeArray = [];
+    tubes.forEach((tube) => {
+        let ballsArr = [] 
+        tube.querySelectorAll('.ball').forEach((ball) => {
+            ballsArr.push(ball.style.backgroundColor.toUpperCase());
+        })
+        tubeArray.push(ballsArr.reverse()); 
+    }) 
+    builderGrid = {tubes: tubeArray};        
+    console.log(builderGrid);
+}
 
+function outputJSON() {
+    displayMessage(JSON.stringify(builderGrid), false);
 }
 
 function main() {

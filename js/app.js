@@ -40,7 +40,7 @@ let solverData = solver.innerHTML;
 let builderData = builder.innerHTML;
 
 // Hides Builder initially
-hideSolver();
+// hideSolver();
 // hideBuilder();
 
 lnkSolver.addEventListener('click', () => {

@@ -1,9 +1,1 @@
-{
-    "tubes": [
-        ["RED","BLUE","YELLOW"],
-        ["BLUE","YELLOW","RED"],
-        ["YELLOW","RED","BLUE"],
-        [],
-        []
-    ]
-}
+{"tubes":[["RED","BLUE","YELLOW"],["BLUE","YELLOW","RED"],["YELLOW","RED","BLUE"],[],[]]}

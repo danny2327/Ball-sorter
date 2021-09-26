@@ -1,33 +1,18 @@
 {
     "0": [
         [
-            "YELLOW",
-            "GREEN",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
             "RED",
-            "RED",
+            "BLUE",
             "YELLOW"
         ],
         [
-            "YELLOW",
-            "GREEN",
             "BLUE",
-            "PURPLE"
+            "YELLOW",
+            "RED"
         ],
         [
             "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
             "RED",
-            "RED",
-            "BLUE",
             "BLUE"
         ],
         [],
@@ -35,964 +20,226 @@
     ],
     "1": [
         [
-            "YELLOW",
-            "GREEN",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
             "RED",
-            "RED",
-            "YELLOW"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
             "BLUE"
         ],
         [
-            "PURPLE"
+            "BLUE",
+            "YELLOW",
+            "RED"
+        ],
+        [
+            "YELLOW",
+            "RED",
+            "BLUE"
+        ],
+        [
+            "YELLOW"
         ],
         []
     ],
     "2": [
         [
-            "YELLOW",
-            "GREEN"
+            "RED"
         ],
         [
-            "GREEN",
-            "RED",
-            "RED",
-            "YELLOW"
+            "BLUE",
+            "YELLOW",
+            "RED"
         ],
         [
             "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
             "RED",
-            "RED",
-            "BLUE",
             "BLUE"
         ],
         [
-            "PURPLE",
-            "PURPLE"
+            "YELLOW"
         ],
-        []
+        [
+            "BLUE"
+        ]
     ],
     "3": [
         [
-            "YELLOW"
+            "RED",
+            "RED"
         ],
         [
-            "GREEN",
-            "RED",
-            "RED",
+            "BLUE",
             "YELLOW"
         ],
         [
             "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
             "RED",
-            "RED",
-            "BLUE",
             "BLUE"
         ],
         [
-            "PURPLE",
-            "PURPLE"
+            "YELLOW"
         ],
         [
-            "GREEN"
+            "BLUE"
         ]
     ],
     "4": [
         [
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "GREEN",
             "RED",
             "RED"
         ],
         [
-            "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
             "BLUE"
         ],
         [
-            "PURPLE",
-            "PURPLE"
+            "YELLOW",
+            "RED",
+            "BLUE"
         ],
         [
-            "GREEN"
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE"
         ]
     ],
     "5": [
         [
+            "RED",
+            "RED"
+        ],
+        [],
+        [
+            "YELLOW",
+            "RED",
+            "BLUE"
+        ],
+        [
             "YELLOW",
             "YELLOW"
         ],
         [
-            "GREEN",
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE",
-            "PURPLE"
-        ],
-        [
-            "RED",
-            "RED",
             "BLUE",
             "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN"
         ]
     ],
     "6": [
         [
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "GREEN",
             "RED",
             "RED"
         ],
         [
-            "YELLOW",
-            "GREEN",
             "BLUE"
         ],
         [
             "YELLOW",
-            "GREEN",
-            "BLUE"
+            "RED"
         ],
         [
-            "RED",
-            "RED",
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
             "BLUE",
             "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN"
         ]
     ],
     "7": [
         [
-            "YELLOW",
-            "YELLOW"
+            "RED"
         ],
         [
-            "GREEN",
+            "BLUE"
+        ],
+        [
+            "YELLOW",
             "RED",
             "RED"
         ],
         [
             "YELLOW",
-            "GREEN"
+            "YELLOW"
         ],
         [
-            "YELLOW",
-            "GREEN",
             "BLUE",
             "BLUE"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN"
         ]
     ],
     "8": [
         [
-            "YELLOW",
-            "YELLOW"
+            "RED"
         ],
+        [],
         [
-            "GREEN",
+            "YELLOW",
             "RED",
             "RED"
         ],
         [
+            "YELLOW",
             "YELLOW"
         ],
         [
-            "YELLOW",
-            "GREEN",
+            "BLUE",
             "BLUE",
             "BLUE"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN"
         ]
     ],
     "9": [
         [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "GREEN",
             "RED",
             "RED"
         ],
         [],
         [
             "YELLOW",
-            "GREEN",
+            "RED"
+        ],
+        [
+            "YELLOW",
+            "YELLOW"
+        ],
+        [
+            "BLUE",
             "BLUE",
             "BLUE"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN"
         ]
     ],
     "10": [
         [
-            "YELLOW",
+            "RED",
+            "RED",
+            "RED"
+        ],
+        [],
+        [
+            "YELLOW"
+        ],
+        [
             "YELLOW",
             "YELLOW"
         ],
         [
-            "GREEN",
-            "RED"
-        ],
-        [
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
+            "BLUE",
             "BLUE",
             "BLUE"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN"
         ]
     ],
     "11": [
         [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "GREEN"
-        ],
-        [
+            "RED",
             "RED",
             "RED"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "12": [
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
         ],
         [],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "13": [
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "GREEN",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "14": [
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "GREEN"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "15": [
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "16": [
-        [
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "17": [
-        [
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "BLUE",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "18": [
-        [
-            "YELLOW"
-        ],
-        [
-            "BLUE",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "19": [
-        [],
-        [
-            "BLUE",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "20": [
-        [],
-        [
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "21": [
-        [
-            "BLUE"
-        ],
-        [
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "22": [
-        [
-            "BLUE"
-        ],
-        [
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "23": [
-        [
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "24": [
-        [
-            "BLUE"
-        ],
-        [
-            "BLUE",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "25": [
-        [],
-        [
-            "BLUE",
-            "BLUE",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "26": [
-        [],
-        [
-            "BLUE",
-            "BLUE",
-            "BLUE",
-            "BLUE"
-        ],
-        [
-            "RED"
-        ],
-        [
-            "YELLOW",
-            "YELLOW",
-            "YELLOW",
-            "YELLOW"
-        ],
-        [
-            "RED",
-            "RED",
-            "RED"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
-        ]
-    ],
-    "27": [
-        [],
-        [
-            "BLUE",
-            "BLUE",
-            "BLUE",
-            "BLUE"
-        ],
         [],
         [
             "YELLOW",
             "YELLOW",
-            "YELLOW",
             "YELLOW"
         ],
         [
-            "RED",
-            "RED",
-            "RED",
-            "RED"
-        ],
-        [
-            "PURPLE",
-            "PURPLE",
-            "PURPLE",
-            "PURPLE"
-        ],
-        [
-            "GREEN",
-            "GREEN",
-            "GREEN",
-            "GREEN"
+            "BLUE",
+            "BLUE",
+            "BLUE"
         ]
     ]
 }
