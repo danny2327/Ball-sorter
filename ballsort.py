@@ -74,9 +74,7 @@ def isMoveValid(tubeHeight, fromTube, candidateTube):
     # and the ball at the end of the source tube is the same as the
     # ball at the end of the destination.
     # But there are also some optimisations to avoid pointless moves.
-    # Want to fix: if there is a column with only 1 colour, don't move another ball of that colour to an empty spot
-
-
+    
     if len(fromTube) == 0 or len(candidateTube) == tubeHeight:
         return False
     numFirstColour = fromTube.count(fromTube[0])

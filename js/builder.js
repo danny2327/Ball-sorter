@@ -1,17 +1,32 @@
 let inputBalls = document.getElementById('numBalls');
 let inputColours = document.getElementById('numColours');
+
+//Where the tubes and balls are shown
 const builderTubeDisplay = document.getElementById('builderTubeDisplay');
+
+//The parent of the ball selector. Used for showing messages. 
 const builderSelectorDisplay = document.getElementById('builderSelectorDisplay');
+
+//Where the ball selector is shown. 
+const ballSelector = document.getElementById('ballSelect');
+
 const output = document.getElementById('output');
 
-let ballSelector = document.getElementById('ballSelect');
+// tube and ball position of current ball
 let currentBallPosition = [0,0];
+//the current ball (div)
 let currentBall;
+
+//Keeps track of how many of each colour are assigned. 
 const numEachColour = {};
 
+//How many balls per tube
 let builderBallsPerTube;
+//How many tubes (number of colours will be 2 less)
 let builderNumberOfTubes;
 let builderGrid = {};
+
+//Full is whether or not the entire grid is full.  Checked when gen JSON is clicked 
 let full = false;
 
 function resetCurrentBallPosition() {
@@ -35,64 +50,46 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
       }
 });
 
-// inputBalls.addEventListener('change', (e) => {
-//     isGridValid(e);
-// }); 
 
-// inputColours.addEventListener('change', (e) => {
-//     isGridValid(e);
-// }); 
-
-// function isGridValid(e) {
-//     // let inputBalls = document.getElementById('numBalls');
-// // let inputColours
-//     if(inputBalls.value > inputColours.value) {
-//         //illegal state, more balls per tube than colours. they can be equal
-//         displayMessage('Balls per tube cannot exceed number of colours, because you can never win.');
-//         if(e.target.id == 'numBalls') {
-//             inputBalls.value =  inputColours.value;
-//         } else {
-//             inputColours.value = inputBalls.value;
-//         }
-//     }
-// }
-
+//Ball in selector click listener
 ballSelector.addEventListener('click', (e) => {
     if (!full) {
-        if(e.path[1].className == 'ball') {
-            let bg = e.path[1].style.backgroundColor;
+        let ball = e.path[1]
+        if(ball.className == 'ball') {
+            let bg = ball.style.backgroundColor;
+            //If max number of chosen colour is not reached
             if(!isColourFull(bg)) {
-                updateBall(e.path[1].style.backgroundColor)
+                updateBall(ball.style.backgroundColor);
                 nextBall();
             } else {
                 //max number of this colour already exists.
-                console.log(`max number of ${bg} already exists`)
+                displayMessage(`Max number of ${bg} balls (${builderBallsPerTube}) already exist`);
             }
         }
     } else {
-        console.log('I do believe you\'re done')
+        console.log('I do believe you\'re done');
     }
 });
 
+//Ball in tube click listener
 builderTubeDisplay.addEventListener('click', (e) => {
-
     // There must be a better way to do this than have to loop through every 'ball' div comparing them.  
     if (e.path[1].className == 'ball') {
         let clickedBall = e.path[1];
+        //look through each ball in each tube until I find the one that is the same as the one that was clicked.  I do this because the ball doesn't know where it is in which tube. 
         tubes = getTubes();
         for(let i = 0; i < tubes.length; i++) {
             balls = getBalls(tubes[i]);
             for (let x = builderBallsPerTube-1; x >= 0 ; x--) { 
-                ball = balls[x];
-                console.log('ball', ball);
-                // console.log('CLicked ball', clickedBall);
+                ball = balls[x];                
                 if (ball == clickedBall) {
-                    currentBall = ball;
+                    resetBorder();
                     currentBallPosition = [i,x];
+                    setBall();
+                    selectBall();
                 }
             }
         }
-        console.log(numEachColour);
     }
 });
 
@@ -190,19 +187,44 @@ function zeroNumColourList() {
     }
 }
 
-function updateNumColourList(colour) {
+function incrementNumColourList(colour) {
     numEachColour[colour.toUpperCase()]++;
+    ballSelectVisibility();
 }
 
+function decrementNumColourList(colour) {
+    numEachColour[colour.toUpperCase()]--;
+    ballSelectVisibility();    
+}
+
+function ballSelectVisibility() {
+    //each time a ball is changed, run this to see if any colours are fully selected, or no longer fully selected. 
+    ballSelector.querySelectorAll('.ball').forEach((ball) => {
+        if (numEachColour[ball.style.backgroundColor.toUpperCase()] == builderBallsPerTube) {
+            ball.style.opacity = "0.5";
+        } else {
+            ball.style.opacity = "1";
+        }
+    })
+}
+
+//Resets from red to regular border
 function resetBorder() {
     currentBall.style.border = '1px solid grey';
 }
 
+//Only highlights the current ball with red border. 
+function selectBall() {
+    currentBall.style.border = '2px solid red'
+}
+
+//sets the current ball as the currently selected ball
 function setBall() {
     balls = getBalls();
     currentBall = balls[currentBallPosition[1]]
 }
 
+// returns all balls
 function getBalls(tube = null) {
     //func can now take an optional tube
     if(!tube) {
@@ -212,20 +234,24 @@ function getBalls(tube = null) {
     return tube.querySelectorAll('.ball');
 }
 
+//returns all tubes
 function getTubes() {
     return document.querySelectorAll('.tube');
 }
 
-function selectBall() {
-    currentBall.style.border = '2px solid red'
-}
 
+//Sets the current ball to a new colour and calls the update colour list
 function updateBall(newColour) {
+    // If the ball selected has a colour already,it was manually selected and therefore the colour being replaced should be decremented in the colour list
+    if (currentBall.style.backgroundColor) {
+        decrementNumColourList(currentBall.style.backgroundColor);
+    }
     currentBall.style.backgroundColor = newColour;
-    updateNumColourList(newColour);
+    incrementNumColourList(newColour);
     
 }
 
+// Move on to the next back in the tube, or the first ball of the next tube if it's full
 function nextBall() {
     let tube = currentBallPosition[0];
     let ball = currentBallPosition[1];
@@ -255,6 +281,7 @@ document.getElementById('genJSON').addEventListener('click', (e) => {
     }
 })
 
+//Displays a message in the output field.  Timeoout boolean is optional.  If true, it's not the JSON, and will disappear.
 function displayMessage(message, timeout = true) {
     output.innerText = message;
     output.innerHTML += '<p>';
@@ -263,18 +290,9 @@ function displayMessage(message, timeout = true) {
     }
 }
 
-
+// Clicking on the output copies the text (meant for the JSON but will work on any message) and displays a msg for 3 seconds.
+// nav clipboard api is async func  
 output.addEventListener('click', async () => {
-    // if (document.selection) {   
-    //     const range = document.body.createTextRange();  
-    //     range.moveToElementText(output);  
-    //     range.select();  
-    //   } else if (window.getSelection) {  
-    //     const range = document.createRange();  
-    //     range.selectNode(output);  
-    //     window.getSelection().removeAllRanges();  
-    //     window.getSelection().addRange(range);  
-    //   }  
       await navigator.clipboard.writeText(output.textContent);
       jsonMsg = document.createTextNode('JSON Copied!');
       output.appendChild(jsonMsg);
@@ -283,6 +301,7 @@ output.addEventListener('click', async () => {
       }, 3000)
 });
 
+// Fills up the grid with the current bg colour of each ball, to be used for output to JSON. 
 function fillGrid() {
     tubes = getTubes();
     tubeArray = [];
@@ -297,6 +316,7 @@ function fillGrid() {
     console.log(builderGrid);
 }
 
+//Outputs the JSON
 function outputJSON() {
     displayMessage(JSON.stringify(builderGrid), false);
     output.appendChild(document.createTextNode('Click to Copy'));

@@ -6,83 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- not using skeleton because it makes the disabled buttons look identical to enabled buttons -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" /> -->
+    <link rel="stylesheet" href="css.css" />
     <title>Ball Sorter</title>
-    <style>
-    
-    /* page */
-    .pageElement {
-      float:left;
-    }
-    .pageButton {
-      background-color: azure;
-    }
 
-
-    /* common */
-    .tube {
-      width:32px;
-      height:140px;
-      border: 3px solid grey;
-      border-top: 0px solid white;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-      padding-left: 10px;
-      padding-right: 10px;
-      margin-top: 50px;
-      position:absolute;
-    }
-
-    .ball {
-      width: 30px;
-      border-radius: 15px;
-      height:30px;
-      border: 1px solid grey;
-      margin-bottom: 1px;      
-      position:absolute;
-    }
-
-    .ballbg {
-      opacity: 50%;
-    }
-        
-    button {
-      max-width: 200;
-      background-color: aquamarine;
-    }
-      /* solver */
-    
-      #display {
-      height:130px;
-      width:500px;
-      padding:30px;
-    }
-    
-    .playControls {
-      visibility: hidden;
-      background-color: lime;
-    }
-
-    /* builder */
-    #ballSelect {
-      position:relative;
-      height:36px;
-      padding-left: 30px;
-      padding-top: 30px;
-    }
-  
-    #ballSelect .ball {
-      position:relative;
-      float:left;
-    }
-
-    #output {
-      position:relative;
-      font-size: large;
-      padding-left: 30px;
-      top:200px;
-    }
-
-  </style>
 </head>
 <body>
   <button id="lnkSolver" class="pageButton">Solver</button>  
@@ -114,9 +40,6 @@
      <p></p>
     <div id="display"></div>
     
-  </div>
-  <div id="builder" class="pageElement">
-
   </div>
   
   <script src="easyhttp2.js"></script>
