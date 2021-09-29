@@ -25,7 +25,7 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
         resetCurrentBallPosition();
         setBall();
         selectBall();
-        buildNumColourList()
+        zeroNumColourList()
       } else {
         // Do nothing!
         console.log('No Change');
@@ -75,11 +75,26 @@ ballSelector.addEventListener('click', (e) => {
 });
 
 builderTubeDisplay.addEventListener('click', (e) => {
+
+    // There must be a better way to do this than have to loop through every 'ball' div comparing them.  
     if (e.path[1].className == 'ball') {
-        
-        console.log(e.path[1]);
+        let clickedBall = e.path[1];
+        tubes = getTubes();
+        for(let i = 0; i < tubes.length; i++) {
+            balls = getBalls(tubes[i]);
+            for (let x = builderBallsPerTube-1; x >= 0 ; x--) { 
+                ball = balls[x];
+                console.log('ball', ball);
+                // console.log('CLicked ball', clickedBall);
+                if (ball == clickedBall) {
+                    currentBall = ball;
+                    currentBallPosition = [i,x];
+                }
+            }
+        }
+        console.log(numEachColour);
     }
-})
+});
 
 function isColourFull(colour) {
     if (numEachColour[colour.toUpperCase()] == builderBallsPerTube) {
@@ -113,7 +128,7 @@ function createTube(i) {
 }
 
 function createBall() {
-    //create ball (div), set class and color
+    //create ball (div), set class 
     let ball = document.createElement('div');
     ball.className = "ball";
     let ballbg = document.createElement('img');
@@ -131,8 +146,7 @@ function drawTubes(){
         builderTubeDisplay.appendChild(tubeDiv);        
         // displays the balls
         //done in reverse so we're effectively drawing from the bottom up
-        for (let x = builderBallsPerTube-1; x >= 0 ; x--) {
-            
+        for (let x = builderBallsPerTube-1; x >= 0 ; x--) {            
             if(i < builderNumberOfTubes-2) {
                 let ball = createBall();
                 // add the ball to the tube
@@ -166,10 +180,10 @@ function startBuild() {
     // allow clicking on any ball to set/redo. 
     setBall();
     selectBall();
-    buildNumColourList();
+    zeroNumColourList();
 }
 
-function buildNumColourList() {
+function zeroNumColourList() {
     // This list keeps track of how many of each ball has been added so only the correct number can be added. 
     for(let i=builderNumberOfTubes-3; i >= 0; i-- ) {
         numEachColour[ballColours[i]] = 0;
@@ -189,9 +203,12 @@ function setBall() {
     currentBall = balls[currentBallPosition[1]]
 }
 
-function getBalls() {
-    tubes = getTubes();
-    tube = tubes[currentBallPosition[0]]
+function getBalls(tube = null) {
+    //func can now take an optional tube
+    if(!tube) {
+        tubes = getTubes();
+        tube = tubes[currentBallPosition[0]]
+    }
     return tube.querySelectorAll('.ball');
 }
 

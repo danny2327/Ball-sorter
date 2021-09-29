@@ -48,8 +48,8 @@ def loadGrid():
     # 12 colours, 14x5 tubes (2 empty)
     # with open('exampleeasy.json') as json_file: #2 colours
     # with open('exampleeasy2.json') as json_file: #3 colours
-    # with open('exampleeasy3.json') as json_file: #5 colours
-    with open('exampleeasy4.json') as json_file: #9 colours
+    with open('exampleeasy3.json') as json_file: #5 colours
+    # with open('exampleeasy4.json') as json_file: #9 colours
     # with open('example.json') as json_file: #14 colours
         data = json.load(json_file)
         grid = data['tubes']
@@ -112,10 +112,6 @@ def solveGrid(grid, jsonOutput, counter, tubeHeight=None, visitedPositions=set()
                 continue
             candidateTube = grid[j]
             if isMoveValid(tubeHeight, tube, candidateTube):
-                # WTF. By the time it gets here with the grid that should be 
-
-
-
                 # answer.append(printGridToString(grid)) if len(answer) == 0 else ''
                 # if len(answer) == 0:
                 #     answer.append(printGridToString(grid))
@@ -123,15 +119,13 @@ def solveGrid(grid, jsonOutput, counter, tubeHeight=None, visitedPositions=set()
                 grid2[j].append(grid2[i].pop())
                 if(isSolved(grid2, tubeHeight)):
                     answer.append(printGridToString(grid2))
-                    jsonOutput[counter] = grid2
-                    counter=counter+1
+                    jsonOutput.append(grid2)
                     return True
                 if(gridToCanonicalString(grid2) not in visitedPositions):
-                    jsonOutput[counter] = grid2
-                    counter=counter+1
-                    solved = solveGrid(grid2, jsonOutput, counter, tubeHeight, visitedPositions, answer)
+                    solved = solveGrid(grid2, jsonOutput, tubeHeight, visitedPositions, answer)
                     if solved:
-                        answer.append(printGridToString(grid2))                        
+                        answer.append(printGridToString(grid2))    
+                        jsonOutput.append(grid2)
                         return True        
     return False
 
@@ -151,39 +145,21 @@ if __name__ == "__main__":
     print(printGridToString(grid))
     print("--")
     answer = []
-    jsonOutput = OrderedDict()
-    jsonOutput[0] = grid
-    counter = 1
+    jsonOutput = []
+    jsonOutput.append(grid)
     visitedPositions = set()
-    solved = solveGrid(grid, jsonOutput=jsonOutput, counter=counter, visitedPositions=visitedPositions, answer=answer)
+    solved = solveGrid(grid, jsonOutput=jsonOutput,visitedPositions=visitedPositions, answer=answer)
     end = time.time()
     print("Visited "+str(len(visitedPositions))+" positions in "+str(round(end-start, 3))+" seconds")
     if not solved:
         print("No solution")
     else:
         print("Solved in "+str(len(answer))+" moves")
+        jsonOutput.append(jsonOutput.pop(0))
+        jsonOutput.reverse()
         writeJson(jsonOutput)
         if(args.working):
             answer.reverse()
             for step in answer:
                 print(step)
                 print('--')
-
-# BLUE
-# RED
-# YELLOW
-# ORANGE
-# PURPLE
-# WHITE
-# TEAL
-# BROWN
-# LIGHT PINK = LIGHTPINK
-# DARK BLUE = NAVY
-# DARK GREEN = GREEN
-# LIGHT GREEN = LIME
-# DARK PINK = FUCHSIA
-# LIGHT BLUE = AQUA
-
-# Left to right is bottom up
-
-# For some reason in simple tests so far it always seems to make one duplicate out or order error, as in if I remove that one step, it's seamless.  Not sure how it's being added. 
