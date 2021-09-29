@@ -20,17 +20,7 @@ function prepareToDraw() {
     display.before(stage);
     // for (currentStage;currentStage < grid.length;currentStage++) {
     drawTubes();
-
-        // delay(currentStage);
 }
-
-// function delay(currentStage){
-//     setTimeout(() => {
-//             display.innerText='..';
-//             console.log(currentStage);
-//             drawTubes(currentStage);
-//         }, 2500);
-// }
 
 function drawTubes(){
     //displays the tubes

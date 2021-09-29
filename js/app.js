@@ -13,7 +13,7 @@ const ballColours = {
     10: 'FUCHSIA',
     11: 'LIGHTPINK',
     12: 'BROWN',
-    13: 'NAVY'
+    13: 'midnightblue'
 };
 
 // BLUE
