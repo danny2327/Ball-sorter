@@ -22,6 +22,8 @@ function prepareToDraw() {
     drawTubes();
 }
 
+
+//Want to fix: extract tubes from every loop
 function drawTubes(){
     //displays the tubes
     stage.innerText = `Stage ${currentStage+1} of ${grid.length}`;
@@ -31,8 +33,9 @@ function drawTubes(){
         newTubeDivLocation = 30 + (60*i);
         newTubeHeight = 30+(32*ballsPerTube);
         tubeDiv.style.height = newTubeHeight + "px";
-        tubeDiv.style.left = newTubeDivLocation + "px";
+        tubeDiv.style.left = newTubeDivLocation + "px"; 
         tubeDiv.style.top = 100 + "px";
+        //want to add - make the from and destination tubes change colour
         display.appendChild(tubeDiv);        
         // displays the balls
         //done in reverse so we're effectively drawing from the bottom up
@@ -196,6 +199,8 @@ function hidePlayControls() {
     document.querySelectorAll('.playControls').forEach((el) => el.style.visibility = 'hidden');
 }
 
+
+// Next step is to be able to pass a created build to this page and show it.  
 http.get('../ballsortSolved new 616.json') //  2 colours
 // http.get('../ballsortSolved2.json') // small 3 colours
 // http.get('ballsortSolved.json') // huge 14 colours, puzzle 616 - Not working well, not my fault the original script

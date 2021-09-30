@@ -105,12 +105,12 @@ function getInputs() {
     builderBallsPerTube = inputBalls.value;
 }
 
-function prepareToDraw() {
+function prepareToDraw() {    
+    console.log('builderTubeDisplay', builderTubeDisplay)
     builderTubeDisplay.innerHTML='';
-    getInputs();
-    // builderGrid = createGrid();
-    drawTubes();
-    drawBallSelector();
+    // getInputs();
+    // drawBuilderTubes();
+    // drawBallSelector();
 }
 
 function createTube(i) {
@@ -135,7 +135,7 @@ function createBall() {
     return ball;
 }
 
-function drawTubes(){
+function drawBuilderTubes(){
     //displays the tubes
     for(let i = 0; i < builderNumberOfTubes; i++) {
         createTube();
@@ -236,7 +236,7 @@ function getBalls(tube = null) {
 
 //returns all tubes
 function getTubes() {
-    return document.querySelectorAll('.tube');
+    return builderTubeDisplay.querySelectorAll('.tube');
 }
 
 
@@ -258,17 +258,22 @@ function nextBall() {
     // if not done in tube, next ball
     if (ball < builderBallsPerTube-1) {
         currentBallPosition[1]++
-    // if last tube is done, next tube, back to place 0         
+        resetBorder();
+        setBall();
+        selectBall();  
+    // if one tube is done, next tube, back to place 0         
     } else if (tube < builderNumberOfTubes-3) {
         currentBallPosition[1] = 0;
         currentBallPosition[0]++;
+        resetBorder();
+        setBall();
+        selectBall();  
     } else {
         //else all have been filled
         full = true;
-    }
-    resetBorder();
-    setBall();
-    selectBall();    
+        resetBorder();
+        currentBall = null;
+    }  
 }
 
 document.getElementById('genJSON').addEventListener('click', (e) => {
@@ -325,6 +330,9 @@ function outputJSON() {
 
 function main() {
     prepareToDraw();
+    getInputs();
+    drawBuilderTubes();
+    drawBallSelector();
     startBuild();
 }
 

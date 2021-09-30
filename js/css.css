@@ -1,23 +1,37 @@
+body {
+    background-image:  linear-gradient(rgba(30, 75, 115, 1), white 44%);
+    background-repeat: no-repeat;
+}
 /* page */
 .pageElement {
     float:left;
   }
   .pageButton {
-    background-color: azure;
+    background-image:  linear-gradient(rgb(44, 64, 73),rgb(130, 192, 211));
+    background-repeat: no-repeat;
+    color:white;
+    font-variant-caps: petite-caps;
+    font-weight: 700;
+    font-size: large;
+    border-radius: 10px;
   }
 
   /* common */
   .tube {
     width:32px;
     height:140px;
-    border: 3px solid grey;
-    border-top: 0px solid white;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    /* border: 3px solid grey; */ 
+    /* border-top: 0px solid white; */
+    /* border-bottom-left-radius: 10px; */
+    /* border-bottom-right-radius: 10px; */
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 40px;
     margin-top: 50px;
     position:absolute;
+    background-image: url("../images/tubetopbg.png"),url("../images/tubebottombg.png"),url("../images/tubemidbg.png");
+    background-position: top, bottom, center;
+    background-repeat: no-repeat, no-repeat, repeat-y;
   }
 
   .ball {
@@ -29,13 +43,23 @@
     position:absolute;
   }
 
+  .tube .ball {
+      margin-bottom: 10px;
+  }
+
   .ballbg {
     opacity: 50%;
   }
       
   button {
     max-width: 200;
-    background-color: aquamarine;
+    background-image:  linear-gradient(rgb(44, 64, 73),rgb(79, 147, 168) 80%);
+    background-repeat: no-repeat;
+    color:white;
+    border-radius: 10px;
+    font-variant-caps: petite-caps;
+    font-weight: 700;
+    font-size:100%;
   }
     /* solver */
   
@@ -48,6 +72,16 @@
   .playControls {
     visibility: hidden;
     background-color: lime;
+    background-image:  linear-gradient(rgb(130, 160, 184), rgb(15, 28, 63));
+    background-repeat: no-repeat;
+    color:white;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 80%;
+  }
+
+  #slower {
+    margin-left: 30px;
   }
 
   /* builder */

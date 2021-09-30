@@ -13,7 +13,7 @@ const ballColours = {
     10: 'FUCHSIA',
     11: 'LIGHTPINK',
     12: 'BROWN',
-    13: 'midnightblue'
+    13: 'MIDNIGHTBLUE'
 };
 
 // BLUE
@@ -36,11 +36,9 @@ let solver = document.getElementById('solver');
 let builder = document.getElementById('builder');
 let lnkSolver = document.getElementById('lnkSolver');
 let lnkBuilder = document.getElementById('lnkBuilder');
-let solverData = solver.innerHTML;
-let builderData = builder.innerHTML;
 
 // Hides Builder initially
-// hideSolver();
+hideSolver();
 // hideBuilder();
 
 lnkSolver.addEventListener('click', () => {
@@ -53,7 +51,6 @@ lnkBuilder.addEventListener('click', () => {
     showBuilder();
 });
 
-
 function showSolver() {
     solver.style.display = 'block';
 }
@@ -64,7 +61,6 @@ function showBuilder() {
 
 function hideSolver() {
     solver.style.display = 'none';
-    // solver.innerText = '';
 }
 
 function hideBuilder() {
