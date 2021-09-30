@@ -54,9 +54,10 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
 //Ball in selector click listener
 ballSelector.addEventListener('click', (e) => {
     if (!full) {
-        let ball = e.path[1]
+        let ball = e.path[0]
         if(ball.className == 'ball') {
             let bg = ball.style.backgroundColor;
+            console.log(ball)
             //If max number of chosen colour is not reached
             if(!isColourFull(bg)) {
                 updateBall(ball.style.backgroundColor);
@@ -124,16 +125,6 @@ function createTube(i) {
     return tubeDiv;
 }
 
-function createBall() {
-    //create ball (div), set class 
-    let ball = document.createElement('div');
-    ball.className = "ball";
-    let ballbg = document.createElement('img');
-    ballbg.src='../images/ballbg.png';
-    ballbg.className='ballbg';    
-    ball.appendChild(ballbg);
-    return ball;
-}
 
 function drawBuilderTubes(){
     //displays the tubes
@@ -163,8 +154,8 @@ function drawBallSelector() {
     ballSelector.style.height = 35;
     ballSelector.style.top = 80+(32*builderBallsPerTube)+"px";
     for (let i = 0; i < parseInt(inputColours.value); i++) {
-        let ball = createBall()
-        ball.style.backgroundColor = ballColours[i];
+        let ball = createBall(ballColours[i])
+        // ball.style.backgroundColor = ballColours[i];
         // ball.style.display = 'inline';
         ballSelector.appendChild(ball);
         ballLeft = 0 + (i * 32)
@@ -246,7 +237,10 @@ function updateBall(newColour) {
     if (currentBall.style.backgroundColor) {
         decrementNumColourList(currentBall.style.backgroundColor);
     }
-    currentBall.style.backgroundColor = newColour;
+    console.log(newColour);
+    // currentBall.style.backgroundColor = newColour;
+    currentBall.style.backgroundImage = `radial-gradient(at bottom right, white 10%, ${newColour} 80%)`;
+    currentBall.style.backgroundRepeat = "no-repeat";
     incrementNumColourList(newColour);
     
 }

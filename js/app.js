@@ -38,8 +38,8 @@ let lnkSolver = document.getElementById('lnkSolver');
 let lnkBuilder = document.getElementById('lnkBuilder');
 
 // Hides Builder initially
-// hideSolver();
-hideBuilder();
+hideSolver();
+// hideBuilder();
 
 lnkSolver.addEventListener('click', () => {
     hideBuilder();
@@ -67,3 +67,12 @@ function hideBuilder() {
     builder.style.display = 'none';
 }
 
+
+function createBall(colour = null) {
+    //create ball (div), set class 
+    let ball = document.createElement('div');
+    ball.className = "ball";
+    if (colour) ball.style.backgroundImage = `radial-gradient(at bottom right, white 10%, ${colour} 80%)`;
+    ball.style.backgroundRepeat = "no-repeat";
+    return ball;
+}
