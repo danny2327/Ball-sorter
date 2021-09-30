@@ -1,5 +1,5 @@
 body {
-    background-image:  linear-gradient(rgba(30, 75, 115, 1), white 44%);
+    background-image:  linear-gradient( rgba(30, 75, 115, 1), white 44%);
     background-repeat: no-repeat;
 }
 /* page */
@@ -38,9 +38,13 @@ body {
     width: 30px;
     border-radius: 15px;
     height:30px;
-    border: 1px solid grey;
+    /* can't remove border or else you can't see the white. */
+    border: 1px solid rgb(133, 131, 131);
     margin-bottom: 1px;      
     position:absolute;
+    /* background-image:  radial-gradient(at bottom left, white 10%, rgba(30, 75, 115, 1) 40%);
+    background-position: 55% 55%;
+    background-repeat: no-repeat; */
   }
 
   .tube .ball {
@@ -48,7 +52,7 @@ body {
   }
 
   .ballbg {
-    opacity: 50%;
+    /* opacity: 50%; */
   }
       
   button {

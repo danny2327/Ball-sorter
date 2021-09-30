@@ -38,8 +38,8 @@ let lnkSolver = document.getElementById('lnkSolver');
 let lnkBuilder = document.getElementById('lnkBuilder');
 
 // Hides Builder initially
-hideSolver();
-// hideBuilder();
+// hideSolver();
+hideBuilder();
 
 lnkSolver.addEventListener('click', () => {
     hideBuilder();

@@ -43,12 +43,18 @@ function drawTubes(){
             //create ball (div), set class and color
             let ball = document.createElement('div');
             ball.className = "ball";
-            let ballbg = document.createElement('img');
-            ballbg.src='../images/ballbg.png';
-            ballbg.className='ballbg';
+            ball.style.backgroundImage = `radial-gradient(at bottom right, white 10%, ${grid[currentStage][i][x]} 80%)`;
+            // ball.style.backgroundPosition = "55% 55%";
+            ball.style.backgroundRepeat = "no-repeat";
+            // let ballbg = document.createElement('img');
+            // ballbg.src='../images/ballbg.png';
+            // ballbg.className='ballbg';
+            // background-image:  radial-gradient(at bottom left, white 10%, rgba(30, 75, 115, 1) 40%);
+            // background-position: 55% 55%;
+            // background-repeat: no-repeat;
 
-            ball.appendChild(ballbg);
-            ball.style.backgroundColor = grid[currentStage][i][x];
+            // ball.appendChild(ballbg);
+            // ball.style.backgroundColor = grid[currentStage][i][x];
             // add the ball to the tube
             //stack balls from the bottom
             tubeDiv.appendChild(ball);
