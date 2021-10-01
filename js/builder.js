@@ -312,7 +312,7 @@ function fillGrid() {
     tubes.forEach((tube) => {
         let ballsArr = [] 
         tube.querySelectorAll('.ball').forEach((ball) => {
-            ballsArr.push(ball.style.backgroundColor.toUpperCase());
+            ballsArr.push(extractColourFromGradient(ball.style.backgroundImage).toUpperCase());
         })
         tubeArray.push(ballsArr.reverse()); 
     }) 
