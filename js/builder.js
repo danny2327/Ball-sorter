@@ -36,11 +36,11 @@ function resetCurrentBallPosition() {
 document.getElementById('updateGrid').addEventListener('click', (e) => {
     if (confirm('Are you sure you want to change the size and reset?')) {
         //redraw
-        prepareToDraw();
+        builderPrepareToDraw();
         resetCurrentBallPosition();
         setBall();
         selectBall();
-        zeroNumColourList()
+        zeroNumColourList();
       } else {
         // Do nothing!
         console.log('No Change');
@@ -54,13 +54,13 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
 //Ball in selector click listener
 ballSelector.addEventListener('click', (e) => {
     if (!full) {
-        let ball = e.path[0]
+        console.log(e.composedPath()[0])
+        let ball = e.composedPath()[0]
         if(ball.className == 'ball') {
-            let bg = ball.style.backgroundColor;
-            console.log(ball)
+            let bg = extractColourFromGradient(ball.style.backgroundImage);
             //If max number of chosen colour is not reached
             if(!isColourFull(bg)) {
-                updateBall(ball.style.backgroundColor);
+                updateBall(bg);
                 nextBall();
             } else {
                 //max number of this colour already exists.
@@ -75,8 +75,8 @@ ballSelector.addEventListener('click', (e) => {
 //Ball in tube click listener
 builderTubeDisplay.addEventListener('click', (e) => {
     // There must be a better way to do this than have to loop through every 'ball' div comparing them.  
-    if (e.path[1].className == 'ball') {
-        let clickedBall = e.path[1];
+    if (e.composedPath()[0].className == 'ball') {
+        let clickedBall = e.composedPath()[0];
         //look through each ball in each tube until I find the one that is the same as the one that was clicked.  I do this because the ball doesn't know where it is in which tube. 
         tubes = getTubes();
         for(let i = 0; i < tubes.length; i++) {
@@ -106,12 +106,11 @@ function getInputs() {
     builderBallsPerTube = inputBalls.value;
 }
 
-function prepareToDraw() {    
-    console.log('builderTubeDisplay', builderTubeDisplay)
+function builderPrepareToDraw() {    
     builderTubeDisplay.innerHTML='';
-    // getInputs();
-    // drawBuilderTubes();
-    // drawBallSelector();
+    getInputs();
+    drawBuilderTubes();
+    drawBallSelector();
 }
 
 function createTube(i) {
@@ -191,7 +190,7 @@ function decrementNumColourList(colour) {
 function ballSelectVisibility() {
     //each time a ball is changed, run this to see if any colours are fully selected, or no longer fully selected. 
     ballSelector.querySelectorAll('.ball').forEach((ball) => {
-        if (numEachColour[ball.style.backgroundColor.toUpperCase()] == builderBallsPerTube) {
+        if (numEachColour[extractColourFromGradient(ball.style.backgroundImage).toUpperCase()] == builderBallsPerTube) {
             ball.style.opacity = "0.5";
         } else {
             ball.style.opacity = "1";
@@ -220,7 +219,10 @@ function getBalls(tube = null) {
     //func can now take an optional tube
     if(!tube) {
         tubes = getTubes();
+        // console.log('tubes', tubes);
+        // console.log('currentBallPosition', currentBallPosition);
         tube = tubes[currentBallPosition[0]]
+        // console.log('tube', tube);
     }
     return tube.querySelectorAll('.ball');
 }
@@ -230,22 +232,25 @@ function getTubes() {
     return builderTubeDisplay.querySelectorAll('.tube');
 }
 
-
 //Sets the current ball to a new colour and calls the update colour list
 function updateBall(newColour) {
     // If the ball selected has a colour already,it was manually selected and therefore the colour being replaced should be decremented in the colour list
-    if (currentBall.style.backgroundColor) {
-        decrementNumColourList(currentBall.style.backgroundColor);
+    if (currentBall.style.backgroundImage !== '') {
+        decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
     }
-    console.log(newColour);
     // currentBall.style.backgroundColor = newColour;
     currentBall.style.backgroundImage = `radial-gradient(at bottom right, white 10%, ${newColour} 80%)`;
     currentBall.style.backgroundRepeat = "no-repeat";
     incrementNumColourList(newColour);
-    
 }
 
-// Move on to the next back in the tube, or the first ball of the next tube if it's full
+function extractColourFromGradient(gradient) {
+    //Have to use this method because in some cases I rely on the bg color, and need to be able to know it.
+    let temp = gradient.split(',')[2];
+    return(temp.slice(1,-5));
+}
+
+// Move on to the next ball in the tube, or the first ball of the next tube if it's full
 function nextBall() {
     let tube = currentBallPosition[0];
     let ball = currentBallPosition[1];
@@ -322,12 +327,9 @@ function outputJSON() {
     output.innerHTML += '<p>';
 }
 
-function main() {
-    prepareToDraw();
-    getInputs();
-    drawBuilderTubes();
-    drawBallSelector();
+function mainBuild() {
+    builderPrepareToDraw();
     startBuild();
 }
 
-main();
+mainBuild();

@@ -1,4 +1,3 @@
-
 const display = document.getElementById('display');
 const prev = document.getElementById('prev');
 const stage = document.createElement('span');
@@ -210,10 +209,10 @@ function hidePlayControls() {
 http.get('../ballsortSolved new 616.json') //  2 colours
 // http.get('../ballsortSolved2.json') // small 3 colours
 // http.get('ballsortSolved.json') // huge 14 colours, puzzle 616 - Not working well, not my fault the original script
-.then(data => displayData(data))
+.then(data => mainSolve(data))
 .catch(err => console.log(err)); 
 
-function displayData(data) {
+function mainSolve(data) {
     grid = Object.values(data);
     ballsPerTube = grid[0][0].length//getTubeSize()
     prepareToDraw();
