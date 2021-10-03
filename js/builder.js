@@ -50,11 +50,19 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
       }
 });
 
+//Resets balls but leaves the grid size alone - in fact if the input numbers have changed, but update grid has not been clicked, it will update them as well. 
+document.getElementById('resetBuilder').addEventListener('click', () => {
+    builderPrepareToDraw();
+    resetCurrentBallPosition();
+    setBall();
+    selectBall();
+    zeroNumColourList();
+})
+
 
 //Ball in selector click listener
 ballSelector.addEventListener('click', (e) => {
     if (!full) {
-        console.log(e.composedPath()[0])
         let ball = e.composedPath()[0]
         if(ball.className == 'ball') {
             let bg = extractColourFromGradient(ball.style.backgroundImage);
@@ -107,10 +115,14 @@ function getInputs() {
 }
 
 function builderPrepareToDraw() {    
-    builderTubeDisplay.innerHTML='';
+    deleteTubes();
     getInputs();
     drawBuilderTubes();
     drawBallSelector();
+}
+
+function deleteTubes() {
+    builderTubeDisplay.innerHTML='';
 }
 
 function createTube(i) {
@@ -219,10 +231,7 @@ function getBalls(tube = null) {
     //func can now take an optional tube
     if(!tube) {
         tubes = getTubes();
-        // console.log('tubes', tubes);
-        // console.log('currentBallPosition', currentBallPosition);
         tube = tubes[currentBallPosition[0]]
-        // console.log('tube', tube);
     }
     return tube.querySelectorAll('.ball');
 }
@@ -271,7 +280,7 @@ function nextBall() {
         //else all have been filled
         full = true;
         resetBorder();
-        currentBall = null;
+        // currentBall = null;
     }  
 }
 
