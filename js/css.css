@@ -1,4 +1,5 @@
 body {
+    height: 400px;
     background-image:  linear-gradient( rgba(30, 75, 115, 1), white 44%);
     background-repeat: no-repeat;
 }
@@ -20,14 +21,10 @@ body {
   .tube {
     width:32px;
     height:140px;
-    /* border: 3px solid grey; */ 
-    /* border-top: 0px solid white; */
-    /* border-bottom-left-radius: 10px; */
-    /* border-bottom-right-radius: 10px; */
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 40px;
-    margin-top: 50px;
+    margin-top: 180px;
     position:absolute;
     background-image: url("../images/tubetopbg.png"),url("../images/tubebottombg.png"),url("../images/tubemidbg.png");
     background-position: top, bottom, center;
@@ -42,9 +39,6 @@ body {
     border: 1px solid rgb(133, 131, 131);
     margin-bottom: 1px;      
     position:absolute;
-    /* background-image:  radial-gradient(at bottom left, white 10%, rgba(30, 75, 115, 1) 40%);
-    background-position: 55% 55%;
-    background-repeat: no-repeat; */
   }
 
   .tube .ball {
@@ -61,6 +55,19 @@ body {
     font-weight: 700;
     font-size:100%;
   }
+
+.title {
+    font-size: larger;
+    font-weight:bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(23, 46, 90);
+}
+
+.desc {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(39, 74, 139);
+    margin-bottom: 10px;
+}
 
     /* solver */
   

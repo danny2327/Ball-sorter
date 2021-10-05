@@ -1,3 +1,8 @@
+// Still to do:
+// ability to clear a ball, for if it's full but wrong.
+
+
+
 let inputBalls = document.getElementById('numBalls');
 let inputColours = document.getElementById('numColours');
 
@@ -119,6 +124,15 @@ function builderPrepareToDraw() {
     getInputs();
     drawBuilderTubes();
     drawBallSelector();
+    placeOutput();
+}
+
+function placeOutput() {
+    console.log(output.style.top);
+    let BSTop = parseInt(ballSelector.style.top) +30;
+    console.log(BSTop);
+    output.style.top = BSTop +"px";
+    console.log(output.style.top);
 }
 
 function deleteTubes() {

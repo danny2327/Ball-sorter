@@ -50,7 +50,8 @@ def loadGrid():
     # with open('exampleeasy2.json') as json_file: #3 colours
     # with open('exampleeasy3.json') as json_file: #5 colours
     # with open('exampleeasy4.json') as json_file: #9 colours
-    with open('example.json') as json_file: #14 colours
+    with open('example2.json') as json_file: #14 colours
+    # with open('example.json') as json_file: #14 colours
         data = json.load(json_file)
         grid = data['tubes']
         return grid

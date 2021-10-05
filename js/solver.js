@@ -17,10 +17,14 @@ function prepareToDraw() {
     //disabled prev at start because it's 0
     prev.disabled = "true";
     display.before(stage);
-    // for (currentStage;currentStage < grid.length;currentStage++) {
+    determineDisplaySize();
     drawTubes();
 }
 
+function determineDisplaySize() {
+    newTubeHeight = 30+(32*ballsPerTube);
+    display.style.width = (60+(32*ballsPerTube)) + "px";
+}
 
 //Want to fix: extract tubes from every loop
 function drawTubes(){

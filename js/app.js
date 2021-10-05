@@ -37,6 +37,7 @@ let builder = document.getElementById('builder');
 let lnkSolver = document.getElementById('lnkSolver');
 let lnkBuilder = document.getElementById('lnkBuilder');
 
+
 // Hides Builder initially
 // hideSolver();
 hideBuilder();
@@ -66,7 +67,6 @@ function hideSolver() {
 function hideBuilder() {
     builder.style.display = 'none';
 }
-
 
 function createBall(colour = null) {
     //create ball (div), set class 
