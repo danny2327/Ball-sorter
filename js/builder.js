@@ -1,7 +1,6 @@
 // Still to do:
-// ability to clear a ball, for if it's full but wrong.
-
-
+// Classes
+// Make it not shitty
 
 let inputBalls = document.getElementById('numBalls');
 let inputColours = document.getElementById('numColours');

@@ -16,7 +16,7 @@
   <div id="solver" class="pageElement">
     <div class="title">Puzzle Solving Visualizer</div>
     <div class="desc">Use this tool to visualize solved puzzles.  <br>
-      This is useful for solving existing puzzles from games like <a href="https://play.google.com/store/apps/details?id=com.spicags.ballsort&hl=en_US&gl=US">Ball Sort Puzzle</a> and all of the similar games.  This is used in conjunction with <a href="https://github.com/tjwood100/ball-sort-puzzle-solver">this solver</a>.  Build the grid you want to solve with my builder, solve it using that solver and then animate it here.</div>  
+      This is useful for solving existing puzzles from games like <a href="https://play.google.com/store/apps/details?id=com.spicags.ballsort&hl=en_US&gl=US" target="_blank">Ball Sort Puzzle</a> and all of the similar games.  This is used in conjunction with <a href="https://github.com/tjwood100/ball-sort-puzzle-solver" target="_blank">this solver</a>.  Build the grid you want to solve with my builder, solve it using that solver and then animate it here.</div>  
      <div id="solverButtons">
     <!-- Main controls -->
       <button class="actionButton" id="beginning">Go back to Start</button>
@@ -40,15 +40,16 @@
   <div id="builder" class="pageElement">
       <div class="title">Puzzle Builder</div>
       <div class="desc">Use this tool to digitize puzzles for the solver to solve.  <br>
-        This is useful for solving existing puzzles from games like <a href="https://play.google.com/store/apps/details?id=com.spicags.ballsort&hl=en_US&gl=US"> Ball Sort Puzzle </a> and all of the similar games.  This is used in conjunction with <a href="https://github.com/tjwood100/ball-sort-puzzle-solver">this solver</a>.  Build the grid you want to solve, solve it using that solver and then send it to my animator. Currently you must copy the JSON and save it, as I am not using Node on this project.</div>  
+        This is useful for solving existing puzzles from games like <a href="https://play.google.com/store/apps/details?id=com.spicags.ballsort&hl=en_US&gl=US" target="_blank"> Ball Sort Puzzle </a> and all of the similar games.  This is used in conjunction with <a href="https://github.com/tjwood100/ball-sort-puzzle-solver" target="_blank">this solver</a>.  Build the grid you want to solve, solve it using that solver and then send it to my animator. Currently you must copy the JSON and save it, as I am not using Node on this project.</div>  
     <div id="builderButtons">
       <!-- Main controls -->
-      <button class="actionButton" id="resetBuilder">Reset</button>
-      <button class="actionButton" id="genJSON">Generate JSON</button><p>
+
       <label for="numColours">How Many Colours:</label>
       <input class='gridSize' type="number" id="numColours" min=2 max=14 value=4> &nbsp;&nbsp;&nbsp; <p></p>
       <label class='gridSize' for="numBalls">How Many Balls per Tube:</label>
-      <input type="number" id="numBalls" min=2 max=5 value=3>
+      <input type="number" id="numBalls" min=2 max=5 value=3><p></p>
+      <button class="actionButton" id="resetBuilder">Reset</button>
+      <button class="actionButton" id="genJSON">Generate JSON</button>
       <button  class="actionButton" id="updateGrid">Update Grid</button> <p>
         
     </div>
