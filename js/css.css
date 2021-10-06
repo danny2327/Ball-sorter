@@ -110,6 +110,10 @@ body {
     float:left;
   }
 
+  #clearBall {
+      background-image: url('../images/clear.png');
+  }
+
   #output {
     position:relative;
     font-size: large;

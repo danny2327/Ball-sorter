@@ -48,7 +48,7 @@ document.getElementById('updateGrid').addEventListener('click', (e) => {
         zeroNumColourList();
       } else {
         // Do nothing!
-        console.log('No Change');
+        displayMessage('No Change');
         //undoes the change
         inputColours.value = builderNumberOfTubes-2;
         inputBalls.value = builderBallsPerTube;
@@ -62,13 +62,17 @@ document.getElementById('resetBuilder').addEventListener('click', () => {
     setBall();
     selectBall();
     zeroNumColourList();
+    output.innerText = '';
 })
 
 
 //Ball in selector click listener
 ballSelector.addEventListener('click', (e) => {
-    if (!full) {
-        let ball = e.composedPath()[0]
+    let ball = e.composedPath()[0];
+    if(ball.id == 'clearBall') {
+        //update ball with no arg is clearing it.
+        updateBall();
+    } else if (!isGridFull() ) {
         if(ball.className == 'ball') {
             let bg = extractColourFromGradient(ball.style.backgroundImage);
             //If max number of chosen colour is not reached
@@ -79,13 +83,22 @@ ballSelector.addEventListener('click', (e) => {
                 //max number of this colour already exists.
                 displayMessage(`Max number of ${bg} balls (${builderBallsPerTube}) already exist`);
             }
-        }
-    } else {
-        console.log('I do believe you\'re done');
-    }
+        }        
+    } 
 });
 
-//Ball in tube click listener
+//Calculates if it's full each time. 
+function isGridFull() {
+    let isFull = true;
+    for(colour in numEachColour) {
+        if (parseInt(numEachColour[colour]) < parseInt(builderBallsPerTube)) { 
+            isFull = false;
+        }
+    };
+    return isFull;
+}
+
+//Ball in tube click listener to select a ball to change
 builderTubeDisplay.addEventListener('click', (e) => {
     // There must be a better way to do this than have to loop through every 'ball' div comparing them.  
     if (e.composedPath()[0].className == 'ball') {
@@ -128,11 +141,8 @@ function builderPrepareToDraw() {
 }
 
 function placeOutput() {
-    console.log(output.style.top);
-    let BSTop = parseInt(ballSelector.style.top) +30;
-    console.log(BSTop);
+    let BSTop = parseInt(ballSelector.style.top) + 30;
     output.style.top = BSTop +"px";
-    console.log(output.style.top);
 }
 
 function deleteTubes() {
@@ -175,17 +185,21 @@ function drawBuilderTubes(){
 
 function drawBallSelector() {
     ballSelector.innerHTML = '';
-    ballSelector.style.width = parseInt(inputColours.value)*65;
+    ballSelector.style.width = (parseInt(builderNumberOfTubes)-2)*65;
     ballSelector.style.height = 35;
     ballSelector.style.top = 80+(32*builderBallsPerTube)+"px";
-    for (let i = 0; i < parseInt(inputColours.value); i++) {
+    for (let i = 0; i < parseInt(builderNumberOfTubes)-2; i++) {
         let ball = createBall(ballColours[i])
-        // ball.style.backgroundColor = ballColours[i];
-        // ball.style.display = 'inline';
         ballSelector.appendChild(ball);
-        ballLeft = 0 + (i * 32)
-        ball.style.left = ballLeft + "px";
+        ballLeft = (i * 32)
+        ball.style.left = ballLeft + "px";        
     }
+    //Add 'clear' ball at the end
+    ball = createBall();
+    ball.id = 'clearBall';
+    ballSelector.appendChild(ball);
+    ballLeft = ((parseInt(builderNumberOfTubes)-2) * 32)
+    ball.style.left = ballLeft + "px";
 }
 
 function startBuild() {
@@ -216,6 +230,7 @@ function decrementNumColourList(colour) {
 function ballSelectVisibility() {
     //each time a ball is changed, run this to see if any colours are fully selected, or no longer fully selected. 
     ballSelector.querySelectorAll('.ball').forEach((ball) => {
+        if(ball.id == 'clearBall') return;
         if (numEachColour[extractColourFromGradient(ball.style.backgroundImage).toUpperCase()] == builderBallsPerTube) {
             ball.style.opacity = "0.5";
         } else {
@@ -256,15 +271,24 @@ function getTubes() {
 }
 
 //Sets the current ball to a new colour and calls the update colour list
-function updateBall(newColour) {
-    // If the ball selected has a colour already,it was manually selected and therefore the colour being replaced should be decremented in the colour list
-    if (currentBall.style.backgroundImage !== '') {
-        decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
+function updateBall(newColour = null) {
+    //if no colour provided, the clear was clicked, so decrement the colour if one exists, and then clear the ball.
+    if(!newColour) {
+        // If the ball BG image doesn't start with URL             and            ball bg image isn't nothing
+        if(currentBall.style.backgroundImage.substr(0,2) !== 'url' && currentBall.style.backgroundImage !== '') {
+            decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
+        }
+        currentBall.style.backgroundImage = '';
+    } else {
+        // If the ball selected has a colour already,it was manually selected and therefore the colour being replaced should be decremented in the colour list
+        if (currentBall.style.backgroundImage !== '') {
+            decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
+        }
+        // currentBall.style.backgroundColor = newColour;
+        currentBall.style.backgroundImage = `radial-gradient(at bottom right, white 10%, ${newColour} 80%)`;
+        currentBall.style.backgroundRepeat = "no-repeat";
+        incrementNumColourList(newColour);
     }
-    // currentBall.style.backgroundColor = newColour;
-    currentBall.style.backgroundImage = `radial-gradient(at bottom right, white 10%, ${newColour} 80%)`;
-    currentBall.style.backgroundRepeat = "no-repeat";
-    incrementNumColourList(newColour);
 }
 
 function extractColourFromGradient(gradient) {
@@ -292,14 +316,12 @@ function nextBall() {
         selectBall();  
     } else {
         //else all have been filled
-        full = true;
         resetBorder();
-        // currentBall = null;
     }  
 }
 
 document.getElementById('genJSON').addEventListener('click', (e) => {
-    if(full) {
+    if(isGridFull()) {
         fillGrid();
         outputJSON();
     } else {
@@ -339,8 +361,7 @@ function fillGrid() {
         })
         tubeArray.push(ballsArr.reverse()); 
     }) 
-    builderGrid = {tubes: tubeArray};        
-    console.log(builderGrid);
+    builderGrid = {tubes: tubeArray};
 }
 
 //Outputs the JSON
