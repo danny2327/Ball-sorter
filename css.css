@@ -26,7 +26,7 @@ body {
     padding-top: 40px;
     margin-top: 180px;
     position:absolute;
-    background-image: url("../images/tubetopbg.png"),url("../images/tubebottombg.png"),url("../images/tubemidbg.png");
+    background-image: url("images/tubetopbg.png"),url("images/tubebottombg.png"),url("images/tubemidbg.png");
     background-position: top, bottom, center;
     background-repeat: no-repeat, no-repeat, repeat-y;
   }
@@ -111,7 +111,7 @@ body {
   }
 
   #clearBall {
-      background-image: url('../images/clear.png');
+      background-image: url('images/clear.png');
   }
 
   #output {

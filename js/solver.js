@@ -210,9 +210,9 @@ function hidePlayControls() {
 
 
 // Next step is to be able to pass a created build to this page and show it.  
-http.get('../ballsortSolved new 616.json') //  2 colours
-// http.get('../ballsortSolved2.json') // small 3 colours
-// http.get('ballsortSolved.json') // huge 14 colours, puzzle 616 - Not working well, not my fault the original script
+// http.get('../Examples/ball_sort_solved_616.json') //  14 colours, puzzle 616 
+http.get('../Examples/ballsortSolved2.json') // small 3 colours
+// http.get('../Examples/ballsortSolved.json') //   
 .then(data => mainSolve(data))
 .catch(err => console.log(err)); 
 
