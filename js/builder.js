@@ -22,7 +22,7 @@ let currentBallPosition = [0,0];
 let currentBall;
 
 //Keeps track of how many of each colour are assigned. 
-const numEachColour = {};
+let numEachColour = {};
 
 //How many balls per tube
 let builderBallsPerTube;
@@ -211,6 +211,8 @@ function startBuild() {
 
 function zeroNumColourList() {
     // This list keeps track of how many of each ball has been added so only the correct number can be added. 
+    //Need to clear it each time
+    numEachColour = {};
     for(let i=builderNumberOfTubes-3; i >= 0; i-- ) {
         numEachColour[ballColours[i]] = 0;
     }
@@ -326,6 +328,11 @@ document.getElementById('genJSON').addEventListener('click', (e) => {
     } else {
         //need to display
         displayMessage('Grid is not complete');
+        console.log('currentBallPosition',currentBallPosition);
+        console.log('currentBall',currentBall);
+        console.log('numEachColour',numEachColour);
+        console.log('builderBallsPerTube',builderBallsPerTube);
+        console.log('builderNumberOfTubes',builderNumberOfTubes);
     }
 })
 
