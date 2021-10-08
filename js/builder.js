@@ -328,11 +328,6 @@ document.getElementById('genJSON').addEventListener('click', (e) => {
     } else {
         //need to display
         displayMessage('Grid is not complete');
-        console.log('currentBallPosition',currentBallPosition);
-        console.log('currentBall',currentBall);
-        console.log('numEachColour',numEachColour);
-        console.log('builderBallsPerTube',builderBallsPerTube);
-        console.log('builderNumberOfTubes',builderNumberOfTubes);
     }
 })
 
@@ -373,7 +368,6 @@ function fillGrid() {
 //Outputs the JSON
 function outputJSON() {
     displayMessage(JSON.stringify(builderGrid), false);
-    output.appendChild(document.createTextNode('Click to Copy'));
     output.innerHTML += '<p>';
 }
 
