@@ -43,20 +43,16 @@ def isSolved(grid, tubeHeight=None):
 
 def loadGrid():
 # def loadGrid(fileName):
-    # 2 colours, 4x4 tubes (2 empty)
     # with open(filename) as json_file: 
-    # 12 colours, 14x5 tubes (2 empty)
-    # with open('exampleeasy.json') as json_file: #2 colours
-    # with open('exampleeasy2.json') as json_file: #3 colours
-    # with open('exampleeasy3.json') as json_file: #5 colours
-    # with open('exampleeasy4.json') as json_file: #9 colours
-    with open('example2.json') as json_file: #14 colours
+    # with open('Examples Solved/Level_23.json') as json_file: #5 colours
+    # with open('Examples Solved/Level_4.json') as json_file: #14 colours
+    with open('Examples Solved/Level_328.json') as json_file: #14 colours
     # with open('example.json') as json_file: #14 colours
         data = json.load(json_file)
         grid = data['tubes']
         return grid
 
-def writeJson(data, f='ballsortSolved new 616.json'):
+def writeJson(data, f='Examples Solved/ballSortSolved12x5.json'):
     jsonObj = json.dumps(data, indent=4)
     with open(f, 'w') as outfile:
         outfile.write(jsonObj)

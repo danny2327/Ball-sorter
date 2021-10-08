@@ -106,7 +106,7 @@ document.querySelectorAll(".actionButton").forEach(button =>
 }));
 
 document.addEventListener('keydown', (e) => {
-    const key = e.key
+    const key = e.code
     switch(key) {
         case "ArrowLeft": {
             prevStage();
@@ -122,6 +122,10 @@ document.addEventListener('keydown', (e) => {
         }
         case "ArrowDown": {
             lastStage();
+            break;
+        }
+        case "Space": {
+            playPause();
             break;
         }
     }
@@ -161,13 +165,27 @@ function lastStage() {
 async function play() {
     resetTimeout();
     const wait = (timeToDelay) => new Promise((resolve) => timeoutHandle = setTimeout(resolve, timeToDelay));
-
+    
     ShowPlayControls();
     while (currentStage < grid.length-1) {
         await wait(playSpeed);
         nextStage();
     }
     hidePlayControls();
+}
+
+function playPause() {
+    //if playing, pauses, if not, starts 
+    if (isPlaying()) pause();
+    else play();
+}
+
+function isPlaying() {
+    if (document.querySelector('.playControls').style.visibility == 'hidden') {
+        return false; 
+    } else {
+        return true;
+    }
 }
 
 function playFromStart() {
@@ -186,6 +204,7 @@ function resetTimeout() {
 }
 
 function faster() {
+    // don't want to be able to stop it
     if (playSpeed > 200) playSpeed-=200;
     console.log(playSpeed);
 }
@@ -210,14 +229,17 @@ function hidePlayControls() {
 
 
 // Next step is to be able to pass a created build to this page and show it.  
-// http.get('../Examples/ball_sort_616_solved.json') //  14 colours x 5, puzzle 616 
-http.get('../Examples/ballsortSolved.json') //   3 colours x 3
+// http.get('../Examples Solved/ball_sort_616_solved.json') //  14 colours x 5, puzzle 616 
+// http.get('../Examples Solved/ballsortSolved.json') //   3 colours x 3
+// http.get('../Examples Solved/ballSortSolved7x4.json') //   7 colours x 4
+// http.get('../Examples Solved/ballSortSolved3x4.json') //   3 colours x 4
+http.get('../Examples Solved/ballSortSolved12x5.json') //   3 colours x 4
 .then(data => mainSolve(data))
 .catch(err => console.log(err)); 
 
 function mainSolve(data) {
     grid = Object.values(data);
-    ballsPerTube = grid[0][0].length//getTubeSize()
+    ballsPerTube = grid[0][0].length;//getTubeSize()
     prepareToDraw();
 }
 
