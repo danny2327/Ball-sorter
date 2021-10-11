@@ -217,67 +217,67 @@ class Solver {
             this.tubes[i] = tube;
             
             //want to add - make the from and destination tubes change colour
-            this.display.appendChild(tubeDiv);        
+            this.display.appendChild(tube.getTubeDiv());        
             // displays the balls
             //done in reverse so we're effectively drawing from the bottom up
-            for (let x = grid[currentStage][i].length-1; x >= 0 ; x--) {
+            for (let x = this.grid[this.currentStage][i].length-1; x >= 0 ; x--) {
                 //create ball (div), set class and color
-                let ball = new Ball(grid[currentStage][i][x]);  
+                let ball = new Ball(this.grid[this.currentStage][i][x]);  
                 ball.setBottom(x * 32)
                 tube.addBall(ball);
             }        
         }
-        display.appendChild(document.createElement("p"));
+        this.display.appendChild(document.createElement("p"));
     }
 
     prevStage() {
-        if(currentStage > 0) currentStage--;
-        if(currentStage == 0) prev.disabled = true;
-        next.disabled = false;
-        display.innerHTML = '';
-        drawTubes();
+        if(this.currentStage > 0) this.currentStage--;
+        if(this.currentStage == 0) this.prev.disabled = true;
+        this.next.disabled = false;
+        this.display.innerHTML = '';
+        this.drawTubes();
     }
 
     nextStage() {
-        if(currentStage < grid.length-1) currentStage++;
-        if(currentStage == grid.length-1) next.disabled = true;
-        prev.disabled = false;
-        display.innerHTML = '';
+        if(this.currentStage < this.grid.length-1) this.currentStage++;
+        if(this.currentStage == this.grid.length-1) this.next.disabled = true;
+        this.prev.disabled = false;
+        this.display.innerHTML = '';
         drawTubes();
     }
     
     firstStage() {
-        currentStage = 0;
-        prev.disabled = true;
-        next.disabled = false;
-        display.innerHTML = '';
-        drawTubes();
+        this.currentStage = 0;
+        this.prev.disabled = true;
+        this.next.disabled = false;
+        this.display.innerHTML = '';
+        this.drawTubes();
     }
     
     lastStage() {
-        currentStage = grid.length-1
-        next.disabled = true;
-        prev.disabled = false;
-        display.innerHTML = '';
-        drawTubes();
+        this.currentStage = this.grid.length-1
+        this.next.disabled = true;
+        this.prev.disabled = false;
+        this.display.innerHTML = '';
+        this.drawTubes();
     }
     
     async play() {
-        resetTimeout();
+        this.resetTimeout();
         const wait = (timeToDelay) => new Promise((resolve) => timeoutHandle = setTimeout(resolve, timeToDelay));
         
-        ShowPlayControls();
-        while (currentStage < grid.length-1) {
-            await wait(playSpeed);
-            nextStage();
+        this.showPlayControls();
+        while (this.currentStage < this.grid.length-1) {
+            await wait(this.playSpeed);
+            this.nextStage();
         }
-        hidePlayControls();
+        this.hidePlayControls();
     }
     
     playPause() {
         //if playing, pauses, if not, starts 
-        if (isPlaying()) pause();
-        else play();
+        if (this.isPlaying()) this.pause();
+        else this.play();
     }
     
     isPlaying() {
@@ -289,37 +289,37 @@ class Solver {
     }
     
     playFromStart() {
-        resetTimeout();
-        currentStage = -1;
-        play();
+        this.resetTimeout();
+        this.currentStage = -1;
+        this.play();
     }
     
     pause() {
-        resetTimeout();
-        hidePlayControls();
+        this.resetTimeout();
+        this.hidePlayControls();
     }
     
     resetTimeout() {
-        clearTimeout(timeoutHandle);
+        this.clearTimeout(this.timeoutHandle);
     }
     
     faster() {
         // don't want to be able to stop it
-        if (playSpeed > 200) playSpeed-=200;
-        console.log(playSpeed);
+        if (this.playSpeed > 200) this.playSpeed-=200;
+        console.log(this.playSpeed);
     }
     
     slower() {
-        playSpeed+=200;
-        console.log(playSpeed);
+        this.playSpeed+=200;
+        console.log(this.playSpeed);
     }
     
     reset() {
-        playSpeed = 1000;
-        console.log(playSpeed);
+        this.playSpeed = 1000;
+        console.log(this.playSpeed);
     }
     
-    ShowPlayControls() {
+    showPlayControls() {
         document.querySelectorAll('.playControls').forEach((el) => el.style.visibility = 'visible');  
     }
     
@@ -339,16 +339,14 @@ class Builder {
 
 class Ball {
     constructor(colour = null) {
-        this.colour = colour;
-
-        this.ballDiv = this.getDiv();
+        this.ballDiv = this.getDiv(colour);
+        this.setColour(colour);
         return this;
     }
 
-    getDiv() {
+    getDiv(colour) {
         let div = document.createElement('div');
         div.className = "ball";
-        div.setColour(colour);
         return div;
     }
 
@@ -366,7 +364,7 @@ class Ball {
         this.ballDiv.style.bottom = ballBottom + "px";
     }
 
-    get colour() {
+    getColour() {
         return this.colour;
     }
 
@@ -379,17 +377,18 @@ class Ball {
 class Tube {
     constructor(ballsPerTube, i) {
         this.ballsPerTube = ballsPerTube;
-        this.balls = [];
-        setHeight(this.determineHeight());
-        this.tubeDiv = this.getDiv(); 
-        this.tubeDiv.className = 'tube';
 
-        this.setDivHeight();
+        this.balls = [];
+
+        this.tubeDiv = this.makeDiv(); 
+
+        this.setHeight(this.determineHeight());
     }
 
-    getDiv() {
+    makeDiv() {
         let div = document.createElement('div');
         div.className = 'tube';
+        return div;
     }
 
     determineHeight() {
@@ -408,7 +407,6 @@ class Tube {
         this.height = height;
         this.tubeDiv.style.height = this.height + "px";
     }
-
 
     //This shouldn't be in the tube class, it should be controlled by the controller (builder or solver)
     // Won't even have to be once I get rid of the absolute stuff
