@@ -243,7 +243,7 @@ class Solver {
         if(this.currentStage == this.grid.length-1) this.next.disabled = true;
         this.prev.disabled = false;
         this.display.innerHTML = '';
-        drawTubes();
+        this.drawTubes();
     }
     
     firstStage() {
@@ -264,7 +264,7 @@ class Solver {
     
     async play() {
         this.resetTimeout();
-        const wait = (timeToDelay) => new Promise((resolve) => timeoutHandle = setTimeout(resolve, timeToDelay));
+        const wait = (timeToDelay) => new Promise((resolve) => this.timeoutHandle = setTimeout(resolve, timeToDelay));
         
         this.showPlayControls();
         while (this.currentStage < this.grid.length-1) {
@@ -300,7 +300,7 @@ class Solver {
     }
     
     resetTimeout() {
-        this.clearTimeout(this.timeoutHandle);
+        clearTimeout(this.timeoutHandle);
     }
     
     faster() {
@@ -339,15 +339,19 @@ class Builder {
 
 class Ball {
     constructor(colour = null) {
-        this.ballDiv = this.getDiv(colour);
+        this.ballDiv = this.makeDiv(colour);
         this.setColour(colour);
         return this;
     }
 
-    getDiv(colour) {
+    makeDiv(colour) {
         let div = document.createElement('div');
         div.className = "ball";
         return div;
+    }
+
+    getDiv() {
+        return this.ballDiv;
     }
 
     setColour(colour) {
@@ -397,6 +401,7 @@ class Tube {
 
     addBall(ball) {
         this.balls.push(ball);
+        this.tubeDiv.appendChild(ball.getDiv());
     }
 
     getTubeDiv() {
