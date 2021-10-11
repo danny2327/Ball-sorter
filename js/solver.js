@@ -12,19 +12,24 @@ let timeoutHandle;
 //default play speed in ms
 let playSpeed = 1000;
 
+function  determineDisplaySize() {
+    newTubeHeight = 30+(32*this.ballsPerTube);
+    display.style.width = (60+(32*ballsPerTube)) + "px";
+}
+
 function prepareToDraw() {
     numberOfTubes = grid[0].length
     //disabled prev at start because it's 0
-    prev.disabled = "true";
+    
     display.before(stage);
     determineDisplaySize();
     drawTubes();
 }
 
-function determineDisplaySize() {
-    newTubeHeight = 30+(32*ballsPerTube);
-    display.style.width = (60+(32*ballsPerTube)) + "px";
-}
+// function determineDisplaySize() {
+//     newTubeHeight = 30+(32*ballsPerTube);
+//     display.style.width = (60+(32*ballsPerTube)) + "px";
+// }
 
 //Want to fix: extract tubes from every loop
 function drawTubes(){

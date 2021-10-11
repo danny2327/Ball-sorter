@@ -1,3 +1,74 @@
+
+
+
+class App{
+    constructor() {
+        this.solver = new Solver();
+        this.builder = new Builder();
+    }
+}
+
+
+class Solver {
+    constructor() {
+        
+    }
+}
+
+class Builder {
+    constructor() {
+        
+    }
+}
+
+class SolverUI {
+    constructor() {
+        prev.disabled = "true";
+        determineDisplaySize();
+    }     
+
+    determineDisplaySize() {
+        // newTubeHeight = 30+(32*this.ballsPerTube);
+        // display.style.width = (60+(32*ballsPerTube)) + "px";
+    }
+}
+
+class BuilderUI {
+    constructor() {
+        
+    }
+}
+
+class Ball {
+    constructor(colour = null, position = null, tube = null) {
+        this.colour = colour;
+        this.position = position;
+        this.tube = tube;
+    }
+
+    get colour() {}
+    
+    changeColour() { }
+
+    clearColour() { }
+}
+
+class Tube {
+    constructor() {
+        this.balls = [];
+    }
+}
+
+// class grid {
+//     constructor(numberOfColours, numberOfBalls) {
+//         this.numberOfColours = numberOfColours;
+//         this.numberOfBalls = numberOfBalls;
+
+//     }
+// }
+
+
+
 const http = new EasyHTTP;
 const ballColours = {
     0: 'RED',
@@ -32,8 +103,8 @@ const ballColours = {
 // LIGHT BLUE = AQUA
 
 // Make this project in this JS, and some framewords like angular, react, vue
-let solver = document.getElementById('solver');
-let builder = document.getElementById('builder');
+let solverTab = document.getElementById('solver');
+let builderTab = document.getElementById('builder');
 let lnkSolver = document.getElementById('lnkSolver');
 let lnkBuilder = document.getElementById('lnkBuilder');
 
@@ -53,19 +124,19 @@ lnkBuilder.addEventListener('click', () => {
 });
 
 function showSolver() {
-    solver.style.display = 'block';
+    solverTab.style.display = 'block';
 }
 
 function showBuilder() {
-    builder.style.display = 'block';
+    builderTab.style.display = 'block';
 }
 
 function hideSolver() {
-    solver.style.display = 'none';
+    solverTab.style.display = 'none';
 }
 
 function hideBuilder() {
-    builder.style.display = 'none';
+    builderTab.style.display = 'none';
 }
 
 function createBall(colour = null) {
