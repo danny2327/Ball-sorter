@@ -332,10 +332,10 @@ class Builder {
         this.inputBalls = document.getElementById('numBalls');
         this.inputColours = document.getElementById('numColours');
         //Where the tubes and balls are shown
-        this.builderTubeDisplay = document.getElementById('builderTubeDisplay');
+        this.tubeDisplay = document.getElementById('builderTubeDisplay');
 
         //The parent of the ball selector. Used for showing messages. 
-        this.builderSelectorDisplay = document.getElementById('builderSelectorDisplay');
+        this.selectorDisplay = document.getElementById('builderSelectorDisplay');
 
         //Where the ball selector is shown. 
         this.ballSelector = document.getElementById('ballSelect');
@@ -353,6 +353,7 @@ class Builder {
         this.numberOfTubes;
         this.grid;
         this.full = false;
+        this.tubes = {};
 
         this.prepareToDraw();
         this.startBuild();
@@ -405,7 +406,7 @@ class Builder {
                 this.updateBall();
             } else if (!this.isGridFull() ) {
                 if(ball.className == 'ball') {
-                    let bg = extractColourFromGradient(ball.style.backgroundImage);
+                    let bg = this.extractColourFromGradient(ball.style.backgroundImage);
                     //If max number of chosen colour is not reached
                     if(!this.isColourFull(bg)) {
                         this.updateBall(bg);
@@ -419,17 +420,21 @@ class Builder {
         });
 
         //Ball in tube click listener to select a ball to change
-        this.builderTubeDisplay.addEventListener('click', (e) => {
+        this.tubeDisplay.addEventListener('click', (e) => {
             // There must be a better way to do this than have to loop through every 'ball' div comparing them.  
             if (e.composedPath()[0].className == 'ball') {
                 let clickedBall = e.composedPath()[0];
                 //look through each ball in each tube until I find the one that is the same as the one that was clicked.  I do this because the ball doesn't know where it is in which tube. 
-                this.tubes = getTubes();
-                for(let i = 0; i < this.tubes.length; i++) {
-                    this.balls = getBalls(this.tubes[i]);
+                let tubes = this.getTubes();
+                // Had to do the Object.keys(tubes).length for it to work.
+                //Had to do -2 on this one, didn't previously, should investigate why
+                for(let i = 0; i < Object.keys(tubes).length-2; i++) {
+                    let balls = this.getBalls(tubes[i]);
                     for (let x = this.ballsPerTube-1; x >= 0 ; x--) { 
-                        ball = this.balls[x];                
-                        if (ball == clickedBall) {
+                        let ball = balls[x];
+                        // console.log('ball', x, ball);
+                        if (ball.getDiv() == clickedBall) {
+                            // console.log('clickedBall', clickedBall)
                             this.resetBorder();
                             this.currentBallPosition = [i,x];
                             this.setBall();
@@ -456,6 +461,47 @@ class Builder {
     // ***OUTPUT***  //
 
 
+    prepareToDraw() {    
+        this.deleteTubes();
+        this.getInputs();
+        this.drawTubes();
+        this.drawBallSelector();
+        this.placeOutput();
+    }
+    
+    startBuild() {
+        this.setBall();
+        this.selectBall();
+        this.zeroNumColourList();
+    }
+
+    getInputs() {
+        //Tubes are 2 more than num of colours
+        this.numberOfTubes = (parseInt(this.inputColours.value) + 2);
+        this.ballsPerTube = this.inputBalls.value;
+    }
+    
+    drawTubes() {
+        //displays the tubes
+        for(let i = 0; i < this.numberOfTubes; i++) {
+            let tube = new Tube(this.ballsPerTube);        
+            this.tubes[i] = tube;   
+            tube.setLeft(i);
+            tube.setTop(100);
+            this.tubeDisplay.appendChild(tube.getDiv()); 
+            // displays the balls
+            //done in reverse so we're effectively drawing from the bottom up
+            for (let x = this.ballsPerTube-1; x >= 0 ; x--) {            
+                if(i < this.numberOfTubes-2) {
+                    let ball = new Ball();
+                    ball.setBottom(x * 34)
+                    // add the ball to the tube
+                    tube.addBall(ball);
+                }
+            }        
+        }
+        this.tubeDisplay.appendChild(document.createElement("p"));
+    }
 
     drawBallSelector() {
         this.ballSelector.innerHTML = '';
@@ -471,7 +517,7 @@ class Builder {
         }
         //Add 'clear' ball at the end
         ball = new Ball();
-        ball.id = 'clearBall';
+        ball.setID('clearBall');
         this.ballSelector.appendChild(ball.getDiv());
         ball.setLeft((parseInt(this.numberOfTubes)-2) * 32)
     }
@@ -482,12 +528,12 @@ class Builder {
 
     isGridFull() {
         let isFull = true;
-        for(colour in this.numEachColour) {
+        for(let colour in this.numEachColour) {
             if (parseInt(this.numEachColour[colour]) < parseInt(this.ballsPerTube)) { 
-                this.isFull = false;
+                isFull = false;
             }
         };
-        return this.isFull;
+        return isFull;
     }
 
     isColourFull(colour) {
@@ -497,53 +543,13 @@ class Builder {
         return false;
     }
 
-    getInputs() {
-        this.numberOfTubes = (parseInt(this.inputColours.value) + 2);
-        this.ballsPerTube = this.inputBalls.value;
-    }
-
-    prepareToDraw() {    
-        this.deleteTubes();
-        this.getInputs();
-        this.drawBuilderTubes();
-        this.drawBallSelector();
-        this.placeOutput();
-    }
-
     placeOutput() {
         let BSTop = parseInt(this.ballSelector.style.top) + 30;
         this.output.style.top = BSTop +"px";
     }
 
     deleteTubes() {
-        this.builderTubeDisplay.innerHTML='';
-    }
-
-    drawBuilderTubes() {
-        //displays the tubes
-        for(let i = 0; i < this.numberOfTubes; i++) {
-            let tube = new Tube(this.ballsPerTube);
-            this.builderTubeDisplay.appendChild(tube.getDiv());        
-            // displays the balls
-            //done in reverse so we're effectively drawing from the bottom up
-            for (let x = this.builderBallsPerTube-1; x >= 0 ; x--) {            
-                if(i < builderNumberOfTubes-2) {
-                    let ball = createBall();
-                    // add the ball to the tube
-                    tubeDiv.appendChild(ball);
-                    // ball.style.backgroundColor = grid[currentStage][i][x];
-                    ballBottom = 0 + (x * 34)
-                    ball.style.bottom = ballBottom + "px";
-                }
-            }        
-        }
-        builderTubeDisplay.appendChild(document.createElement("p"));
-    }
-    
-    startBuild() {
-        this.setBall();
-        this.selectBall();
-        this.zeroNumColourList();
+        this.tubeDisplay.innerHTML='';
     }
 
     zeroNumColourList() {
@@ -569,7 +575,7 @@ class Builder {
         //each time a ball is changed, run this to see if any colours are fully selected, or no longer fully selected. 
         this.ballSelector.querySelectorAll('.ball').forEach((ball) => {
             if(ball.id == 'clearBall') return;
-            if (this.numEachColour[extractColourFromGradient(ball.style.backgroundImage).toUpperCase()] == this.ballsPerTube) {
+            if (this.numEachColour[this.extractColourFromGradient(ball.style.backgroundImage).toUpperCase()] == this.ballsPerTube) {
                 ball.style.opacity = "0.5";
             } else {
                 ball.style.opacity = "1";
@@ -578,50 +584,64 @@ class Builder {
     }
 /////////////////////////
     resetBorder() {
-        this.currentBall.style.border = '1px solid grey';
+        this.currentBall.resetBorder();
     }
 /////////////////////////
     selectBall() {
-        this.currentBall.style.border = '2px solid red';
+        // console.log(this.currentBall);
+        this.currentBall.setBorder();
     }
 
     setBall() {
         let balls = this.getBalls();
-        console.log(balls);
-        this.currentBall = balls[this.currentBallPosition[1]]
+        // console.log(`Balls from tube ${this.currentBallPosition[0]}`,balls)
+        if(balls) {
+            this.currentBall = balls[this.currentBallPosition[1]];
+        } else {
+            this.currentBall;
+        }
+
     }
 
     getBalls(tube = null) {
-        //func can now take an optional tube
+        // console.log('this.currentBallPosition', this.currentBallPosition)
+        //func can take an optional tube and return the balls from that tube. Otherwise it will return the balls from the current tube.
         if(!tube) {
             let tubes = this.getTubes();
+            // console.log('tubes',tubes);
             tube = tubes[this.currentBallPosition[0]]
         }
-        return tube.querySelectorAll('.ball');
+        return tube.getBalls();
     }
 
     getTubes() {
-        let tubes = this.tubes;// builderTubeDisplay.querySelectorAll('.tube');
-        return tubes;
+        // let tubes = this.tubes;// tubeDisplay.querySelectorAll('.tube');
+        return this.tubes;
+    }
+
+    setTubes() {
+
     }
 
     updateBall(newColour = null) {
         //if no colour provided, the clear was clicked, so decrement the colour if one exists, and then clear the ball.
         if(!newColour) {
+            console.log(this.currentBall.getDiv())
             // If the ball BG image doesn't start with URL             and            ball bg image isn't nothing
-            if(this.currentBall.style.backgroundImage.substr(0,2) !== 'url' && currentBall.style.backgroundImage !== '') {
-                decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
+            // if(this.currentBall.getDiv().style.backgroundImage.id !== 'clearBall' && this.currentBall.style.backgroundImage !== '') {
+            if(this.currentBall.getDiv().style.backgroundImage.substr(0,2) !== 'url' && this.currentBall.getDiv().style.backgroundImage !== '') {
+                this.decrementNumColourList(this.extractColourFromGradient(this.currentBall.getDiv().style.backgroundImage));
             }
-            currentBall.style.backgroundImage = '';
-        } else {
+            this.currentBall.clearColour();
+            
+        } else {   //Else set the new colour provided
             // If the ball selected has a colour already,it was manually selected and therefore the colour being replaced should be decremented in the colour list
-            if (currentBall.style.backgroundImage !== '') {
-                decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
+            if (this.currentBall.getDiv().style.backgroundImage !== '') {
+                this.decrementNumColourList(this.extractColourFromGradient(this.currentBall.style.backgroundImage));
             }
             // currentBall.style.backgroundColor = newColour;
-            currentBall.style.backgroundImage = `radial-gradient(at bottom right, white 10%, ${newColour} 80%)`;
-            currentBall.style.backgroundRepeat = "no-repeat";
-            incrementNumColourList(newColour);
+            this.currentBall.setColour(newColour);
+            this.incrementNumColourList(newColour);
         }
     }
 
@@ -632,10 +652,11 @@ class Builder {
     }
 
     nextBall() {
+        // console.log('this.currentBallPosition',this.currentBallPosition);
         let tube = this.currentBallPosition[0];
         let ball = this.currentBallPosition[1];
         // if not done in tube, next ball
-        if (ball < this.builderBallsPerTube-1) {
+        if (ball < this.ballsPerTube-1) {
             this.currentBallPosition[1]++
             this.resetBorder();
             this.setBall();
@@ -666,7 +687,7 @@ class Builder {
         let tubeArray = [];
         tubes.forEach((tube) => {
             let ballsArr = [] 
-            tube.querySelectorAll('.ball').forEach((ball) => {
+            tube.getDiv().querySelectorAll('.ball').forEach((ball) => {
                 ballsArr.push(extractColourFromGradient(ball.style.backgroundImage).toUpperCase());
             })
             tubeArray.push(ballsArr.reverse()); 
@@ -726,6 +747,18 @@ class Ball {
         this.ballDiv.style.backgroundImage = '';
         this.colour = '';
     }
+
+    setBorder() {
+        this.ballDiv.style.border = '2px solid red';
+    }
+
+    resetBorder() {
+        this.ballDiv.style.border = '';
+    }
+
+    setID(id) {
+        this.ballDiv.id = id;
+    }
 }
 
 class Tube {
@@ -743,6 +776,10 @@ class Tube {
         let div = document.createElement('div');
         div.className = 'tube';
         return div;
+    }
+
+    getBalls() {
+        return this.balls;
     }
 
     determineHeight() {
