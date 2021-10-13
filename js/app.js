@@ -383,8 +383,8 @@ class Builder {
                 // Do nothing!
                 this.displayMessage('No Change');
                 //undoes the change
-                this.inputColours.value = builderNumberOfTubes-2;
-                this.inputBalls.value = builderBallsPerTube;
+                this.inputColours.value = this.numberOfTubes-2;
+                this.inputBalls.value = this.ballsPerTube;
               }
         });
 
@@ -685,10 +685,10 @@ class Builder {
     fillGrid() {
         let tubes = this.getTubes();
         let tubeArray = [];
-        tubes.forEach((tube) => {
+        Object.values(tubes).forEach((tube) => {
             let ballsArr = [] 
-            tube.getDiv().querySelectorAll('.ball').forEach((ball) => {
-                ballsArr.push(extractColourFromGradient(ball.style.backgroundImage).toUpperCase());
+            Object.values(this.getBalls(tube)).forEach((ball) => {
+                ballsArr.push(this.extractColourFromGradient(ball.getDiv().style.backgroundImage).toUpperCase());
             })
             tubeArray.push(ballsArr.reverse()); 
         }) 
@@ -696,8 +696,8 @@ class Builder {
     }
 
     outputJSON() {
-        this.displayMessage(JSON.stringify(builderGrid), false);
-        output.innerHTML += '<p>';
+        this.displayMessage(JSON.stringify(this.grid), false);
+        this.output.innerHTML += '<p>';
     }
         
 
