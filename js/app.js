@@ -29,6 +29,8 @@ class App{
         });
         
         this.lnkBuilder.addEventListener('click', () => {
+            //Feel like this shouldn't be here, but I would have to create an 'exiting' func and call that.  Probably should for both tools. 
+            this.solver.ifPlayingPause();
             this.hideSolver();
             this.showBuilder();            
         });
@@ -37,8 +39,8 @@ class App{
         this.builder = new Builder(this.ballColours);
 
         // Hides Builder initially
-        this.hideSolver();
-        // this.hideBuilder();
+        // this.hideSolver();
+        this.hideBuilder();
     }
     showSolver() {
         this.solverTab.style.display = 'block';

@@ -1,5 +1,6 @@
 class Solver {
     constructor(ballColours) {
+        
         this.display = document.getElementById('display');
         
         this.prev = document.getElementById('prev');
@@ -25,19 +26,53 @@ class Solver {
         this.timeoutHandle;
         //default play speed in ms
         this.playSpeed = 1000;
-
+        this.loadedPuzzle = '';
         
-        // this.http.get('../Examples Solved/ball_sort_616_solved.json') //  14 colours x 5, puzzle 616 
-        // this.http.get('../Examples Solved/ballsortSolved.json') //   3 colours x 3
-        // this.http.get('../Examples Solved/ballSortSolved7x4.json') //   7 colours x 4
-        // this.http.get('../Examples Solved/ballSortSolved3x4.json') //   3 colours x 4
-        this.http.get('../Examples Solved/ballSortSolved12x5.json') 
-            .then(data => this.solve(data))
-            .catch(err => console.log(err)); 
+        this.populatePuzzleSelect();
 
     } //End of Constructor
 
+    populatePuzzleSelect() {
+        // load list of presolved puzzles
+        let solvedPuzzles = [
+            'Solved_14x5.json',  
+            'Solved_3x3.json',
+            'Solved_7x4.json',
+            'Solved_3x4.json',
+            'Solved_12x5.json'
+        ];
+
+        //set current puzzle to load
+        this.setLoadedPuzzle(solvedPuzzles[0]);
+        // console.log(this.loadedPuzzle);
+
+        let puzzleDD = document.getElementById('puzzle');
+
+        for (let puzzle in solvedPuzzles) {
+            let option = document.createElement('option');
+            option.value = solvedPuzzles[puzzle];
+            option.text = solvedPuzzles[puzzle];
+            puzzleDD.appendChild(option);
+        }
+    }
+
+    getLoadedPuzzle() {
+        return this.loadedPuzzle;
+    }
+
+    setLoadedPuzzle(newPuzzle) {
+        if (newPuzzle !== this.getLoadedPuzzle()) {
+            this.loadedPuzzle = newPuzzle;
+            this.loadPuzzleFromDisk(newPuzzle);
+        }
+    }
+
     addEventListeners() {
+
+        document.getElementById('puzzle').addEventListener('change', () => {
+            this.setLoadedPuzzle(document.getElementById('puzzle').value);
+        })
+
         document.querySelectorAll(".actionButton").forEach(button => 
             button.addEventListener('click', (e) => {
                 switch(e.target.id) {
@@ -101,6 +136,20 @@ class Solver {
         });
     }
 
+    loadPuzzleFromDisk(loadPuzzle) {
+        this.resetPage();
+        this.http.get(`../Examples Solved/${loadPuzzle}`) 
+        .then(data => this.solve(data))
+        .catch(err => console.log(err)); 
+    }
+
+    resetPage() {
+        this.tubes = {};
+        this.display.innerHTML = '';
+        this.currentStage = 0;
+        this.ifPlayingPause();
+    }
+
     solve(data) {
         this.grid = Object.values(data);
         //look at the number of tubes in the first grid
@@ -112,6 +161,7 @@ class Solver {
 
 
     prepareToDraw() {
+        this.display.before(this.stage);
         this.setDisplaySize();
         this.drawTubes();
     }
@@ -121,17 +171,20 @@ class Solver {
     }
 
     drawTubes(){
-        //displays the tubes
+        // displays the stage
         this.stage.innerText = `Stage ${this.currentStage+1} of ${this.grid.length}`;
+        // this.display.appendChild(this.stage);
+        // this.display.appendChild(document.createElement("p"));
         //reset Tubes
         this.tubes = {};
+        //displays the tubes
         for(let i = 0; i < this.numberOfTubes; i++) {
             let tube = new Tube(this.ballsPerTube)
             tube.setLeft(i);
             tube.setTop(100);
             this.tubes[i] = tube;
             
-            //want to add - make the from and destination tubes change colour
+            //want to add - make the from and destination tubes change colour or highlight in some way
             this.display.appendChild(tube.getDiv());        
             // displays the balls
             //done in reverse so we're effectively drawing from the bottom up
@@ -201,6 +254,11 @@ class Solver {
         } else {
             return true;
         }
+    }
+
+    //When you want it to stop if it's playing
+    ifPlayingPause() {
+        if (this.isPlaying()) this.pause();
     }
     
     playFromStart() {
