@@ -16,6 +16,7 @@ Both tools are fairly complete, and polished, but not perfect.
 
 Solver Animator
 -----
+![image](images/solver.png)
 
 This is the first one I made.  
 
@@ -35,7 +36,7 @@ To quote the author, the solver has: ** a couple of other minor optimisations bu
 
 Builder
 ----
-
+![image](images/builder.png)
 The builder allows you to create an existing puzzle, and output it to JSON.  Currently you have to copy the JSON it gives you, I'm not writing the file.  
 
 1. Select how many colours (there will be 2 more tubes than this number for the 2 blank) and how many balls per tube. Click Update Grid to apply the changes to the size.
