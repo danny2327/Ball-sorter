@@ -430,11 +430,12 @@ class Builder {
                 //Had to do -2 on this one, didn't previously, should investigate why
                 for(let i = 0; i < Object.keys(tubes).length-2; i++) {
                     let balls = this.getBalls(tubes[i]);
+                    console.log('tube', tubes[i]);
                     for (let x = this.ballsPerTube-1; x >= 0 ; x--) { 
                         let ball = balls[x];
                         // console.log('ball', x, ball);
                         if (ball.getDiv() == clickedBall) {
-                            // console.log('clickedBall', clickedBall)
+                            console.log('clickedBall', clickedBall)
                             this.resetBorder();
                             this.currentBallPosition = [i,x];
                             this.setBall();
@@ -462,7 +463,7 @@ class Builder {
 
 
     prepareToDraw() {    
-        this.deleteTubes();
+        this.resetTubes();
         this.getInputs();
         this.drawTubes();
         this.drawBallSelector();
@@ -548,8 +549,9 @@ class Builder {
         this.output.style.top = BSTop +"px";
     }
 
-    deleteTubes() {
+    resetTubes() {
         this.tubeDisplay.innerHTML='';
+        this.tubes = {};
     }
 
     zeroNumColourList() {

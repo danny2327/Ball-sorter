@@ -272,54 +272,54 @@
 // }
 
 //Sets the current ball to a new colour and calls the update colour list
-function updateBall(newColour = null) {
-    //if no colour provided, the clear was clicked, so decrement the colour if one exists, and then clear the ball.
-    if(!newColour) {
-        // If the ball BG image doesn't start with URL             and            ball bg image isn't nothing
-        if(currentBall.style.backgroundImage.substr(0,2) !== 'url' && currentBall.style.backgroundImage !== '') {
-            decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
-        }
-        currentBall.style.backgroundImage = '';
-    } else {
-        // If the ball selected has a colour already,it was manually selected and therefore the colour being replaced should be decremented in the colour list
-        if (currentBall.style.backgroundImage !== '') {
-            decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
-        }
-        // currentBall.style.backgroundColor = newColour;
-        currentBall.style.backgroundImage = `radial-gradient(at bottom right, white 10%, ${newColour} 80%)`;
-        currentBall.style.backgroundRepeat = "no-repeat";
-        incrementNumColourList(newColour);
-    }
-}
+// function updateBall(newColour = null) {
+//     //if no colour provided, the clear was clicked, so decrement the colour if one exists, and then clear the ball.
+//     if(!newColour) {
+//         // If the ball BG image doesn't start with URL             and            ball bg image isn't nothing
+//         if(currentBall.style.backgroundImage.substr(0,2) !== 'url' && currentBall.style.backgroundImage !== '') {
+//             decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
+//         }
+//         currentBall.style.backgroundImage = '';
+//     } else {
+//         // If the ball selected has a colour already,it was manually selected and therefore the colour being replaced should be decremented in the colour list
+//         if (currentBall.style.backgroundImage !== '') {
+//             decrementNumColourList(extractColourFromGradient(currentBall.style.backgroundImage));
+//         }
+//         // currentBall.style.backgroundColor = newColour;
+//         currentBall.style.backgroundImage = `radial-gradient(at bottom right, white 10%, ${newColour} 80%)`;
+//         currentBall.style.backgroundRepeat = "no-repeat";
+//         incrementNumColourList(newColour);
+//     }
+// }
 
-function extractColourFromGradient(gradient) {
-    //Have to use this method because in some cases I rely on the bg color, and need to be able to know it.
-    let temp = gradient.split(',')[2];
-    return(temp.slice(1,-5));
-}
+// function extractColourFromGradient(gradient) {
+//     //Have to use this method because in some cases I rely on the bg color, and need to be able to know it.
+//     let temp = gradient.split(',')[2];
+//     return(temp.slice(1,-5));
+// }
 
 // Move on to the next ball in the tube, or the first ball of the next tube if it's full
-function nextBall() {
-    let tube = currentBallPosition[0];
-    let ball = currentBallPosition[1];
-    // if not done in tube, next ball
-    if (ball < builderBallsPerTube-1) {
-        currentBallPosition[1]++
-        resetBorder();
-        setBall();
-        selectBall();  
-    // if one tube is done, next tube, back to place 0         
-    } else if (tube < builderNumberOfTubes-3) {
-        currentBallPosition[1] = 0;
-        currentBallPosition[0]++;
-        resetBorder();
-        setBall();
-        selectBall();  
-    } else {
-        //else all have been filled
-        resetBorder();
-    }  
-}
+// function nextBall() {
+//     let tube = currentBallPosition[0];
+//     let ball = currentBallPosition[1];
+//     // if not done in tube, next ball
+//     if (ball < builderBallsPerTube-1) {
+//         currentBallPosition[1]++
+//         resetBorder();
+//         setBall();
+//         selectBall();  
+//     // if one tube is done, next tube, back to place 0         
+//     } else if (tube < builderNumberOfTubes-3) {
+//         currentBallPosition[1] = 0;
+//         currentBallPosition[0]++;
+//         resetBorder();
+//         setBall();
+//         selectBall();  
+//     } else {
+//         //else all have been filled
+//         resetBorder();
+//     }  
+// }
 
 // document.getElementById('genJSON').addEventListener('click', (e) => {
 //     if(isGridFull()) {
@@ -332,13 +332,13 @@ function nextBall() {
 // })
 
 //Displays a message in the output field.  Timeoout boolean is optional.  If true, it's not the JSON, and will disappear.
-function displayMessage(message, timeout = true) {
-    output.innerText = message;
-    output.innerHTML += '<p>';
-    if (timeout) {
-        setTimeout(() => output.innerText = '', 3000)
-    }
-}
+// function displayMessage(message, timeout = true) {
+//     output.innerText = message;
+//     output.innerHTML += '<p>';
+//     if (timeout) {
+//         setTimeout(() => output.innerText = '', 3000)
+//     }
+// }
 
 // // Clicking on the output copies the text (meant for the JSON but will work on any message) and displays a msg for 3 seconds.
 // // nav clipboard api is async func  
@@ -352,28 +352,28 @@ function displayMessage(message, timeout = true) {
 // });
 
 // Fills up the grid with the current bg colour of each ball, to be used for output to JSON. 
-function fillGrid() {
-    tubes = getTubes();
-    tubeArray = [];
-    tubes.forEach((tube) => {
-        let ballsArr = [] 
-        tube.querySelectorAll('.ball').forEach((ball) => {
-            ballsArr.push(extractColourFromGradient(ball.style.backgroundImage).toUpperCase());
-        })
-        tubeArray.push(ballsArr.reverse()); 
-    }) 
-    builderGrid = {tubes: tubeArray};
-}
+// function fillGrid() {
+//     tubes = getTubes();
+//     tubeArray = [];
+//     tubes.forEach((tube) => {
+//         let ballsArr = [] 
+//         tube.querySelectorAll('.ball').forEach((ball) => {
+//             ballsArr.push(extractColourFromGradient(ball.style.backgroundImage).toUpperCase());
+//         })
+//         tubeArray.push(ballsArr.reverse()); 
+//     }) 
+//     builderGrid = {tubes: tubeArray};
+// }
 
 //Outputs the JSON
-function outputJSON() {
-    displayMessage(JSON.stringify(builderGrid), false);
-    output.innerHTML += '<p>';
-}
+// function outputJSON() {
+//     displayMessage(JSON.stringify(builderGrid), false);
+//     output.innerHTML += '<p>';
+// }
 
-function mainBuild() {
-    builderPrepareToDraw();
-    startBuild();
-}
+// function mainBuild() {
+//     builderPrepareToDraw();
+//     startBuild();
+// }
 
-mainBuild();
+// mainBuild();
