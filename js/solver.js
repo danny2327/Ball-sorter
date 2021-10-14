@@ -138,7 +138,7 @@ class Solver {
 
     loadPuzzleFromDisk(loadPuzzle) {
         this.resetPage();
-        this.http.get(`../Examples Solved/${loadPuzzle}`) 
+        this.http.get(`../Examples/${loadPuzzle}`) 
         .then(data => this.solve(data))
         .catch(err => console.log(err)); 
     }
