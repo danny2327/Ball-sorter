@@ -35,11 +35,11 @@ class Solver {
     populatePuzzleSelect() {
         // load list of presolved puzzles
         let solvedPuzzles = [
-            'Solved_14x5.json',  
             'Solved_3x3.json',
-            'Solved_7x4.json',
             'Solved_3x4.json',
-            'Solved_12x5.json'
+            'Solved_7x4.json',
+            'Solved_12x5.json',
+            'Solved_14x5.json'  
         ];
 
         //set current puzzle to load
