@@ -47,11 +47,10 @@ class Solver {
         // console.log(this.loadedPuzzle);
 
         let puzzleDD = document.getElementById('puzzle');
-
         for (let puzzle in solvedPuzzles) {
             let option = document.createElement('option');
             option.value = solvedPuzzles[puzzle];
-            option.text = solvedPuzzles[puzzle];
+            option.text = solvedPuzzles[puzzle].slice(0, -5);
             puzzleDD.appendChild(option);
         }
     }
