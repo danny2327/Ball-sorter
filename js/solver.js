@@ -3,7 +3,7 @@ class Solver {
     constructor(unSolvedPuzzle) {
         let visitedPositions = []
         this.output = []
-        this.unSolvedPuzzle = {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]}; //will load from disk
+        this.unSolvedPuzzle = this.loadGrid()
         const grid = this.unSolvedPuzzle['tubes']
         this.tubeHeight = grid[0].length;
         let solved = this.solveGrid(grid, visitedPositions);
@@ -17,7 +17,10 @@ class Solver {
     }
     
     loadGrid() {
-
+        //will load from disk
+        // return {"tubes":[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]]}; 
+        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]}; 
+        return  {"tubes":[["RED","BLUE"],["BLUE","RED"],[],[]]}; 
     }
 
     isGridValid() {
