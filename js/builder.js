@@ -104,12 +104,10 @@ class Builder {
                 //Had to do -2 on this one, didn't previously, should investigate why
                 for(let i = 0; i < Object.keys(tubes).length-2; i++) {
                     let balls = this.getBalls(tubes[i]);
-                    console.log('tube', tubes[i]);
                     for (let x = this.ballsPerTube-1; x >= 0 ; x--) { 
                         let ball = balls[x];
                         // console.log('ball', x, ball);
                         if (ball.getDiv() == clickedBall) {
-                            console.log('clickedBall', clickedBall)
                             this.resetBorder();
                             this.currentBallPosition = [i,x];
                             this.setBall();
@@ -313,7 +311,7 @@ class Builder {
         } else {   //Else set the new colour provided
             // If the ball selected has a colour already,it was manually selected and therefore the colour being replaced should be decremented in the colour list
             if (this.currentBall.getDiv().style.backgroundImage !== '') {
-                this.decrementNumColourList(this.extractColourFromGradient(this.currentBall.style.backgroundImage));
+                this.decrementNumColourList(this.extractColourFromGradient(this.currentBall.getDiv().style.backgroundImage));
             }
             // currentBall.style.backgroundColor = newColour;
             this.currentBall.setColour(newColour);
