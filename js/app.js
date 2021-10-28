@@ -37,7 +37,7 @@ class App{
         
         this.builder = new Builder(this.ballColours);
         this.animator = new Animator(this.ballColours);
-        this.solver = new Solver(this.ballColours);
+        this.solver = new Solver();
 
         // Hides Builder initially
         // this.hideAnimator();
