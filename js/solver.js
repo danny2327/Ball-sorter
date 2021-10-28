@@ -11,16 +11,25 @@ class Solver {
         if (solved) {
             this.output.push(grid)
             console.log('Final Output: ', this.output.reverse())
+            this.JSONOutput = this.toJson();
         } else {
             console.log("There is no solution")            
         }
     }
+
+        // SEPARATE OUT OF CONSTRUCTOR
+    getJSON() {
+        if(this.JSONOutput) return this.JSONOutput;
+        else {
+            console.log('No solution found')
+        }
+    }
     
     loadGrid() {
-        //will load from disk
-        // return {"tubes":[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]]}; 
+        //will load from disk EVENTUALLY
+        return {"tubes":[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]]}; 
         // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]}; 
-        return  {"tubes":[["RED","BLUE"],["BLUE","RED"],[],[]]}; 
+        // return  {"tubes":[["RED","BLUE"],["BLUE","RED"],[],[]]}; 
     }
 
     isGridValid() {
@@ -28,6 +37,30 @@ class Solver {
     }
 
     toJson() {
+        // '[[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]],[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME"],["YELLOW","YELLOW","LIME"],["YELLOW"],[]]]';
+
+    // {
+    // "0": [
+    //     [
+    //         "RED",
+    //         "BLUE",
+    //         "YELLOW"
+    //     ],
+    //     [
+    //         "BLUE",
+    //         "YELLOW",
+    //         "RED"
+    //     ],
+    //     [
+    //         "YELLOW",
+    //         "RED",
+    //         "BLUE"
+    //     ],
+    //     [],
+    //     []
+    // ],
+        console.log(this.output)
+
         return JSON.stringify(this.output);
     }
 

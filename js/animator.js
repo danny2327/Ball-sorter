@@ -2,6 +2,8 @@ class Animator {
     constructor(ballColours) {
         
         this.display = document.getElementById('display');
+
+        this.sideLoadedPuzzle = '[[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]],[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME"],["YELLOW","YELLOW","LIME"],["YELLOW"],[]]]';
         
         this.prev = document.getElementById('prev');
         this.next = document.getElementById('next');
@@ -39,7 +41,8 @@ class Animator {
             'Solved_3x4.json',
             'Solved_7x4.json',
             'Solved_12x5.json',
-            'Solved_14x5.json'  
+            'Solved_14x5.json',
+            'Other'  
         ];
 
         //set current puzzle to load
@@ -61,8 +64,12 @@ class Animator {
 
     setLoadedPuzzle(newPuzzle) {
         if (newPuzzle !== this.getLoadedPuzzle()) {
-            this.loadedPuzzle = newPuzzle;
-            this.loadPuzzleFromDisk(newPuzzle);
+            if(newPuzzle === 'Other') {
+                this.loadedPuzzle = this.sideLoadedPuzzle
+            } else {
+                this.loadedPuzzle = newPuzzle;
+                this.loadPuzzleFromDisk(newPuzzle);
+            }
         }
     }
 
