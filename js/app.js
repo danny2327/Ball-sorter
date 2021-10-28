@@ -18,46 +18,47 @@ class App{
             13: 'MIDNIGHTBLUE'
         };
                 
-        this.solverTab = document.getElementById('solver');
+        this.animatorTab = document.getElementById('animator');
         this.builderTab = document.getElementById('builder');
-        this.lnkSolver = document.getElementById('lnkSolver');
+        this.lnkAnimator = document.getElementById('lnkAnimator');
         this.lnkBuilder = document.getElementById('lnkBuilder');
         
-        this.lnkSolver.addEventListener('click', () => {
+        this.lnkAnimator.addEventListener('click', () => {
             this.hideBuilder();
-            this.showSolver();
+            this.showAnimator();
         });
         
         this.lnkBuilder.addEventListener('click', () => {
             //Feel like this shouldn't be here, but I would have to create an 'exiting' func and call that.  Probably should for both tools. 
-            this.solver.ifPlayingPause();
-            this.hideSolver();
+            this.animator.ifPlayingPause();
+            this.hideAnimator();
             this.showBuilder();            
         });
         
-        this.solver = new Solver(this.ballColours);
         this.builder = new Builder(this.ballColours);
+        this.animator = new Animator(this.ballColours);
+        this.solver = new Solver(this.ballColours);
 
         // Hides Builder initially
-        // this.hideSolver();
+        // this.hideAnimator();
         this.hideBuilder();
     }
-    showSolver() {
-        this.solverTab.style.display = 'block';
+    showAnimator() {
+        this.animatorTab.style.display = 'block';
     }
 
     showBuilder() {
         this.builderTab.style.display = 'block';
     }
 
-    hideSolver() {
-        this.solverTab.style.display = 'none';
+    hideAnimator() {
+        this.animatorTab.style.display = 'none';
         this.showBuilder();
     }
 
     hideBuilder() {
         this.builderTab.style.display = 'none';
-        this.showSolver();
+        this.showAnimator();
     }
 }
 
