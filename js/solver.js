@@ -3,6 +3,7 @@ class Solver {
     constructor(unSolvedPuzzle) {
         let visitedPositions = []
         this.output = []
+        // this.unSolvedPuzzle = {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]}; //will load from disk
         this.unSolvedPuzzle = this.loadGrid()
         const grid = this.unSolvedPuzzle['tubes']
         this.tubeHeight = grid[0].length;
@@ -27,9 +28,20 @@ class Solver {
     
     loadGrid() {
         //will load from disk EVENTUALLY
-        return {"tubes":[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]]}; 
-        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]}; 
-        // return  {"tubes":[["RED","BLUE"],["BLUE","RED"],[],[]]}; 
+
+        // ** For some reason some work and others don't, even very similar ones where there certainly is a solution. 
+        // 
+
+
+        // return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["YELLOW","YELLOW","RED"],["LIME","LIME","LIME"],[],[]]}
+        return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],["LIME","LIME","LIME"],[],[]]}
+
+        // return {"tubes":[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]]}
+        
+        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","LIME"],["LIME","LIME","YELLOW"],[],[]]}
+        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} //Only one that works WTF
+        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} //testing
+        // return  {"tubes":[["RED","BLUE"],["BLUE","RED"],[],[]]} 
     }
 
     isGridValid() {
@@ -59,7 +71,7 @@ class Solver {
     //     [],
     //     []
     // ],
-        console.log(this.output)
+        console.log(JSON.stringify(this.output))
 
         return JSON.stringify(this.output);
     }
@@ -92,7 +104,7 @@ class Solver {
                     let gridStrings = this.gridToCanonicalString(grid2);
                     if(!visitedPositions.includes(gridStrings)) {
                         //If it gets here, it's NOT already in the visitedPositions
-                        let solved = this.solveGrid(grid2, visitedPositions.concat());
+                        let solved = this.solveGrid(grid2, JSON.parse(JSON.stringify(visitedPositions)));
                         if (solved) {
                             this.output.push(grid2);
                             return true;
@@ -118,11 +130,24 @@ class Solver {
         }
 
         for(let t = 0; t < grid.length; t++) {
-            if(grid[t].length == 0) return;
-                else if (grid[t].length < this.tubeHeight) return false;
-                else if (Object.values(grid[t]).filter(x => x === grid[t][0]).length !== this.tubeHeight) return false;   // elements in tube don't all match first elem
-            return true;
-        };
+            let howManyOfFirst = Object.values(grid[t]).filter(x => x === grid[t][0]).length
+            // if(grid[t].length == 0) return; //This one is blocking it. Going to refactor it.
+            if(grid[t].length == 0) continue; 
+            // ** When this works, when it gets to the empty tubes, it just goes right past, but when it doesn't. it hits return and goes 
+            // ** back up, never hitting true.
+
+            else if (grid[t].length < this.tubeHeight) return false;
+            // else if (Object.values(grid[t]).filter(x => x === grid[t][0]).length !== this.tubeHeight) return false;   
+            
+            if (howManyOfFirst !== this.tubeHeight) 
+            {
+                let aa = 0
+                return false;
+            }   
+            // elements in tube don't all match first elem
+        }
+        let a=0
+        return true;
     }
 
     isMoveValid(tube, candidateTube) {
@@ -146,13 +171,10 @@ class Solver {
             if (numFirstColour == tube.length) {
                 return false
             }
-            console.log('4th return: true', tube, candidateTube)
             return true
         }
         
-        let match = candidateTube.concat().pop() === tube.concat().pop()
-        if (match) console.log('Returns true');//, tube, candidateTube)
-        return match
+        return candidateTube.concat().pop() === tube.concat().pop()
     }
 
 }
