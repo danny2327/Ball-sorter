@@ -32,25 +32,35 @@ class Solver {
     }
     
     loadGrid() {
-        //will load from disk EVENTUALLY
-
-        // ** For some reason some work and others don't, even very similar ones where there certainly is a solution. 
-        // 
-
-
-        // return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["YELLOW","YELLOW","RED"],["LIME","LIME","LIME"],[],[]]}
         return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],["LIME","LIME","LIME"],[],[]]}
-
+        // return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["YELLOW","YELLOW","RED"],["LIME","LIME","LIME"],[],[]]}
         // return {"tubes":[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]]}
-        
         // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","LIME"],["LIME","LIME","YELLOW"],[],[]]}
-        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} //Only one that works WTF
-        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} //testing
+        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} 
+        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} 
         // return  {"tubes":[["RED","BLUE"],["BLUE","RED"],[],[]]} 
     }
 
     isGridValid() {
-
+        // numTubes = len(grid)
+        // tubeHeight = max(len(t) for t in grid)
+        // numBalls = sum(len(t) for t in grid)
+        // numBallsRequired = (numTubes-2)*tubeHeight
+        // if (numBalls != numBallsRequired):
+        //     print("Grid has incorrect number of balls")
+        //     return False
+        // freqs = dict()
+        // for tube in grid:
+        //     for ball in tube:
+        //         if ball not in freqs:
+        //             freqs[ball] = 1
+        //         else:
+        //             freqs[ball] += 1
+        // for colour,count in freqs.items():
+        //     if count != tubeHeight:
+        //         print("Expected "+str(tubeHeight)+" "+colour+" balls, found "+str(count))
+        //         return False
+        // return True
     }
 
     toJson() {
