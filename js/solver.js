@@ -1,11 +1,24 @@
 // This is not my code, it's way too good.  I just rewrote it from Python to JS.
 class Solver {
-    constructor(unSolvedPuzzle) {
+    constructor() {
+        let unSolvedPuzzle = this.loadGrid()
+        this.solve(unSolvedPuzzle);
+        
+    }
+
+        // SEPARATE OUT OF CONSTRUCTOR
+    getJSON() {
+        if(this.JSONOutput) return this.JSONOutput;
+        else {
+            console.log('No solution found')
+        }
+    }
+
+    solve(unSolvedPuzzle) {
         let visitedPositions = []
+        console.log(unSolvedPuzzle)
         this.output = []
-        // this.unSolvedPuzzle = {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]}; //will load from disk
-        this.unSolvedPuzzle = this.loadGrid()
-        const grid = this.unSolvedPuzzle['tubes']
+        const grid = unSolvedPuzzle['tubes']
         this.tubeHeight = grid[0].length;
         let solved = this.solveGrid(grid, visitedPositions);
 
@@ -15,14 +28,6 @@ class Solver {
             this.JSONOutput = this.toJson();
         } else {
             console.log("There is no solution")            
-        }
-    }
-
-        // SEPARATE OUT OF CONSTRUCTOR
-    getJSON() {
-        if(this.JSONOutput) return this.JSONOutput;
-        else {
-            console.log('No solution found')
         }
     }
     
@@ -49,31 +54,11 @@ class Solver {
     }
 
     toJson() {
-        // '[[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]],[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME"],["YELLOW","YELLOW","LIME"],["YELLOW"],[]]]';
-
-    // {
-    // "0": [
-    //     [
-    //         "RED",
-    //         "BLUE",
-    //         "YELLOW"
-    //     ],
-    //     [
-    //         "BLUE",
-    //         "YELLOW",
-    //         "RED"
-    //     ],
-    //     [
-    //         "YELLOW",
-    //         "RED",
-    //         "BLUE"
-    //     ],
-    //     [],
-    //     []
-    // ],
-        console.log(JSON.stringify(this.output))
-
-        return JSON.stringify(this.output);
+        let newObject = {}
+        for (let i = 0; i < this.output.length; i++) {
+            newObject[i] = this.output[i];            
+        }    
+        return JSON.stringify(newObject);        
     }
 
     solveGrid(grid, visitedPositions) {
