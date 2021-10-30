@@ -41,13 +41,12 @@ class App{
         this.lnkSolve.addEventListener('click', () => {
             let puzzle = this.builder.getPuzzle();
             if (puzzle) {
-                console.log(puzzle)
-                let solvedPuzzle = this.solver.solve(puzzle)
-                console.log(solvedPuzzle)
-
+                this.solver.solve(puzzle)
+                let solvedPuzzle = this.solver.getJSON();
+                this.hideBuilder();
+                this.showAnimator();
+                this.animator.showCustomPuzzle(solvedPuzzle);
             }
-            this.hideBuilder();
-            this.showAnimator();
         });
         
         this.builder = new Builder(this.ballColours, this);

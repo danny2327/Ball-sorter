@@ -3,12 +3,15 @@ class Animator {
         
         this.display = document.getElementById('display');
 
-        this.sideLoadedPuzzle = '[[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]],[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME"],["YELLOW","YELLOW","LIME"],["YELLOW"],[]]]';
+        this.sideLoadedPuzzle// = JSON.parse('{"0":[["RED","BLUE"],["BLUE","RED"],[],[]],"1":[["RED"],["BLUE","RED"],["BLUE"],[]],"2":[["RED","RED"],["BLUE"],["BLUE"],[]],"3":[["RED","RED"],[],["BLUE","BLUE"],[]]}');
+        ;
         
         this.prev = document.getElementById('prev');
         this.next = document.getElementById('next');
 
         this.stage = document.createElement('span');
+
+        this.puzzleDD = document.getElementById('puzzle');
 
         this.addEventListeners();
 
@@ -34,28 +37,41 @@ class Animator {
 
     } //End of Constructor
 
+    showCustomPuzzle(solvedPuzzle) {
+        this.sideLoadedPuzzle = JSON.parse(solvedPuzzle);
+        this.setLoadedPuzzle('Custom');
+    }
+
     populatePuzzleSelect() {
         // load list of presolved puzzles
         let solvedPuzzles = [
+            'Solved_2x2.json',
             'Solved_3x3.json',
             'Solved_3x4.json',
             'Solved_7x4.json',
             'Solved_12x5.json',
-            'Solved_14x5.json',
-            'Other'  
+            'Solved_14x5.json'
         ];
 
         //set current puzzle to load
-        this.setLoadedPuzzle(solvedPuzzles[0]);
-        // console.log(this.loadedPuzzle);
+        this.puzzleToDisplay();
 
-        let puzzleDD = document.getElementById('puzzle');
+        this.puzzleDD = document.getElementById('puzzle');
         for (let puzzle in solvedPuzzles) {
             let option = document.createElement('option');
             option.value = solvedPuzzles[puzzle];
             option.text = solvedPuzzles[puzzle].slice(0, -5);
-            puzzleDD.appendChild(option);
+            this.puzzleDD.appendChild(option);
         }
+
+        let option = document.createElement('option');
+        option.value = 'Custom';
+        option.text = 'Custom';
+        this.puzzleDD.appendChild(option);
+    }
+
+    puzzleToDisplay(puzzle = "Solved_14x5.json") {
+        this.setLoadedPuzzle(puzzle);
     }
 
     getLoadedPuzzle() {
@@ -64,8 +80,10 @@ class Animator {
 
     setLoadedPuzzle(newPuzzle) {
         if (newPuzzle !== this.getLoadedPuzzle()) {
-            if(newPuzzle === 'Other') {
-                this.loadedPuzzle = this.sideLoadedPuzzle
+            if(newPuzzle === 'Custom') {
+                // this.loadedPuzzle = this.sideLoadedPuzzle
+                this.resetPage();
+                this.solve(this.sideLoadedPuzzle)
             } else {
                 this.loadedPuzzle = newPuzzle;
                 this.loadPuzzleFromDisk(newPuzzle);
@@ -76,6 +94,9 @@ class Animator {
     addEventListeners() {
 
         document.getElementById('puzzle').addEventListener('change', () => {
+            // if(document.getElementById('puzzle').value == 'Custom') {
+            //     alert("Use the builder to create a puzzle to display");
+            // }
             this.setLoadedPuzzle(document.getElementById('puzzle').value);
         })
 
