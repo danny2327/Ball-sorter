@@ -1,8 +1,8 @@
 // This is not my code, it's way too good.  I just rewrote it from Python to JS.
 class Solver {
     constructor() {
-        let unSolvedPuzzle = this.loadGrid()
-        this.solve(unSolvedPuzzle);
+        // let unSolvedPuzzle = this.loadGrid()
+        // this.solve(unSolvedPuzzle);
         
     }
 
@@ -16,9 +16,8 @@ class Solver {
 
     solve(unSolvedPuzzle) {
         let visitedPositions = []
-        console.log(unSolvedPuzzle)
         this.output = []
-        const grid = unSolvedPuzzle['tubes']
+        const grid = JSON.parse(unSolvedPuzzle)['tubes']
         this.tubeHeight = grid[0].length;
         let solved = this.solveGrid(grid, visitedPositions);
 
@@ -39,6 +38,8 @@ class Solver {
         // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} 
         // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} 
         // return  {"tubes":[["RED","BLUE"],["BLUE","RED"],[],[]]} 
+                //    {"tubes":[["BLUE","RED"],["RED","BLUE"],[],[]]}
+
     }
 
     // Still to be done****
@@ -137,12 +138,11 @@ class Solver {
             
             if (howManyOfFirst !== this.tubeHeight) 
             {
-                let aa = 0
                 return false;
             }   
             // elements in tube don't all match first elem
         }
-        let a=0
+
         return true;
     }
 

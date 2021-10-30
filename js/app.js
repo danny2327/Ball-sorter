@@ -17,11 +17,13 @@ class App{
             12: 'BROWN',
             13: 'MIDNIGHTBLUE'
         };
-                
-        this.animatorTab = document.getElementById('animator');
-        this.builderTab = document.getElementById('builder');
+        
         this.lnkAnimator = document.getElementById('lnkAnimator');
         this.lnkBuilder = document.getElementById('lnkBuilder');
+        this.lnkSolve = document.getElementById('lnkSolve');
+            
+        this.animatorTab = document.getElementById('animator');
+        this.builderTab = document.getElementById('builder');
         
         this.lnkAnimator.addEventListener('click', () => {
             this.hideBuilder();
@@ -34,21 +36,37 @@ class App{
             this.hideAnimator();
             this.showBuilder();            
         });
+
+                
+        this.lnkSolve.addEventListener('click', () => {
+            let puzzle = this.builder.getPuzzle();
+            if (puzzle) {
+                console.log(puzzle)
+                let solvedPuzzle = this.solver.solve(puzzle)
+                console.log(solvedPuzzle)
+
+            }
+            this.hideBuilder();
+            this.showAnimator();
+        });
         
-        this.builder = new Builder(this.ballColours);
+        this.builder = new Builder(this.ballColours, this);
         this.animator = new Animator(this.ballColours);
         this.solver = new Solver();
 
+
         // Hides Builder initially
-        // this.hideAnimator();
-        this.hideBuilder();
+        this.hideAnimator();
+        // this.hideBuilder();
     }
+
     showAnimator() {
         this.animatorTab.style.display = 'block';
     }
 
     showBuilder() {
         this.builderTab.style.display = 'block';
+        this.lnkSolve.style.display = 'block';
     }
 
     hideAnimator() {
@@ -59,6 +77,7 @@ class App{
     hideBuilder() {
         this.builderTab.style.display = 'none';
         this.showAnimator();
+        this.lnkSolve.style.display = 'none';
     }
 }
 

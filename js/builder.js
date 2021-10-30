@@ -2,7 +2,8 @@
 // Classes
 // Make it not shitty
 class Builder {
-    constructor(ballColours) {
+    constructor(ballColours, app) {
+        this.app = app;
         this.inputBalls = document.getElementById('numBalls');
         this.inputColours = document.getElementById('numColours');
         //Where the tubes and balls are shown
@@ -31,6 +32,18 @@ class Builder {
 
         this.prepareToDraw();
         this.startBuild();
+    }
+
+    //Will be called from App
+    getPuzzle() {
+        if(this.isGridFull()) {
+            this.fillGrid();
+            return JSON.stringify(this.grid)
+        } else {
+            //need to display
+            this.displayMessage('Grid is not complete');
+            return null;
+        }
     }
 
     addEventListeners() {
