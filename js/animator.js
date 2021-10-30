@@ -45,33 +45,34 @@ class Animator {
     populatePuzzleSelect() {
         // load list of presolved puzzles
         let solvedPuzzles = [
-            'Solved_2x2.json',
-            'Solved_3x3.json',
-            'Solved_3x4.json',
-            'Solved_7x4.json',
-            'Solved_12x5.json',
-            'Solved_14x5.json'
+            'Solved_2x2',
+            'Solved_3x3',
+            'Solved_3x4',
+            'Solved_7x4',
+            'Solved_12x5',
+            'Solved_14x5'
         ];
 
         //set current puzzle to load
-        this.puzzleToDisplay();
-
-        this.puzzleDD = document.getElementById('puzzle');
+        
         for (let puzzle in solvedPuzzles) {
             let option = document.createElement('option');
             option.value = solvedPuzzles[puzzle];
-            option.text = solvedPuzzles[puzzle].slice(0, -5);
+            option.text = solvedPuzzles[puzzle]//.slice(0, -5);
             this.puzzleDD.appendChild(option);
         }
-
+        
         let option = document.createElement('option');
         option.value = 'Custom';
         option.text = 'Custom';
         this.puzzleDD.appendChild(option);
+
+        this.puzzleToDisplay();
     }
 
-    puzzleToDisplay(puzzle = "Solved_14x5.json") {
+    puzzleToDisplay(puzzle = "Solved_14x5") {
         this.setLoadedPuzzle(puzzle);
+        this.puzzleDD.value = puzzle;
     }
 
     getLoadedPuzzle() {
@@ -94,10 +95,12 @@ class Animator {
     addEventListeners() {
 
         document.getElementById('puzzle').addEventListener('change', () => {
-            // if(document.getElementById('puzzle').value == 'Custom') {
-            //     alert("Use the builder to create a puzzle to display");
-            // }
-            this.setLoadedPuzzle(document.getElementById('puzzle').value);
+            if(document.getElementById('puzzle').value == 'Custom') {
+                alert("Use the builder to create a puzzle to display");
+                this.puzzleDD.value = this.loadedPuzzle;
+            } else {
+                this.setLoadedPuzzle(document.getElementById('puzzle').value);
+            }
         })
 
         document.querySelectorAll(".actionButton").forEach(button => 
@@ -165,7 +168,7 @@ class Animator {
 
     loadPuzzleFromDisk(loadPuzzle) {
         this.resetPage();
-        this.http.get(`../Examples/${loadPuzzle}`) 
+        this.http.get(`../Examples/${loadPuzzle}.json`) 
         .then(data => this.solve(data))
         .catch(err => console.log(err)); 
     }

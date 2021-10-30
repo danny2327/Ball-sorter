@@ -55,8 +55,8 @@ class App{
 
 
         // Hides Builder initially
-        this.hideAnimator();
-        // this.hideBuilder();
+        // this.hideAnimator();
+        this.hideBuilder();
     }
 
     showAnimator() {
