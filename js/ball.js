@@ -38,6 +38,11 @@ class Ball {
         return this.colour;
     }
 
+    hasColour() {
+        if (this.colour != "") return true;
+        return false;
+    }
+
     clearColour() {
         this.ballDiv.style.backgroundImage = '';
         this.colour = '';

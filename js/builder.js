@@ -32,6 +32,7 @@ class Builder {
 
         this.prepareToDraw();
         this.startBuild();
+
     }
 
     //Will be called from App
@@ -75,14 +76,14 @@ class Builder {
               }
         });
 
+        document.getElementById('randomize').addEventListener('click', () => {
+            this.resetBuilder()
+            this.randomize();
+        });
+
         //Resets balls but leaves the grid size alone - in fact if the input numbers have changed, but update grid has not been clicked, it will update them as well. 
         document.getElementById('resetBuilder').addEventListener('click', () => {
-            this.prepareToDraw();
-            this.resetCurrentBallPosition();
-            this.setBall();
-            this.selectBall();
-            this.zeroNumColourList();
-            this.output.innerText = '';
+            this.resetBuilder();
         });
 
         //Ball in selector click listener
@@ -114,7 +115,6 @@ class Builder {
                 //look through each ball in each tube until I find the one that is the same as the one that was clicked.  I do this because the ball doesn't know where it is in which tube. 
                 let tubes = this.getTubes();
                 // Had to do the Object.keys(tubes).length for it to work.
-                //Had to do -2 on this one, didn't previously, should investigate why
                 for(let i = 0; i < Object.keys(tubes).length-2; i++) {
                     let balls = this.getBalls(tubes[i]);
                     for (let x = this.ballsPerTube-1; x >= 0 ; x--) { 
@@ -273,6 +273,15 @@ class Builder {
     resetBorder() {
         this.currentBall.resetBorder();
     }
+
+    resetBuilder() {
+        this.prepareToDraw();
+        this.resetCurrentBallPosition();
+        this.setBall();
+        this.selectBall();
+        this.zeroNumColourList();
+        this.output.innerText = '';
+    }
 /////////////////////////
     selectBall() {
         // console.log(this.currentBall);
@@ -313,7 +322,6 @@ class Builder {
     updateBall(newColour = null) {
         //if no colour provided, the clear was clicked, so decrement the colour if one exists, and then clear the ball.
         if(!newColour) {
-            console.log(this.currentBall.getDiv())
             // If the ball BG image doesn't start with URL             and            ball bg image isn't nothing
             // if(this.currentBall.getDiv().style.backgroundImage.id !== 'clearBall' && this.currentBall.style.backgroundImage !== '') {
             if(this.currentBall.getDiv().style.backgroundImage.substr(0,2) !== 'url' && this.currentBall.getDiv().style.backgroundImage !== '') {
@@ -382,8 +390,26 @@ class Builder {
         this.grid = {tubes: tubeArray};
     }
 
+    
+
     outputJSON() {
         this.displayMessage(JSON.stringify(this.grid), false);
         this.output.innerHTML += '<p>';
     }
+
+    randomize() { 
+        for (let i = 0; i < this.numberOfTubes-2; i++) {
+            let balls = this.getBalls(this.tubes[i]);
+            for (let x = this.ballsPerTube-1; x >= 0 ; x--) { 
+                while (!this.currentBall.hasColour()){
+                    let colour = this.ballColours[Math.floor(Math.random() * (this.numberOfTubes-2))];
+                    if (parseInt(this.numEachColour[colour]) < parseInt(this.ballsPerTube)) { 
+                        this.updateBall(colour);
+                    }            
+                }
+                this.nextBall();
+            };
+        };
+    }
+
 }
