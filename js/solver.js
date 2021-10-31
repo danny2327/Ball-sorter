@@ -17,7 +17,14 @@ class Solver {
     solve(unSolvedPuzzle) {
         let visitedPositions = []
         this.output = []
-        const grid = JSON.parse(unSolvedPuzzle)['tubes']
+        console.log(typeof unSolvedPuzzle)
+        let grid
+        if(unSolvedPuzzle['tubes']) {
+            grid = unSolvedPuzzle['tubes']
+        } else {
+            grid = JSON.parse(unSolvedPuzzle)['tubes']
+        }
+        
         this.tubeHeight = grid[0].length;
         let solved = this.solveGrid(grid, visitedPositions);
 
@@ -31,7 +38,8 @@ class Solver {
     }
     
     loadGrid() {
-        return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],["LIME","LIME","LIME"],[],[]]}
+        return {"tubes":[["FUCHSIA","LIME","YELLOW","FUCHSIA","YELLOW"],["YELLOW","YELLOW","GREEN","BLUE","LIGHTPINK"],["ORANGE","ORANGE","YELLOW","BLUE","WHITE"],["FUCHSIA","ORANGE","RED","WHITE","WHITE"],["LIME","LIME","PURPLE","TEAL","BLUE"],["FUCHSIA","PURPLE","WHITE","PURPLE","LIGHTPINK"],["LIME","FUCHSIA","LIME","BLUE","RED"],["RED","GREEN","AQUA","BLUE","AQUA"],["GREEN","BROWN","PURPLE","RED","ORANGE"],["TEAL","TEAL","LIGHTPINK","LIGHTPINK","PURPLE"],["LIGHTPINK","ORANGE","BROWN","RED","TEAL"],["GREEN","BROWN","AQUA","GREEN","TEAL"],["BROWN","AQUA","BROWN","WHITE","AQUA"],[],[]]}
+        // return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],["LIME","LIME","LIME"],[],[]]}
         // return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["YELLOW","YELLOW","RED"],["LIME","LIME","LIME"],[],[]]}
         // return {"tubes":[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]]}
         // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","LIME"],["LIME","LIME","YELLOW"],[],[]]}

@@ -68,6 +68,7 @@ class Animator {
         this.puzzleDD.appendChild(option);
 
         this.puzzleToDisplay();
+        // this.puzzleToDisplay('Custom');
     }
 
     puzzleToDisplay(puzzle = "Solved_14x5") {
