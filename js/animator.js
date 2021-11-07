@@ -42,6 +42,10 @@ class Animator {
         this.setLoadedPuzzle('Custom');
     }
 
+    getSizeOfPuzzle(solvedPuzzle) {
+
+    }
+
     populatePuzzleSelect() {
         // load list of presolved puzzles
         let solvedPuzzles = [
@@ -85,6 +89,7 @@ class Animator {
             if(newPuzzle === 'Custom') {
                 // this.loadedPuzzle = this.sideLoadedPuzzle
                 this.resetPage();
+                this.puzzleDD.value = "Custom";
                 this.solve(this.sideLoadedPuzzle)
             } else {
                 this.loadedPuzzle = newPuzzle;
