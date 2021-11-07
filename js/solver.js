@@ -1,9 +1,12 @@
 // This is not my code, it's way too good.  I just rewrote it from Python to JS.
 class Solver {
     constructor() {
-        // let unSolvedPuzzle = this.loadGrid()
-        // this.solve(unSolvedPuzzle);
-        
+        this.counter = 0;
+    }
+
+    useSample() {
+        let unSolvedPuzzle = this.loadGrid()
+        this.solve(unSolvedPuzzle);
     }
 
         // SEPARATE OUT OF CONSTRUCTOR
@@ -13,6 +16,7 @@ class Solver {
             console.log('No solution found')
         }
     }
+
 
     solve(unSolvedPuzzle) {
         let visitedPositions = []
@@ -28,6 +32,7 @@ class Solver {
         this.tubeHeight = grid[0].length;
         let solved = this.solveGrid(grid, visitedPositions);
 
+
         if (solved) {
             this.output.push(grid)
             console.log('Final Output: ', this.output.reverse())
@@ -38,15 +43,21 @@ class Solver {
     }
     
     loadGrid() {
-        return {"tubes":[["FUCHSIA","LIME","YELLOW","FUCHSIA","YELLOW"],["YELLOW","YELLOW","GREEN","BLUE","LIGHTPINK"],["ORANGE","ORANGE","YELLOW","BLUE","WHITE"],["FUCHSIA","ORANGE","RED","WHITE","WHITE"],["LIME","LIME","PURPLE","TEAL","BLUE"],["FUCHSIA","PURPLE","WHITE","PURPLE","LIGHTPINK"],["LIME","FUCHSIA","LIME","BLUE","RED"],["RED","GREEN","AQUA","BLUE","AQUA"],["GREEN","BROWN","PURPLE","RED","ORANGE"],["TEAL","TEAL","LIGHTPINK","LIGHTPINK","PURPLE"],["LIGHTPINK","ORANGE","BROWN","RED","TEAL"],["GREEN","BROWN","AQUA","GREEN","TEAL"],["BROWN","AQUA","BROWN","WHITE","AQUA"],[],[]]}
+
+        //Works
+        return {"tubes":[["YELLOW","GREEN","BLUE","LIME","LIME"],["ORANGE","PURPLE","YELLOW","ORANGE","WHITE"],["WHITE","YELLOW","ORANGE","PURPLE","LIME"],["TEAL","ORANGE","PURPLE","BLUE","AQUA"],["GREEN","TEAL","AQUA","GREEN","TEAL"],["GREEN","AQUA","PURPLE","ORANGE","AQUA"],["BLUE","BLUE","LIME","RED","AQUA"],["TEAL","YELLOW","RED","LIME","YELLOW"],["WHITE","GREEN","WHITE","TEAL","PURPLE"],["RED","BLUE","RED","RED","WHITE"],[],[]]}
+
+        //Does't work
+        // return {"tubes":[["RED","TEAL","GREEN","LIME","RED"],["AQUA","LIGHTPINK","RED","PURPLE","FUCHSIA"],["YELLOW","TEAL","PURPLE","PURPLE","LIGHTPINK"],["BLUE","YELLOW","WHITE","LIGHTPINK","FUCHSIA"],["LIME","WHITE","GREEN","TEAL","LIME"],["AQUA","ORANGE","RED","BLUE","FUCHSIA"],["LIME","ORANGE","YELLOW","WHITE","RED"],["AQUA","FUCHSIA","LIME","GREEN","FUCHSIA"],["GREEN","TEAL","YELLOW","WHITE","GREEN"],["AQUA","ORANGE","BLUE","TEAL","YELLOW"],["PURPLE","BLUE","AQUA","WHITE","LIGHTPINK"],["LIGHTPINK","ORANGE","ORANGE","PURPLE","BLUE"],[],[]]}
+
+        // return {"tubes":[["FUCHSIA","LIME","YELLOW","FUCHSIA","YELLOW"],["YELLOW","YELLOW","GREEN","BLUE","LIGHTPINK"],["ORANGE","ORANGE","YELLOW","BLUE","WHITE"],["FUCHSIA","ORANGE","RED","WHITE","WHITE"],["LIME","LIME","PURPLE","TEAL","BLUE"],["FUCHSIA","PURPLE","WHITE","PURPLE","LIGHTPINK"],["LIME","FUCHSIA","LIME","BLUE","RED"],["RED","GREEN","AQUA","BLUE","AQUA"],["GREEN","BROWN","PURPLE","RED","ORANGE"],["TEAL","TEAL","LIGHTPINK","LIGHTPINK","PURPLE"],["LIGHTPINK","ORANGE","BROWN","RED","TEAL"],["GREEN","BROWN","AQUA","GREEN","TEAL"],["BROWN","AQUA","BROWN","WHITE","AQUA"],[],[]]}
         // return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],["LIME","LIME","LIME"],[],[]]}
         // return {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["YELLOW","YELLOW","RED"],["LIME","LIME","LIME"],[],[]]}
         // return {"tubes":[["RED","RED","RED"],["BLUE","BLUE","BLUE"],["LIME","LIME","YELLOW"],["YELLOW","YELLOW","LIME"],[],[]]}
-        // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","LIME"],["LIME","LIME","YELLOW"],[],[]]}
+        //return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","LIME"],["LIME","LIME","YELLOW"],[],[]]}
         // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} 
         // return  {"tubes":[["BLUE","YELLOW","RED"],["BLUE","BLUE","RED"],["RED","YELLOW","YELLOW"],[],[]]} 
         // return  {"tubes":[["RED","BLUE"],["BLUE","RED"],[],[]]} 
-                //    {"tubes":[["BLUE","RED"],["RED","BLUE"],[],[]]}
 
     }
 
@@ -109,7 +120,13 @@ class Solver {
                     let gridStrings = this.gridToCanonicalString(grid2);
                     if(!visitedPositions.includes(gridStrings)) {
                         //If it gets here, it's NOT already in the visitedPositions
+
+                        // With this one, it works up to about 10-12 balls x 5.  More than that it fails.
                         let solved = this.solveGrid(grid2, JSON.parse(JSON.stringify(visitedPositions)));
+
+                        //With this one, this is the original issue I had, it worked the odd time when maybe there was no backtracking necessary?
+                        // let solved = this.solveGrid(grid2, visitedPositions);
+                        this.counter++;
                         if (solved) {
                             this.output.push(grid2);
                             return true;

@@ -39,24 +39,31 @@ class App{
 
                 
         this.lnkSolve.addEventListener('click', () => {
-            let puzzle = this.builder.getPuzzle();
-            if (puzzle) {
-                this.solver.solve(puzzle)
-                let solvedPuzzle = this.solver.getJSON();
-                this.hideBuilder();
-                this.showAnimator();
-                this.animator.showCustomPuzzle(solvedPuzzle);
-            }
+            this.solveAndPassOn();
         });
         
         this.builder = new Builder(this.ballColours, this);
         this.animator = new Animator(this.ballColours);
         this.solver = new Solver();
 
+        this.solver.useSample();
+
 
         // Hides Builder initially
         // this.hideAnimator();
         this.hideBuilder();
+    }
+
+    solveAndPassOn() {
+        //Testing function
+        let puzzle = this.builder.getPuzzle();
+        if (puzzle) {
+            this.solver.solve(puzzle)
+            let solvedPuzzle = this.solver.getJSON();
+            this.hideBuilder();
+            this.showAnimator();
+            this.animator.showCustomPuzzle(solvedPuzzle);
+        }
     }
 
     showAnimator() {
