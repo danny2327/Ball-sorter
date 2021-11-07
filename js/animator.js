@@ -203,7 +203,9 @@ class Animator {
     }
 
     setDisplaySize() {
-        this.display.style.width = (60+(32*this.ballsPerTube)) + "px";
+        this.display.style.width = (60+(52*this.numberOfTubes)) + "px";
+        //why would this be ballsPerTube and not numberOfTubes?
+        // this.display.style.width = (60+(32*this.ballsPerTube)) + "px";
     }
 
     drawTubes(){
@@ -216,8 +218,8 @@ class Animator {
         //displays the tubes
         for(let i = 0; i < this.numberOfTubes; i++) {
             let tube = new Tube(this.ballsPerTube)
-            tube.setLeft(i);
-            tube.setTop(100);
+            // tube.setLeft(i);
+            // tube.setTop(100);
             this.tubes[i] = tube;
             
             //want to add - make the from and destination tubes change colour or highlight in some way
@@ -227,7 +229,7 @@ class Animator {
             for (let x = this.grid[this.currentStage][i].length-1; x >= 0 ; x--) {
                 //create ball (div), set class and color
                 let ball = new Ball(this.grid[this.currentStage][i][x]);  
-                ball.setBottom(x * 32)
+                // ball.setBottom((this.ballsPerTube-1-x) * 320)
                 tube.addBall(ball);
             }        
         }

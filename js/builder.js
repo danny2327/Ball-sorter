@@ -172,8 +172,8 @@ class Builder {
         for(let i = 0; i < this.numberOfTubes; i++) {
             let tube = new Tube(this.ballsPerTube);        
             this.tubes[i] = tube;   
-            tube.setLeft(i);
-            tube.setTop(100);
+            // tube.setLeft(i);
+            // tube.setTop(100);
             this.tubeDisplay.appendChild(tube.getDiv()); 
             // displays the balls
             //done in reverse so we're effectively drawing from the bottom up
