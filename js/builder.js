@@ -48,16 +48,6 @@ class Builder {
     }
 
     addEventListeners() {
-        // Clicking on the output copies the text (meant for the JSON but will work on any message) and displays a msg for 3 seconds.
-        // nav clipboard api is async func  
-        this.output.addEventListener('click', async () => {
-            await navigator.clipboard.writeText(this.output.textContent);
-            let jsonMsg = document.createTextNode('JSON Copied!');
-            this.output.appendChild(jsonMsg);
-            setTimeout(() => {
-                this.output.removeChild(jsonMsg);
-            }, 3000)
-        });
 
         document.getElementById('updateGrid').addEventListener('click', (e) => {
             if (confirm('Are you sure you want to change the size and reset?')) {
@@ -130,29 +120,13 @@ class Builder {
                 }
             }
         });
-        
-        document.getElementById('genJSON').addEventListener('click', (e) => {
-            if(this.isGridFull()) {
-                this.fillGrid();
-                this.outputJSON();
-            } else {
-                //need to display
-                this.displayMessage('Grid is not complete');
-            }
-        });
     }
-
-    // ***UI***  //
-    // ***BUILDING***  //
-    // ***OUTPUT***  //
-
 
     prepareToDraw() {    
         this.resetTubes();
         this.getInputs();
         this.drawTubes();
         this.drawBallSelector();
-        this.placeOutput();
     }
     
     startBuild() {
@@ -227,11 +201,6 @@ class Builder {
             return true;
         }
         return false;
-    }
-
-    placeOutput() {
-        let BSTop = parseInt(this.ballSelector.style.top) + 30;
-        this.output.style.top = BSTop +"px";
     }
 
     resetTubes() {
@@ -388,13 +357,6 @@ class Builder {
             tubeArray.push(ballsArr.reverse()); 
         }) 
         this.grid = {tubes: tubeArray};
-    }
-
-    
-
-    outputJSON() {
-        this.displayMessage(JSON.stringify(this.grid), false);
-        this.output.innerHTML += '<p>';
     }
 
     randomize() { 

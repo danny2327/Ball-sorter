@@ -17,8 +17,7 @@
   
   <div id="animator" class="pageElement">
     <div class="title">Puzzle Solving Visualizer</div>
-    <div class="desc">Use this tool to visualize solved puzzles.  <br>
-      Build the grid you want to solve with my builder, and then animate it here. Remember, it's a 'dumb' solver, so it won't always be optimal.</div>  
+    <div class="desc">Remember, it's a 'dumb' solver, so it won't always be optimal.</div>  
      <div id="animatorButtons">
     <!-- Main controls -->
     <!-- Select puzzle -->
@@ -43,8 +42,7 @@
   </div>
   <div id="builder" class="pageElement">
       <div class="title">Puzzle Builder</div>
-      <div class="desc">Use this tool to build puzzles for the solver to solve.  <br>
-        Build the grid you want to solve, and then send it to my animator. Currently you must copy the JSON and save it.</div>  
+      <div class="desc"></div>  
     <div id="builderButtons">
       <!-- Main controls -->
 
@@ -53,7 +51,6 @@
       <label class='gridSize' for="numBalls">How Many Balls per Tube:</label>
       <input type="number" id="numBalls" min=2 max=5 value=3><p></p>
       <button class="actionButton" id="resetBuilder">Reset</button>
-      <button class="actionButton" id="genJSON">Generate JSON</button>
       <button  class="actionButton" id="updateGrid">Update Grid</button>
       <button class="actionButton" id="randomize">Randomly Generate</button>
       <p>
