@@ -38,14 +38,14 @@ Builder
 ----
 ![image](images/builder.png)
 
-The builder allows you to create an existing puzzle, and solve it, or output it to JSON [since I made the solver, this isn't really relevant].  
+The builder allows you to build a puzzle, or randomly generate one, and solve it, see the solving process animated.  
 1. Select how many colours (there will be 2 more tubes than this number for the 2 empty tubes) and how many balls per tube. Click Update Grid to apply the changes to the size.
 2. Fill in the highlighted ball by clicking on the corresponding colour on the bottom row.  The selection will automatically move to the next one. 
 3. Once the grid is complete, click Solve Puzzle.
 
-You can click on any ball in the tubes at any time to select it and assign it a colour.  If you want to remove the colour from a ball, because, say you mixed two colours up but the grid is complete, click the 'clear' ball - the one at the far right, and then you can reassign them. 
+You can click on any ball in the tubes at any time to select it and assign it a colour.  If you want to remove the colour from a ball, because, say you mixed two colours up but the grid is complete, click the 'clear' ball - the one at the far right, and you can reassign the ball. 
 
-When you have used the maximum number of one colour, the ball to select it will be greyed out - and you will get a message saying it's been maxed out. 
+When you have used the maximum number of one colour, the ball to select it will be locked, and you will get a message saying it's been maxed out. 
 
 
 Solver
