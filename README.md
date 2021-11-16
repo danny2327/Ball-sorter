@@ -33,6 +33,7 @@ You can play the animation.  Additional controls appear when you start it.  Defa
 
 To quote the original author, the solver has: ** a couple of other minor optimisations but otherwise it's pretty naive.**  This means that you'll see it making some 'dumb' moves, so the total number of steps is higher than an optimal solve.  But it works.  Most of the time. 
 
+The balls are all done with CSS.
 
 Builder
 ----

@@ -17,7 +17,6 @@ class Animator {
 
         this.prev.disabled = "true";
         
-        
         // **Variables**
         this.tubes = {}
         this.numberOfTubes;
@@ -27,7 +26,6 @@ class Animator {
         this.ballColours = ballColours;
         this.currentStage = 0;
         this.playing = false;
-        //this.player = new Player();
         this.timeoutHandle;
         //default play speed in ms
         this.playSpeed = 1000;
