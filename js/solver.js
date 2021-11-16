@@ -1,4 +1,7 @@
 // This is not my code, it's way too good.  I just rewrote it from Python to JS.
+//***TO DO***
+//Show time to solve
+// handle if it can't solve 
 class Solver {
     constructor() {
         this.counter = 0;
