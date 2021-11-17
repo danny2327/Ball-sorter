@@ -80,6 +80,8 @@ body {
   
   .playControls {
     visibility: hidden;
+  }
+  .playControlsButton {
     background-color: lime;
     background-image:  linear-gradient(rgb(130, 160, 184), rgb(15, 28, 63));
     background-repeat: no-repeat;
@@ -101,7 +103,6 @@ body {
     padding-left: 30px;
     padding-top: 30px;
     margin-top: 50px;
-
   }
 
   #ballSelect .ball {

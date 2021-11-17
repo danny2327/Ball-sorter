@@ -12,6 +12,8 @@ class Animator {
         this.stage = document.createElement('span');
 
         this.puzzleDD = document.getElementById('puzzle');
+        
+        this.movesPer = document.getElementById('movesPer');
 
         this.addEventListeners();
 
@@ -28,9 +30,9 @@ class Animator {
         this.playing = false;
         this.timeoutHandle;
         //default play speed in ms
-        this.playSpeed = 1000;
         this.loadedPuzzle = '';
         
+        this.setPlaySpeed(5000);
         this.populatePuzzleSelect();
 
     } //End of Constructor
@@ -137,6 +139,10 @@ class Animator {
                         break;
                 }
         }));
+
+        document.getElementById('speed').addEventListener('change', (e) => {
+            this.setPlaySpeed(e.target.value);
+        });
         
         document.addEventListener('keydown', (e) => {
             const key = e.code
@@ -304,16 +310,19 @@ class Animator {
     resetTimeout() {
         clearTimeout(this.timeoutHandle);
     }
-    
-    faster() {
-        // don't want to be able to stop it
-        if (this.playSpeed > 200) this.playSpeed-=200;
-        console.log(this.playSpeed);
-    }
-    
-    slower() {
-        this.playSpeed+=200;
-        console.log(this.playSpeed);
+
+    setPlaySpeed(newSpeed) {
+        console.log(newSpeed)
+        if(newSpeed >= "0" && newSpeed <= "5900") {
+            let actualSpeed = 6000-newSpeed
+            this.playSpeed = actualSpeed;
+            console.log("actualSpeed",this.playSpeed)
+            if(newSpeed < 5000) {
+                movesPer.innerText = `Showing 1 move every ${parseFloat(actualSpeed/1000)} seconds`
+            } else {
+                movesPer.innerText = `Showing ${parseFloat(1000/actualSpeed)} moves per second`
+            }
+        }
     }
     
     reset() {

@@ -30,10 +30,13 @@
       <button class="actionButton" id="playFromStart">Play from Start</button>
     
   <!-- Play Controls -->
-      <button class="actionButton playControls" id="slower">Slower</button>
+      <!-- <button class="actionButton playControls" id="slower">Slower</button>
       <button class="actionButton playControls" id="faster">Faster</button>
-      <button class="actionButton playControls" id="reset">Reset Speed</button>
-      <button class="actionButton playControls" id="pause">Pause</button>
+      <button class="actionButton playControls" id="reset">Reset Speed</button> -->
+      <label class="playControls" for="speed">Play Speed</label>
+      <input type="range" class="actionButton playControls" id="speed" name="speed" min="0" max="5900" value = "5000" step="100">
+      <button class="actionButton playControls playControlsButton" id="pause">Pause</button>
+      <span class="playControls" id="movesPer"></span>
 
     </div> 
      <p></p>
