@@ -14,30 +14,11 @@ I have now recreated the solver in Javascript, making it a seamless building and
 
 Both tools are fairly complete, and polished, but not perfect. 
 
-Solver Animator
------
-![image](images/solver.png)
-
-This is the first part that I made.  
-
-You can select the puzzle to solve from the dropdown list of presolved puzzles.
-
-You can move through the stages using the buttons or the keyboard:
-- Up: Go to beginning
-- Down: Go to end
-- Left: Back one stage
-- Right: Forward one stage
-- Space: Play/Pause
-
-You can play the animation.  Additional controls appear when you start it.  Default time between frames is 1 second.  Each speed adjustment changes the cadence by 200ms, between 200 and infinity.  
-
-To quote the original author, the solver has: ** a couple of other minor optimisations but otherwise it's pretty naive.**  This means that you'll see it making some 'dumb' moves, so the total number of steps is higher than an optimal solve.  But it works.  Most of the time. 
-
-The balls are all done with CSS.
-
 Builder
 ----
 ![image](images/builder.png)
+
+I built this after I built the animator to make it easy to make the puzzles.  
 
 The builder allows you to build a puzzle, or randomly generate one, and solve it, see the solving process animated.  
 1. Select how many colours (there will be 2 more tubes than this number for the 2 empty tubes) and how many balls per tube. Click Update Grid to apply the changes to the size.
@@ -56,4 +37,26 @@ For this part, I recreated the solver mentioned above in JavaScript from the pyt
 Currently there is an issue with some larger puzzles running endlessly, which I'm working on.  Usually under 10 balls you're fine, 11 or 12 it's hit or miss, and more than that it will rarely solve it.  
 
 Currently it takes well under a second, at least on my computer, for any puzzle it can solve. 
+
+Solver Animator
+-----
+![image](images/solver.png)
+
+This is the first part that I made, but then I discovered how annoying it was to make the large puzzles manually.
+
+You can select the puzzle to solve from the dropdown list of presolved puzzles.
+
+You can move through the stages using the buttons or the keyboard:
+- Up: Go to beginning
+- Down: Go to end
+- Left: Back one stage
+- Right: Forward one stage
+- Space: Play/Pause
+
+You can play the animation.  Additional controls appear when you start it.  Default time between frames is 1 second.  Each speed adjustment changes the cadence by 200ms, between 200 and infinity.  
+
+To quote the original author, the solver has: ** a couple of other minor optimisations but otherwise it's pretty naive.**  This means that you'll see it making some 'dumb' moves, so the total number of steps is higher than an optimal solve.  But it works.  Most of the time. 
+
+
+The balls are done with only CSS.
 
