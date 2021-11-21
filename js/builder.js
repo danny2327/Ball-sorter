@@ -160,7 +160,7 @@ class Builder {
         this.selectBall();
         this.zeroNumColourList();
     }
-
+   
     getInputs() {
         //Tubes are 2 more than num of colours
         this.numberOfTubes = (parseInt(this.inputColours.value) + 2);

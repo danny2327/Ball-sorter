@@ -317,7 +317,6 @@ class Animator {
     faster() {
         // don't want to be able to stop it
         if (this.playSpeed > 200) this.playSpeed-=200;
-        console.log(this.playSpeed);
     }
     
     slower() {

@@ -21,7 +21,6 @@ class Solver {
     solve(unSolvedPuzzle) {
         let visitedPositions = []
         this.output = []
-        console.log(typeof unSolvedPuzzle)
         let grid
         if(unSolvedPuzzle['tubes']) {
             grid = unSolvedPuzzle['tubes']
