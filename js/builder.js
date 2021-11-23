@@ -173,13 +173,13 @@ class Builder {
             ball = new Ball(this.ballColours[i])
             // let ball = createBall(this.ballColours[i])
             this.ballSelector.appendChild(ball.getDiv());
-            ball.setLeft(i * 32);     
+            ball.setLeft(i * 34);     
         }
         //Add 'clear' ball at the end
         ball = new Ball();
         ball.setID('clearBall');
         this.ballSelector.appendChild(ball.getDiv());
-        ball.setLeft((parseInt(this.numberOfTubes)-2) * 32)
+        ball.setLeft((parseInt(this.numberOfTubes)-2) * 34)
     }
 
     resetCurrentBallPosition() {
