@@ -106,7 +106,7 @@ body {
   }
 
   #ballSelect .ball {
-    position:relative;
+    /* position:relative; */
     float:left;
   }
 
