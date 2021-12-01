@@ -58,7 +58,7 @@ class Animator {
         for (let puzzle in solvedPuzzles) {
             let option = document.createElement('option');
             option.value = solvedPuzzles[puzzle];
-            option.text = solvedPuzzles[puzzle]//.slice(0, -5);
+            option.text = solvedPuzzles[puzzle];//.slice(0, -5);
             this.puzzleDD.appendChild(option);
         }
         
@@ -85,6 +85,7 @@ class Animator {
             if(newPuzzle === 'Custom') {
                 // this.loadedPuzzle = this.sideLoadedPuzzle
                 this.resetPage();
+                this.puzzleDD.value = "Custom";
                 this.solve(this.sideLoadedPuzzle)
             } else {
                 this.loadedPuzzle = newPuzzle;
