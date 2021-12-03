@@ -24,6 +24,7 @@ class Animator {
         this.numberOfTubes;
         this.ballsPerTube;
         this.http = new EasyHTTP;
+ 
         this.grid;
         this.ballColours = ballColours;
         this.currentStage = 0;
@@ -174,7 +175,7 @@ class Animator {
 
     loadPuzzleFromDisk(loadPuzzle) {
         this.resetPage();
-        this.http.get(`../Examples/${loadPuzzle}.json`) 
+        this.http.get(`js/Examples/${loadPuzzle}.json`) 
         .then(data => this.solve(data))
         .catch(err => console.log(err)); 
     }
