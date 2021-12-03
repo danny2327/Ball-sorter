@@ -38,6 +38,7 @@ class Solver {
 
         if (solved) {
             this.output.push(grid)
+            this.output.reverse()
             // console.log('Final Output: ', this.output.reverse())
             this.JSONOutput = this.toJson();
         } else {
