@@ -85,7 +85,8 @@ class Animator {
             if(newPuzzle === 'Custom') {
                 // this.loadedPuzzle = this.sideLoadedPuzzle
                 this.resetPage();
-                this.puzzleDD.value = "Custom";
+                this.loadedPuzzle = newPuzzle;
+                this.puzzleDD.value = this.loadedPuzzle;
                 this.solve(this.sideLoadedPuzzle)
             } else {
                 this.loadedPuzzle = newPuzzle;

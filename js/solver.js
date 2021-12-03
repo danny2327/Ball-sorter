@@ -35,7 +35,7 @@ class Solver {
         this.tubeHeight = grid[0].length;
         let solved = this.solveGrid(grid, visitedPositions);
 
-
+        
         if (solved) {
             this.output.push(grid)
             this.output.reverse()
