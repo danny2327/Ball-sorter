@@ -96,13 +96,12 @@ class Animator {
     }
 
     addEventListeners() {
-
-        document.getElementById('puzzle').addEventListener('change', () => {
-            if(document.getElementById('puzzle').value == 'Custom') {
+        this.puzzleDD.addEventListener('change', () => {
+            if(this.puzzleDD.value == 'Custom') {
                 alert("Use the builder to create a puzzle to display");
                 this.puzzleDD.value = this.loadedPuzzle;
             } else {
-                this.setLoadedPuzzle(document.getElementById('puzzle').value);
+                this.setLoadedPuzzle(this.puzzleDD.value);
             }
         })
 
