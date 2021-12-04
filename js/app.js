@@ -49,9 +49,9 @@ class App{
         this.solver.useSample();
 
 
-        // Hides Builder initially
-        // this.hideAnimator();
-        this.hideBuilder();
+        // Both are shown initially, this hides the one you don't want to see first. 
+        this.hideAnimator();
+        // this.hideBuilder();
     }
 
     solveAndPassOn() {

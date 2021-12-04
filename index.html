@@ -17,8 +17,9 @@
   
   <div id="animator" class="pageElement">
     <div class="title">Puzzle Solving Visualizer</div>
-    <div class="desc">Remember, it's a 'dumb' solver, so it won't always be optimal.</div>  
-     <div id="animatorButtons">
+    <div class="desc">This displays and animates the solving process for puzzles built in the Builder, and also a handful of presolved puzzles to demonstrate how it works.  <p>
+      Remember, it's a 'dumb' solver, so it won't always be optimal.</div>  
+    <div id="animatorButtons">
     <!-- Main controls -->
     <!-- Select puzzle -->
       <label for="puzzle">Choose which pre-solved puzzle to display: </label><select name="puzzle" id="puzzle"></select> <p>
@@ -45,7 +46,9 @@
   </div>
   <div id="builder" class="pageElement">
       <div class="title">Puzzle Builder</div>
-      <div class="desc"></div>  
+      <div class="desc">This is use to build a sorting puzzle to be solved in the solver and displayed in the animator. <p>
+      Currently there is a bug when solving some puzzles larger than 10x5 where it goes into a loop.  If that happens, just close and relaunch the page.  
+      </div>  
     <div id="builderButtons">
       <!-- Main controls -->
 
