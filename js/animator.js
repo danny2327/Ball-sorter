@@ -82,17 +82,15 @@ class Animator {
     }
 
     setLoadedPuzzle(newPuzzle) {
-        if (newPuzzle !== this.getLoadedPuzzle()) {
-            if(newPuzzle === 'Custom') {
-                // this.loadedPuzzle = this.sideLoadedPuzzle
-                this.resetPage();
-                this.loadedPuzzle = newPuzzle;
-                this.puzzleDD.value = this.loadedPuzzle;
-                this.solve(this.sideLoadedPuzzle)
-            } else {
-                this.loadedPuzzle = newPuzzle;
-                this.loadPuzzleFromDisk(newPuzzle);
-            }
+        if(newPuzzle === 'Custom') {
+            // this.loadedPuzzle = this.sideLoadedPuzzle
+            this.resetPage();
+            this.loadedPuzzle = newPuzzle;
+            this.puzzleDD.value = this.loadedPuzzle;
+            this.solve(this.sideLoadedPuzzle)
+        } else {
+            this.loadedPuzzle = newPuzzle;
+            this.loadPuzzleFromDisk(newPuzzle);
         }
     }
 
