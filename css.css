@@ -23,13 +23,19 @@ body {
   height:140px;
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 10px;
   padding-top: 40px;
-  margin-top: 180px;
-  position:absolute;
-  float:left;
+  float: left;
+  margin-bottom: 10px;
+  /* margin-top: 180px; */
+  /* position:absolute; */
   background-image: url("images/tubetopbg.png"),url("images/tubebottombg.png"),url("images/tubemidbg.png");
   background-position: top, bottom, center;
   background-repeat: no-repeat, no-repeat, repeat-y;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .ball {
@@ -39,12 +45,9 @@ body {
   /* can't remove border or else you can't see the white. */
   border: 1px solid rgb(133, 131, 131);
   margin-bottom: 1px;      
-  position:absolute;
+  /* position:absolute; */
 }
 
-.tube .ball {
-    margin-bottom: 10px;
-}
     
 button {
   max-width: 200;
@@ -70,14 +73,13 @@ button {
   margin-bottom: 10px;
 }
 
+/* solver */
 
-  /* solver */
-
-  #animatorDisplay {
-  height:130px;
-  width:500px;
-  padding:30px;
-  padding-top: 50px;
+#animatorDisplay {
+  display: flex;
+  height:210px;
+  /* width:500px; */
+  padding:10px;
 }
 
 .playControls {
@@ -98,21 +100,22 @@ button {
 }
 
 #stage {
-  padding-bottom: 40px;
+  padding-bottom: 10px;
 }
 
 /* builder */
 #ballSelect {
-  position:relative;
+  /* position:relative; */
   height:36px;
   padding-left: 30px;
-  padding-top: 30px;
-  margin-top: 50px;
+  /* padding-top: 30px; */
+  margin-top: 10px;
 }
 
 #ballSelect .ball {
   /* position:relative; */
   float:left;
+  margin-left: 2px;
 }
 
 #clearBall {
@@ -124,4 +127,9 @@ button {
   font-size: large;
   padding-left: 30px;
   top:200px;
+}
+
+#builderTubeDisplay {
+  /* float: right; */
+  /* width: 312px; */
 }

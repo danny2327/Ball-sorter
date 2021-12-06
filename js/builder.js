@@ -134,7 +134,7 @@ class Builder {
         this.selectBall();
         this.zeroNumColourList();
     }
-
+   
     getInputs() {
         //Tubes are 2 more than num of colours
         this.numberOfTubes = (parseInt(this.inputColours.value) + 2);
@@ -146,8 +146,8 @@ class Builder {
         for(let i = 0; i < this.numberOfTubes; i++) {
             let tube = new Tube(this.ballsPerTube);        
             this.tubes[i] = tube;   
-            tube.setLeft(i);
-            tube.setTop(100);
+            // tube.setLeft(i);
+            // tube.setTop(100);
             this.tubeDisplay.appendChild(tube.getDiv()); 
             // displays the balls
             //done in reverse so we're effectively drawing from the bottom up
