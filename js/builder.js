@@ -163,7 +163,7 @@ class Builder {
 
     drawBallSelector() {
         this.ballSelector.innerHTML = '';
-        this.ballSelector.style.width = (parseInt(this.ballsPerTube)-2)*65;
+        this.ballSelector.style.width = (parseInt(this.ballsPerTube))*65;
         this.ballSelector.style.top = 80+(32*this.ballsPerTube)+"px";
         let ball;
         for (let i = 0; i < parseInt(this.numberOfTubes)-2; i++) {
