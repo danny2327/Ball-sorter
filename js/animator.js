@@ -1,7 +1,8 @@
 class Animator {
     constructor(ballColours) {
         
-        this.display = document.getElementById('display');
+        // this.display = document.getElementById('display');
+        this.display = document.getElementById('animatorDisplay');
 
         this.sideLoadedPuzzle// = JSON.parse('{"0":[["RED","BLUE"],["BLUE","RED"],[],[]],"1":[["RED"],["BLUE","RED"],["BLUE"],[]],"2":[["RED","RED"],["BLUE"],["BLUE"],[]],"3":[["RED","RED"],[],["BLUE","BLUE"],[]]}');
         ;
@@ -9,7 +10,7 @@ class Animator {
         this.prev = document.getElementById('prev');
         this.next = document.getElementById('next');
 
-        this.stage = document.createElement('span');
+        this.stage = document.getElementById('stage');
 
         this.puzzleDD = document.getElementById('puzzle');
         

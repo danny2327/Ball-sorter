@@ -26,6 +26,7 @@ body {
   padding-top: 40px;
   margin-top: 180px;
   position:absolute;
+  float:left;
   background-image: url("images/tubetopbg.png"),url("images/tubebottombg.png"),url("images/tubemidbg.png");
   background-position: top, bottom, center;
   background-repeat: no-repeat, no-repeat, repeat-y;
@@ -72,7 +73,7 @@ button {
 
   /* solver */
 
-  #display {
+  #animatorDisplay {
   height:130px;
   width:500px;
   padding:30px;
@@ -96,6 +97,9 @@ button {
   margin-left: 30px;
 }
 
+#stage {
+  padding-bottom: 40px;
+}
 
 /* builder */
 #ballSelect {
