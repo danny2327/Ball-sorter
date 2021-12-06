@@ -47,23 +47,20 @@ class Builder {
         }
     }
 
+    updateTubeDisplaySize(numTubes) {
+        this.tubeDisplay.style.width = (52*numTubes)+ "px";
+        this.tubeDisplay.style.height = ((32*this.ballsPerTube)+80)+ "px";
+    }
+
     addEventListeners() {
 
         document.getElementById('updateGrid').addEventListener('click', (e) => {
-            if (confirm('Are you sure you want to change the size and reset?')) {
-                //redraw
-                this.prepareToDraw();
-                this.resetCurrentBallPosition();
-                this.setBall();
-                this.selectBall();
-                this.zeroNumColourList();
-              } else {
-                // Do nothing!
-                this.displayMessage('No Change');
-                //undoes the change
-                this.inputColours.value = this.numberOfTubes-2;
-                this.inputBalls.value = this.ballsPerTube;
-              }
+            //redraw
+            this.prepareToDraw();
+            this.resetCurrentBallPosition();
+            this.setBall();
+            this.selectBall();
+            this.zeroNumColourList();
         });
 
         document.getElementById('randomize').addEventListener('click', () => {
@@ -143,6 +140,7 @@ class Builder {
     
     drawTubes() {
         //displays the tubes
+        this.updateTubeDisplaySize();
         for(let i = 0; i < this.numberOfTubes; i++) {
             let tube = new Tube(this.ballsPerTube);        
             this.tubes[i] = tube;   
@@ -165,8 +163,7 @@ class Builder {
 
     drawBallSelector() {
         this.ballSelector.innerHTML = '';
-        this.ballSelector.style.width = (parseInt(this.numberOfTubes)-2)*65;
-        this.ballSelector.style.height = 35;
+        this.ballSelector.style.width = (parseInt(this.ballsPerTube)-2)*65;
         this.ballSelector.style.top = 80+(32*this.ballsPerTube)+"px";
         let ball;
         for (let i = 0; i < parseInt(this.numberOfTubes)-2; i++) {
